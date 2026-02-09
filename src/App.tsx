@@ -3,14 +3,11 @@ import {
   Linkedin,
   Mail,
   Phone,
-  MapPin,
   ExternalLink,
   Award,
-  BookOpen,
   Briefcase,
   Code2,
   FileText,
-  User,
   Globe,
   Youtube,
   Cpu,
@@ -20,7 +17,6 @@ import {
   Star,
   Package,
   Server,
-  Database,
   Hexagon
 } from 'lucide-react'
 import { useState } from 'react'
@@ -183,7 +179,7 @@ function App() {
                   {DATA.skills.technical.map((skill, idx) => (
                     <div key={idx} className="group">
                       <div className="flex items-center justify-between mb-4 text-black/50 group-hover:text-black transition-colors">
-                        <span className="text-[12px] font-black uppercase tracking-[0.1em]">{skill.name}</span>
+                        <span className="text-[12px] font-black uppercase tracking-widest">{skill.name}</span>
                         <span className="text-[9px] font-black opacity-0 group-hover:opacity-100 transition-opacity">
                           {skill.level <= 30 ? 'BEGINNER' : skill.level <= 70 ? 'INTERMEDIATE' : 'ADVANCED'}
                         </span>
