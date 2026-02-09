@@ -17,7 +17,9 @@ import {
   Star,
   Package,
   Server,
-  Hexagon
+  Hexagon,
+  Menu,
+  X
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -94,42 +96,69 @@ const DATA = {
 
 function App() {
   const [activeTab, setActiveTab] = useState('main')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const toggleTab = (tab: string) => {
+    setActiveTab(tab)
+    setIsMenuOpen(false)
+  }
 
   return (
-    <div className="flex h-screen bg-white text-black font-['Poppins'] overflow-hidden text-[14px] selection:bg-black selection:text-white">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-white text-black font-['Poppins'] text-[14px] selection:bg-black selection:text-white relative">
+
+      {/* Mobile Header - High visibility toggle */}
+      <header className="lg:hidden flex justify-between items-center px-8 py-6 bg-white sticky top-0 z-40 border-b border-black/5">
+        <h1 className="text-sm font-black uppercase tracking-tighter leading-none">{DATA.name}</h1>
+        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 -mr-2">
+          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </header>
+
+      {/* Mobile Menu Overlay (Scrim) */}
+      {isMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 lg:hidden backdrop-blur-sm transition-opacity"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
+      )}
+
       {/* Sidebar - Professional Portfolio Aesthetic */}
-      <aside className="w-[300px] bg-white flex flex-col z-20">
-        <div className="p-12 pb-8 text-left">
+      <aside className={`
+        fixed inset-0 lg:relative lg:translate-x-0 lg:w-[300px] bg-white flex flex-col z-50 h-full
+        transition-transform duration-500 ease-in-out
+        ${isMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+      `}>
+        <div className="p-12 pb-8 text-left hidden lg:block">
           <h1 className="text-lg font-black uppercase tracking-tighter mb-2 leading-none">{DATA.name}</h1>
           <p className="text-[10px] text-black/60 uppercase tracking-[0.2em] font-bold">Systems & Content</p>
         </div>
 
-        <nav className="p-6 space-y-2">
+        <nav className="p-12 lg:p-6 space-y-2 flex-1 lg:flex-none">
           <button
-            onClick={() => setActiveTab('main')}
-            className={`w-full flex items-center justify-between px-6 py-3 transition-all duration-300 ${activeTab === 'main' ? 'text-black font-black' : 'text-black/60 hover:text-black'}`}
+            onClick={() => toggleTab('main')}
+            className={`w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-all duration-300 ${activeTab === 'main' ? 'text-black font-black bg-black/5 lg:bg-transparent' : 'text-black/60 hover:text-black'}`}
           >
-            <span className="uppercase text-[11px] tracking-[0.2em]">Portfolio</span>
+            <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Portfolio</span>
             <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'main' ? 'opacity-100' : 'opacity-0'}`}></div>
           </button>
           <button
-            onClick={() => setActiveTab('stack')}
-            className={`w-full flex items-center justify-between px-6 py-3 transition-all duration-300 ${activeTab === 'stack' ? 'text-black font-black' : 'text-black/60 hover:text-black'}`}
+            onClick={() => toggleTab('stack')}
+            className={`w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-all duration-300 ${activeTab === 'stack' ? 'text-black font-black bg-black/5 lg:bg-transparent' : 'text-black/60 hover:text-black'}`}
           >
-            <span className="uppercase text-[11px] tracking-[0.2em]">Laravel Setup</span>
+            <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Laravel Setup</span>
             <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'stack' ? 'opacity-100' : 'opacity-0'}`}></div>
           </button>
           <button
-            onClick={() => setActiveTab('links')}
-            className={`w-full flex items-center justify-between px-6 py-3 transition-all duration-300 ${activeTab === 'links' ? 'text-black font-black' : 'text-black/60 hover:text-black'}`}
+            onClick={() => toggleTab('links')}
+            className={`w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-all duration-300 ${activeTab === 'links' ? 'text-black font-black bg-black/5 lg:bg-transparent' : 'text-black/60 hover:text-black'}`}
           >
-            <span className="uppercase text-[11px] tracking-[0.2em]">Featured Links</span>
+            <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Featured Links</span>
             <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'links' ? 'opacity-100' : 'opacity-0'}`}></div>
           </button>
         </nav>
 
-        <div className="flex-1 px-12 py-10 space-y-12 custom-scrollbar overflow-y-auto">
-          <div>
+        <div className="px-12 py-10 space-y-12">
+          <div className="hidden lg:block">
             <h3 className="text-[9px] font-black uppercase tracking-[0.3em] mb-8 text-black/50">Academic Background</h3>
             <div className="space-y-8">
               {DATA.education.map((edu, idx) => (
@@ -142,21 +171,21 @@ function App() {
           </div>
         </div>
 
-        <div className="p-12 space-y-6">
+        <div className="p-12 space-y-6 bg-black/2 lg:bg-transparent mt-auto">
           <div className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity">
-            <Mail className="w-3.5 h-3.5" />
+            <Mail className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">{DATA.email}</span>
           </div>
           <div className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity">
-            <Phone className="w-3.5 h-3.5" />
+            <Phone className="w-3.5 h-3.5 shrink-0" />
             <span>{DATA.phone}</span>
           </div>
         </div>
       </aside>
 
       {/* Main Content - Minimalist Professional Portfolio */}
-      <main className="flex-1 flex flex-col h-full bg-white relative overflow-hidden">
-        <header className="px-16 py-12 flex justify-between items-center bg-white">
+      <main className="flex-1 flex flex-col min-h-screen bg-white lg:h-screen lg:overflow-hidden relative">
+        <header className="hidden lg:flex px-16 py-12 justify-between items-center bg-white">
           <div className="flex items-center space-x-4">
             {/* Title Removed */}
           </div>
@@ -166,21 +195,21 @@ function App() {
           </div>
         </header>
 
-        <div className="flex-1 px-16 pb-16 overflow-hidden">
+        <div className="flex-1 px-8 lg:px-16 pb-16 lg:overflow-hidden">
           {activeTab === 'main' ? (
-            <div className="h-full flex space-x-20 overflow-hidden">
+            <div className="h-full flex flex-col lg:flex-row space-y-20 lg:space-y-0 lg:space-x-20 lg:overflow-hidden">
 
               {/* Left Column: Technical Mastery */}
-              <section className="w-1/4 flex flex-col overflow-hidden">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
-                  <Code2 className="w-4 h-4 mr-4" /> Digital Arsenal
+              <section className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
+                  <Code2 className="w-4 h-4 mr-4 shrink-0" /> Digital Arsenal
                 </h3>
-                <div className="flex-1 overflow-y-auto space-y-12 custom-scrollbar pr-6">
+                <div className="flex-1 lg:overflow-y-auto space-y-10 lg:space-y-12 custom-scrollbar lg:pr-6">
                   {DATA.skills.technical.map((skill, idx) => (
                     <div key={idx} className="group">
                       <div className="flex items-center justify-between mb-4 text-black/50 group-hover:text-black transition-colors">
                         <span className="text-[12px] font-black uppercase tracking-widest">{skill.name}</span>
-                        <span className="text-[9px] font-black opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="text-[9px] font-black opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">
                           {skill.level <= 30 ? 'BEGINNER' : skill.level <= 70 ? 'INTERMEDIATE' : 'ADVANCED'}
                         </span>
                       </div>
@@ -193,20 +222,20 @@ function App() {
               </section>
 
               {/* Middle Column: Featured Projects */}
-              <section className="w-2/4 flex flex-col overflow-hidden">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
-                  <Terminal className="w-4 h-4 mr-4" /> Major Deployments
+              <section className="w-full lg:w-2/4 flex flex-col lg:overflow-hidden">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
+                  <Terminal className="w-4 h-4 mr-4 shrink-0" /> Major Deployments
                 </h3>
-                <div className="flex-1 space-y-20 overflow-y-auto custom-scrollbar pr-6">
+                <div className="flex-1 space-y-16 lg:space-y-20 lg:overflow-y-auto custom-scrollbar lg:pr-6">
                   {DATA.projects.map((proj, idx) => (
                     <div key={idx} className="group">
-                      <div className="flex items-baseline justify-between mb-6">
-                        <h4 className="text-3xl font-black uppercase leading-none tracking-tighter group-hover:translate-x-1 transition-transform">{proj.name}</h4>
-                        <a href={proj.url} target="_blank" rel="noopener noreferrer" className="opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="flex items-baseline justify-between mb-4 lg:mb-6">
+                        <h4 className="text-2xl lg:text-3xl font-black uppercase leading-none tracking-tighter group-hover:translate-x-1 transition-transform">{proj.name}</h4>
+                        <a href={proj.url} target="_blank" rel="noopener noreferrer" className="lg:opacity-0 group-hover:opacity-100 transition-opacity p-2">
                           <ExternalLink className="w-5 h-5" />
                         </a>
                       </div>
-                      <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-6 text-black/60">{proj.role}</p>
+                      <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-4 lg:mb-6 text-black/60">{proj.role}</p>
                       <p className="text-[13px] font-medium leading-relaxed opacity-80 max-w-md">{proj.desc}</p>
                     </div>
                   ))}
@@ -214,15 +243,15 @@ function App() {
               </section>
 
               {/* Right Column: Key Accolades */}
-              <section className="w-1/4 flex flex-col overflow-hidden">
-                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
-                  <Award className="w-4 h-4 mr-4" /> Highlights
+              <section className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
+                  <Award className="w-4 h-4 mr-4 shrink-0" /> Highlights
                 </h3>
-                <div className="flex-1 space-y-16 overflow-y-auto custom-scrollbar pr-6">
+                <div className="flex-1 space-y-12 lg:space-y-16 lg:overflow-y-auto custom-scrollbar lg:pr-6">
                   {DATA.achievements.map((ach, idx) => (
                     <div key={idx} className="group">
                       <div className="flex items-start space-x-4">
-                        <div className="mt-1 text-black/20 group-hover:text-black transition-colors">{ach.icon}</div>
+                        <div className="mt-1 text-black/20 group-hover:text-black transition-colors shrink-0">{ach.icon}</div>
                         <div>
                           <p className="text-[13px] font-black uppercase tracking-tight mb-2 group-hover:text-black transition-colors leading-tight">{ach.title}</p>
                           <p className="text-[10px] font-bold uppercase tracking-widest text-black/60">{ach.category}</p>
@@ -235,23 +264,23 @@ function App() {
 
             </div>
           ) : activeTab === 'stack' ? (
-            <div className="h-full flex flex-col overflow-hidden">
+            <div className="h-full flex flex-col lg:overflow-hidden">
               <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
-                <Layers className="w-4 h-4 mr-4" /> Essential Installers
+                <Layers className="w-4 h-4 mr-4 shrink-0" /> Essential Installers
               </h3>
-              <div className="flex-1 grid grid-cols-1 gap-6 overflow-y-auto custom-scrollbar pr-6 max-w-2xl">
+              <div className="flex-1 grid grid-cols-1 gap-6 lg:overflow-y-auto custom-scrollbar lg:pr-6 lg:max-w-2xl">
                 {DATA.laravelStack.map((item, idx) => (
-                  <div key={idx} className="group border-b border-black/5 py-8 transition-all hover:pl-4">
-                    <div className="flex items-center justify-between mb-4">
+                  <div key={idx} className="group border-b border-black/5 py-8 transition-all lg:hover:pl-4">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-4 space-y-4 lg:space-y-0">
                       <div className="flex items-center space-x-6">
-                        <div className="text-black/10 group-hover:text-black transition-colors scale-125">{item.icon}</div>
-                        <h4 className="text-xl font-black uppercase tracking-tight leading-none group-hover:translate-x-1 transition-transform">{item.name}</h4>
+                        <div className="text-black/10 group-hover:text-black transition-colors scale-125 shrink-0">{item.icon}</div>
+                        <h4 className="text-lg lg:text-xl font-black uppercase tracking-tight leading-none group-hover:translate-x-1 transition-transform">{item.name}</h4>
                       </div>
                       <a
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white px-4 py-1.5 text-[10px] font-black uppercase tracking-widest"
+                        className="lg:opacity-0 group-hover:opacity-100 transition-opacity bg-black text-white px-6 lg:px-4 py-3 lg:py-1.5 text-[10px] font-black uppercase tracking-widest text-center"
                       >
                         {item.label}
                       </a>
@@ -262,13 +291,13 @@ function App() {
               </div>
             </div>
           ) : (
-            <div className="h-full flex items-center justify-start py-24">
+            <div className="h-full flex flex-col justify-start py-12 lg:py-24">
               <div className="w-full max-w-xl space-y-6">
                 {DATA.links.map((link, idx) => (
-                  <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between py-8 border-b border-black/5 hover:border-black transition-all group">
-                    <div className="flex items-center space-x-12">
-                      <div className="text-black/40 group-hover:text-black transition-colors scale-125">{link.icon}</div>
-                      <span className="font-black text-sm uppercase tracking-[0.3em]">{link.name}</span>
+                  <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between py-6 lg:py-8 border-b border-black/5 hover:border-black transition-all group">
+                    <div className="flex items-center space-x-8 lg:space-x-12">
+                      <div className="text-black/40 group-hover:text-black transition-colors scale-110 lg:scale-125 shrink-0">{link.icon}</div>
+                      <span className="font-black text-[12px] lg:text-sm uppercase tracking-[0.3em]">{link.name}</span>
                     </div>
                     <div className="w-2 h-2 bg-black scale-0 group-hover:scale-100 transition-transform"></div>
                   </a>
@@ -278,11 +307,11 @@ function App() {
           )}
         </div>
 
-        <footer className="px-16 py-12 flex justify-between items-center text-black/40 border-t border-black/5">
-          <div className="flex items-center space-x-6">
-            <span className="text-[9px] font-black uppercase tracking-[1em]">JAN_HARRY_MADRONA</span>
+        <footer className="px-8 lg:px-16 py-8 lg:py-12 flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 text-black/40 border-t border-black/5 mt-auto">
+          <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-6 text-center">
+            <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[1em]">JAN_HARRY_MADRONA</span>
           </div>
-          <span className="text-[9px] font-black uppercase tracking-[1em]">CREDENTIAL_VERIFIED</span>
+          <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[1em]">CREDENTIAL_VERIFIED</span>
         </footer>
       </main>
     </div>
