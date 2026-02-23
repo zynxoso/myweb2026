@@ -1,29 +1,35 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #000000;
-  --color-secondary: #808080;
-  --color-bg-light: #FBFBFB;
-  --color-bg-white: #FFFFFF;
+  --color-black: var(--text-primary);
+  --color-white: var(--bg-secondary);
+  --color-primary: var(--primary);
 
-  /* Layout colors based on monochrome palette */
-  --color-text-main: #000000;
-  --color-text-muted: #808080;
-  --color-border-subtle: #00000008;
+  --color-bg-main: var(--bg-primary);
+  --color-bg-surface: var(--bg-secondary);
+  --color-border-subtle: var(--border-color);
 
-  /* Typography - Pivot to Poppins */
+  /* Typography */
   --font-heading: "Poppins", sans-serif;
   --font-body: "Poppins", sans-serif;
 }
 
 :root {
+  /* Light Theme - Soft Off-White */
+  --bg-primary: #F8F8F7;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #121212;
+  --text-secondary: #666666;
+  --primary: #000000;
+  --border-color: rgba(0, 0, 0, 0.08);
+
   font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light;
-  color: var(--color-text-main);
-  background-color: var(--color-bg-white);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -31,27 +37,42 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark {
+  /* Dark Theme - Deep Charcoal / Slate */
+  --bg-primary: #121212;
+  --bg-secondary: #1E1E1E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A0A0A0;
+  --primary: #F5F5F5;
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  color-scheme: dark;
+}
+
 body {
   margin: 0;
   min-width: 320px;
-  background-color: var(--color-bg-white);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #root {
   width: 100%;
 }
 
-/* Custom Scrollbar - Minimalist */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
-  background: white;
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #EEE;
+  background: var(--border-color);
+  border-radius: 10px;
 }
 
 @layer base {
@@ -64,5 +85,11 @@ body {
   h6 {
     font-family: var(--font-heading);
     @apply text-black uppercase tracking-tight;
+  }
+
+  /* Selection override */
+  ::selection {
+    background-color: var(--text-primary);
+    color: var(--bg-secondary);
   }
 }

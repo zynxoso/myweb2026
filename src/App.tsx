@@ -19,9 +19,11 @@ import {
   Server,
   Hexagon,
   Menu,
-  X
+  X,
+  Moon,
+  Sun
 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const DATA = {
   name: "Jan Harry I. Madrona",
@@ -97,11 +99,29 @@ const DATA = {
 function App() {
   const [activeTab, setActiveTab] = useState('main')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Check initial state from local storage or system preference
+    const saved = localStorage.getItem('theme')
+    if (saved) return saved === 'dark'
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+  })
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+      localStorage.setItem('theme', 'dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.setItem('theme', 'light')
+    }
+  }, [isDarkMode])
 
   const toggleTab = (tab: string) => {
     setActiveTab(tab)
     setIsMenuOpen(false)
   }
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode)
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-white text-black font-['Poppins'] text-[14px] selection:bg-black selection:text-white relative">
@@ -109,9 +129,18 @@ function App() {
       {/* Mobile Header - High visibility toggle */}
       <header className="lg:hidden flex justify-between items-center px-8 py-6 bg-white sticky top-0 z-40 border-b border-black/5">
         <h1 className="text-sm font-black uppercase tracking-tighter leading-none">{DATA.name}</h1>
-        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 -mr-2">
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center space-x-4">
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 -mr-2 text-black/60 hover:text-black transition-colors"
+            aria-label="Toggle theme"
+          >
+            {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 -mr-2">
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </header>
 
       {/* Mobile Menu Overlay (Scrim) */}
@@ -180,6 +209,23 @@ function App() {
             <Phone className="w-3.5 h-3.5 shrink-0" />
             <span>{DATA.phone}</span>
           </div>
+
+          <button
+            onClick={toggleDarkMode}
+            className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity w-full pt-6 border-t border-black/5"
+          >
+            {isDarkMode ? (
+              <>
+                <Sun className="w-3.5 h-3.5 shrink-0" />
+                <span>Light Mode</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-3.5 h-3.5 shrink-0" />
+                <span>Dark Mode</span>
+              </>
+            )}
+          </button>
         </div>
       </aside>
 
@@ -189,9 +235,19 @@ function App() {
           <div className="flex items-center space-x-4">
             {/* Title Removed */}
           </div>
-          <div className="flex items-center space-x-4 group cursor-pointer">
-            <div className="w-2 h-2 rounded-full bg-black"></div>
-            <span className="text-[10px] font-black uppercase tracking-[0.2em]">Available for Collaboration</span>
+          <div className="flex items-center space-x-6">
+            <button
+              onClick={toggleDarkMode}
+              className="group flex items-center space-x-3 text-black/40 hover:text-black transition-colors"
+              aria-label="Toggle theme"
+            >
+              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <span className="text-[10px] font-black uppercase tracking-[0.2em]">{isDarkMode ? 'Light' : 'Dark'}</span>
+            </button>
+            <div className="flex items-center space-x-4 group cursor-pointer">
+              <div className="w-2 h-2 rounded-full bg-black"></div>
+              <span className="text-[10px] font-black uppercase tracking-[0.2em]">Available for Collaboration</span>
+            </div>
           </div>
         </header>
 
