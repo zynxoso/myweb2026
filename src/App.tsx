@@ -61,16 +61,16 @@ const DATA = {
       url: "https://github.com/zynxoso/BARANGAY-MANAGEMENT-SYSTEM-ACCESS"
     },
     {
-      name: "AIRA-GEN",
+      name: "AIRA-GEN (Reports AI)",
       role: "Lead AI Developer",
-      desc: "Developed an advanced AI-driven reporting engine that automates data parsing and insight generation, transforming complex datasets into actionable intelligence.",
+      desc: "A Laravel + Livewire app that reads ICT service request forms from DOCX or images, saves them to a database, and exports completed DOCX, XLSX, or CSV files.",
       icon: <Cpu className="w-5 h-5" />,
       url: "https://github.com/zynxoso/AIRA-GEN"
     },
     {
       name: "AIRA-LOGIX",
       role: "Intern Project",
-      desc: "Contributed to AIRA-LOGIX as an internship project, supporting practical development and implementation tasks.",
+      desc: "AIRA-LOGIX is a tool that helps teams track deliveries and daily work. I built features for it during my internship.",
       icon: <Cpu className="w-5 h-5" />,
       url: "https://github.com/zynxoso/AIRA-LOGIX"
     }
@@ -100,6 +100,10 @@ const DATA = {
     { name: "TikTok", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> },
     { name: "Instagram", url: "#", icon: <Globe className="w-4 h-4" /> },
     { name: "Latest Vid", url: "#", icon: <Youtube className="w-4 h-4" /> }
+  ],
+  digitalProducts: [
+    { name: "Laravel Developer Playbook", url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link", icon: <FileText className="w-4 h-4" /> },
+    { name: "SMS Laravel tutorial", url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link", icon: <FileText className="w-4 h-4" /> }
   ]
 }
 
@@ -183,6 +187,13 @@ function App() {
           >
             <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Laravel Setup</span>
             <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'stack' ? 'opacity-100' : 'opacity-0'}`}></div>
+          </button>
+          <button
+            onClick={() => toggleTab('digital')}
+            className={`w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-all duration-300 ${activeTab === 'digital' ? 'text-black font-black bg-black/5 lg:bg-transparent' : 'text-black/60 hover:text-black'}`}
+          >
+            <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Digital Product</span>
+            <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'digital' ? 'opacity-100' : 'opacity-0'}`}></div>
           </button>
           <button
             onClick={() => toggleTab('links')}
@@ -350,6 +361,26 @@ function App() {
                     </div>
                     <p className="text-[12px] font-medium opacity-60 leading-relaxed ml-14">{item.desc}</p>
                   </div>
+                ))}
+              </div>
+            </div>
+          ) : activeTab === 'digital' ? (
+            <div className="h-full flex flex-col justify-start py-12 lg:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="w-full max-w-xl space-y-6">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
+                  <Package className="w-4 h-4 mr-4 shrink-0" /> Digital Products
+                </h3>
+                {DATA.digitalProducts.map((product, idx) => (
+                  <a key={idx} href={product.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between py-6 lg:py-8 border-b border-black/5 hover:border-black transition-all group">
+                    <div className="flex items-center space-x-8 lg:space-x-12">
+                      <div className="text-black/40 group-hover:text-black transition-colors scale-110 lg:scale-125 shrink-0">{product.icon}</div>
+                      <span className="font-black text-[12px] lg:text-sm uppercase tracking-[0.3em]">{product.name}</span>
+                    </div>
+                    <div className="flex items-center space-x-4">
+                      <span className="text-[10px] font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">View Notion</span>
+                      <div className="w-2 h-2 bg-black scale-0 group-hover:scale-100 transition-transform"></div>
+                    </div>
+                  </a>
                 ))}
               </div>
             </div>
