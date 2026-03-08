@@ -66,6 +66,13 @@ const DATA = {
       desc: "Developed an advanced AI-driven reporting engine that automates data parsing and insight generation, transforming complex datasets into actionable intelligence.",
       icon: <Cpu className="w-5 h-5" />,
       url: "https://github.com/zynxoso/AIRA-GEN"
+    },
+    {
+      name: "AIRA-LOGIX",
+      role: "Intern Project",
+      desc: "Contributed to AIRA-LOGIX as an internship project, supporting practical development and implementation tasks.",
+      icon: <Cpu className="w-5 h-5" />,
+      url: "https://github.com/zynxoso/AIRA-LOGIX"
     }
   ],
   education: [
