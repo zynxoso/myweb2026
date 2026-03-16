@@ -21,7 +21,9 @@ import {
   Menu,
   X,
   Moon,
-  Sun
+  Sun,
+  LayoutGrid,
+  Image as ImageIcon
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
@@ -104,6 +106,20 @@ const DATA = {
   digitalProducts: [
     { name: "Laravel Developer Playbook", url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link", icon: <FileText className="w-4 h-4" /> },
     { name: "SMS Laravel tutorial", url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link", icon: <FileText className="w-4 h-4" /> }
+  ],
+  gallery: [
+    { title: "PRISM Scholarship Portal", category: "Web Development", img: "/gallery/prism.png" },
+    { title: "CLSU ICT Login", category: "System Development", img: "/gallery/ict_login.png" },
+    { title: "TOPCIT Competency Certified", category: "Achievement", img: "/gallery/certificate_topcit.png" },
+    { title: "Harvard CS50 Certification", category: "Achievement", img: "/gallery/certificate_harvardCs50.jpg" },
+    { title: "Data Visualization Specialist", category: "Achievement", img: "/gallery/JAN HARRY MADRONA - Data Visualization.png" },
+    { title: "Pandas for Data Science", category: "Achievement", img: "/gallery/JAN HARRY MADRONA - Pandas.png" },
+    { title: "Career Seminar: Gender Equality", category: "Achievement", img: "/gallery/certificate_participation.jpg" },
+    { title: "First Day at MISO", category: "Experience", img: "/gallery/firstday_internt_at_MISO.jpg" },
+    { title: "Project Presentation", category: "Experience", img: "/gallery/intern_project_presentation.jpg" },
+    { title: "OJT Work Session", category: "Experience", img: "/gallery/OJT_CODING.jpg" },
+    { title: "OJT Deployment", category: "Experience", img: "/gallery/OJT_1.jpg" },
+    { title: "Personal Moments", category: "Memory", img: "/gallery/with_my_gf.jpg" }
   ]
 }
 
@@ -201,6 +217,13 @@ function App() {
           >
             <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Featured Links</span>
             <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'links' ? 'opacity-100' : 'opacity-0'}`}></div>
+          </button>
+          <button
+            onClick={() => toggleTab('gallery')}
+            className={`w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-all duration-300 ${activeTab === 'gallery' ? 'text-black font-black bg-black/5 lg:bg-transparent' : 'text-black/60 hover:text-black'}`}
+          >
+            <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Gallery</span>
+            <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'gallery' ? 'opacity-100' : 'opacity-0'}`}></div>
           </button>
         </nav>
 
@@ -384,9 +407,12 @@ function App() {
                 ))}
               </div>
             </div>
-          ) : (
-            <div className="h-full flex flex-col justify-start py-12 lg:py-24">
+          ) : activeTab === 'links' ? (
+            <div className="h-full flex flex-col justify-start py-12 lg:py-24 animate-in fade-in slide-in-from-bottom-4 duration-700">
               <div className="w-full max-w-xl space-y-6">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
+                  <ExternalLink className="w-4 h-4 mr-4 shrink-0" /> Featured Links
+                </h3>
                 {DATA.links.map((link, idx) => (
                   <a key={idx} href={link.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between py-6 lg:py-8 border-b border-black/5 hover:border-black transition-all group">
                     <div className="flex items-center space-x-8 lg:space-x-12">
@@ -396,6 +422,29 @@ function App() {
                     <div className="w-2 h-2 bg-black scale-0 group-hover:scale-100 transition-transform"></div>
                   </a>
                 ))}
+              </div>
+            </div>
+          ) : (
+            <div className="h-full flex flex-col lg:overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-12 flex items-center text-black/50">
+                <LayoutGrid className="w-4 h-4 mr-4 shrink-0" /> Visual Showcase
+              </h3>
+              <div className="flex-1 overflow-y-auto custom-scrollbar lg:pr-6">
+                <div className="columns-1 md:columns-2 gap-8 space-y-8 pb-10">
+                  {DATA.gallery.map((item, idx) => (
+                    <div key={idx} className="group relative break-inside-avoid overflow-hidden bg-black/5 border border-black/5">
+                      <img 
+                        src={item.img} 
+                        alt={item.title} 
+                        className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 backdrop-blur-[2px]">
+                        <p className="text-[9px] font-black uppercase tracking-[0.3em] text-white/50 mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.category}</p>
+                        <h4 className="text-lg font-black uppercase tracking-tighter text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">{item.title}</h4>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}
