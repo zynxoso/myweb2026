@@ -22,8 +22,7 @@ import {
   X,
   Moon,
   Sun,
-  LayoutGrid,
-  Image as ImageIcon
+  LayoutGrid
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 
@@ -433,9 +432,9 @@ function App() {
                 <div className="columns-1 md:columns-2 gap-8 space-y-8 pb-10">
                   {DATA.gallery.map((item, idx) => (
                     <div key={idx} className="group relative break-inside-avoid overflow-hidden bg-black/5 border border-black/5">
-                      <img 
-                        src={item.img} 
-                        alt={item.title} 
+                      <img
+                        src={item.img}
+                        alt={item.title}
                         className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 backdrop-blur-[2px]">
