@@ -106,6 +106,7 @@ const DATA = {
     { name: "Laravel Developer Playbook", url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link", icon: <FileText className="w-4 h-4" /> },
     { name: "SMS Laravel tutorial", url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link", icon: <FileText className="w-4 h-4" /> }
   ],
+  resume: "/RESUME_LATEST2026.pdf",
   gallery: [
     { title: "Internship Certificate of Completion", category: "Achievement", img: "/gallery/cert_of_completion_intern.jpg" },
     { title: "AI Dev Collaboration at TESO-CLSU", category: "Experience", img: "/gallery/co_aidev_at_TESO-CLSU.jpg" },
@@ -206,6 +207,13 @@ function App() {
           >
             <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">Portfolio</span>
             <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'main' ? 'opacity-100' : 'opacity-0'}`}></div>
+          </button>
+          <button
+            onClick={() => toggleTab('resume')}
+            className={`w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-all duration-300 ${activeTab === 'resume' ? 'text-black font-black bg-black/5 lg:bg-transparent' : 'text-black/60 hover:text-black'}`}
+          >
+            <span className="uppercase text-[11px] lg:text-[11px] tracking-[0.2em]">My Resume</span>
+            <div className={`w-1.5 h-1.5 rounded-full bg-black transition-opacity ${activeTab === 'resume' ? 'opacity-100' : 'opacity-0'}`}></div>
           </button>
           <button
             onClick={() => toggleTab('stack')}
@@ -369,6 +377,30 @@ function App() {
                 </div>
               </section>
 
+            </div>
+          ) : activeTab === 'resume' ? (
+            <div className="h-full flex flex-col lg:overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-700">
+              <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 space-y-6 lg:space-y-0">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                  <FileText className="w-4 h-4 mr-4 shrink-0" /> Professional Resume
+                </h3>
+                <a 
+                  href={DATA.resume} 
+                  download="RESUME_LATEST2026.pdf"
+                  className="bg-black text-white px-8 py-4 lg:py-3 text-[10px] font-black uppercase tracking-widest hover:bg-black/80 transition-colors flex items-center space-x-3 w-full lg:w-auto justify-center"
+                >
+                  <Package className="w-4 h-4" />
+                  <span>Download PDF</span>
+                </a>
+              </div>
+              <div className="flex-1 bg-black/5 border border-black/5 overflow-hidden relative group rounded-sm">
+                <iframe 
+                  src={`${DATA.resume}#toolbar=0&navpanes=0&scrollbar=0`} 
+                  className="w-full h-full border-none min-h-[500px]"
+                  title="Resume Preview"
+                />
+                <div className="absolute inset-0 pointer-events-none border border-black/5 group-hover:border-black/10 transition-colors"></div>
+              </div>
             </div>
           ) : activeTab === 'stack' ? (
             <div className="h-full flex flex-col lg:overflow-hidden">
