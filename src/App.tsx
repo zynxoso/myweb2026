@@ -110,20 +110,14 @@ const DATA = {
     { title: "PRISM Scholarship Portal", category: "Web Development", img: "/gallery/prism.png" },
     { title: "CLSU ICT Login", category: "System Development", img: "/gallery/ict_login.png" },
     { title: "TOPCIT Competency Certified", category: "Achievement", img: "/gallery/certificate_topcit.png" },
-    { title: "TOPCIT Official Scorecard", category: "Achievement", img: "/gallery/TOPCIT.png" },
     { title: "Harvard CS50 Certification", category: "Achievement", img: "/gallery/certificate_harvardCs50.jpg" },
     { title: "Data Visualization Specialist", category: "Achievement", img: "/gallery/JAN HARRY MADRONA - Data Visualization.png" },
     { title: "Pandas for Data Science", category: "Achievement", img: "/gallery/JAN HARRY MADRONA - Pandas.png" },
-    { title: "Career Seminar Certificate", category: "Achievement", img: "/gallery/career_seminar.png" },
     { title: "Career Seminar: Gender Equality", category: "Achievement", img: "/gallery/certificate_participation.jpg" },
-    { title: "Internship Completion Certificate", category: "Achievement", img: "/gallery/certificate_of_completion_INTERN.jpg" },
     { title: "First Day at MISO", category: "Experience", img: "/gallery/firstday_internt_at_MISO.jpg" },
     { title: "Project Presentation", category: "Experience", img: "/gallery/intern_project_presentation.jpg" },
-    { title: "AIRA OJT Presentation", category: "Experience", img: "/gallery/AIRA_OJT_PRESENTATIOn.jpg" },
-    { title: "OJT Graduation Presentation", category: "Experience", img: "/gallery/gradation_OJT.jpg" },
     { title: "OJT Work Session", category: "Experience", img: "/gallery/OJT_CODING.jpg" },
     { title: "OJT Deployment", category: "Experience", img: "/gallery/OJT_1.jpg" },
-    { title: "Team Candid Moment", category: "Experience", img: "/gallery/candid.jpg" },
     { title: "Personal Moments", category: "Memory", img: "/gallery/with_my_gf.jpg" }
   ]
 }
