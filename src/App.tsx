@@ -48,6 +48,13 @@ const DATA = {
   },
   projects: [
     {
+      name: "AIRA (AI Reports Automation)",
+      role: "Lead AI Developer | Intern Project",
+      desc: "AIRA-LOGIX is a high-performance Laravel 12 application utilizing a React 19 frontend via Inertia.js 2.0. It is designed for ICT departments to digitize service request workflows, extract structured data from diverse inputs (photos, docs, sheets) using Google Gemini AI, and generate comprehensive analytical reports.",
+      icon: <Cpu className="w-5 h-5" />,
+      url: "https://github.com/zynxoso/CLSU_AIRA-LOGIX"
+    },
+    {
       name: "Scholarship Portal",
       role: "Lead Developer",
       desc: "Architected a comprehensive scholarship management platform for CLSU, streamlining digital application workflows and data integrity.",
@@ -61,20 +68,6 @@ const DATA = {
       icon: <Layers className="w-5 h-5" />,
       url: "https://github.com/zynxoso/BARANGAY-MANAGEMENT-SYSTEM-ACCESS"
     },
-    {
-      name: "AIRA-GEN (Reports AI)",
-      role: "Lead AI Developer",
-      desc: "A Laravel + Livewire app that reads ICT service request forms from DOCX or images, saves them to a database, and exports completed DOCX, XLSX, or CSV files.",
-      icon: <Cpu className="w-5 h-5" />,
-      url: "https://github.com/zynxoso/AIRA-GEN"
-    },
-    {
-      name: "AIRA-LOGIX",
-      role: "Intern Project",
-      desc: "AIRA-LOGIX is a tool that helps teams track deliveries and daily work. I built features for it during my internship.",
-      icon: <Cpu className="w-5 h-5" />,
-      url: "https://github.com/zynxoso/AIRA-LOGIX"
-    }
   ],
   education: [
     { school: "CLSU", period: "In View", level: "BS IT" },
