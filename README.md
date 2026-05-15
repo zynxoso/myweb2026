@@ -1,75 +1,60 @@
-# React + TypeScript + Vite
+# Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A personal portfolio built with React, TypeScript, Vite, and Tailwind CSS. It includes a responsive layout, mobile menu, dark mode toggle, and multiple content sections (portfolio, resume, stack, products, links, and gallery).
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19
+- TypeScript
+- Vite
+- Tailwind CSS v4
+- lucide-react icons
 
-## React Compiler
+## Sections
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- Portfolio (skills, projects, achievements)
+- Resume (PDF preview and download)
+- Laravel setup (installers and links)
+- Digital products
+- Featured links
+- Gallery
 
-Note: This will impact Vite dev & build performances.
+## Getting started
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Scripts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `npm run dev` - start the Vite dev server
+- `npm run build` - type-check and build for production
+- `npm run preview` - preview the production build locally
+- `npm run lint` - run ESLint
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Customize content
+
+Edit `src/App.tsx` and update the `DATA` object:
+
+- Profile details: `name`, `title`, `location`, `phone`, `email`, `objective`
+- Skills: `skills.technical` and `skills.soft`
+- Projects: `projects`
+- Education and achievements: `education`, `achievements`
+- Links and products: `links`, `digitalProducts`
+- Resume path: `resume`
+- Gallery items: `gallery`
+
+## Assets
+
+- Resume PDF: place it in `public/RESUME_LATEST2026.pdf` or update `DATA.resume`
+- Gallery images: place files under `public/gallery` and update `DATA.gallery`
+- Local installer files: place them under `public/laravel installers` and update `DATA.laravelStack`
+
+## Build and deploy
+
+```bash
+npm run build
 ```
+
+Deploy the `dist` folder to any static hosting provider.
