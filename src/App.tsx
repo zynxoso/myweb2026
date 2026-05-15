@@ -55,6 +55,20 @@ const DATA = {
       url: "https://github.com/zynxoso/CLSU_AIRA-LOGIX"
     },
     {
+      name: "Viral Content",
+      role: "Content Automation Project",
+      desc: "End-to-end content automation toolkit covering research, scripting, batch asset generation, and publishing workflows. Focuses on rapid iteration, consistent branding, and measurable engagement across platforms.",
+      icon: <Youtube className="w-5 h-5" />,
+      url: "https://github.com/zynxoso/viralcontent"
+    },
+    {
+      name: "Budget Planner",
+      role: "Personal Finance Tool",
+      desc: "Personal finance tracker that organizes income, expenses, and savings goals into clear monthly views. Emphasizes simple categories, quick summaries, and actionable insights for better spending control.",
+      icon: <Briefcase className="w-5 h-5" />,
+      url: "https://github.com/zynxoso/BudgetPlanner"
+    },
+    {
       name: "Scholarship Portal",
       role: "Lead Developer",
       desc: "Architected a comprehensive scholarship management platform for CLSU, streamlining digital application workflows and data integrity.",
