@@ -262,22 +262,6 @@ function App() {
             <span>{DATA.phone}</span>
           </div>
 
-          <button
-            onClick={toggleDarkMode}
-            className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity w-full pt-6 border-t border-black/5"
-          >
-            {isDarkMode ? (
-              <>
-                <Sun className="w-3.5 h-3.5 shrink-0" />
-                <span>Light Mode</span>
-              </>
-            ) : (
-              <>
-                <Moon className="w-3.5 h-3.5 shrink-0" />
-                <span>Dark Mode</span>
-              </>
-            )}
-          </button>
         </div>
       </aside>
 
@@ -377,8 +361,8 @@ function App() {
                 <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                   <FileText className="w-4 h-4 mr-4 shrink-0" /> Professional Resume
                 </h3>
-                <a 
-                  href={DATA.resume} 
+                <a
+                  href={DATA.resume}
                   download="RESUME_LATEST2026.pdf"
                   className="bg-black text-white px-8 py-4 lg:py-3 text-[10px] font-black uppercase tracking-widest hover:bg-black/80 transition-colors flex items-center space-x-3 w-full lg:w-auto justify-center"
                 >
@@ -387,8 +371,8 @@ function App() {
                 </a>
               </div>
               <div className="flex-1 bg-black/5 border border-black/5 overflow-hidden relative group rounded-sm">
-                <iframe 
-                  src={`${DATA.resume}#toolbar=0&navpanes=0&scrollbar=0`} 
+                <iframe
+                  src={`${DATA.resume}#toolbar=0&navpanes=0&scrollbar=0`}
                   className="w-full h-full border-none min-h-[500px]"
                   title="Resume Preview"
                 />
