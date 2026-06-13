@@ -1,8 +1,6 @@
 import {
   Github,
   Linkedin,
-  Mail,
-  Phone,
   ExternalLink,
   Award,
   Briefcase,
@@ -585,22 +583,6 @@ php artisan serve`
               </div>
             </motion.div>
 
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
-              }}
-              className="p-12 space-y-6 bg-black/2 lg:bg-transparent mt-auto"
-            >
-              <div className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity">
-                <Mail className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate">{DATA.email}</span>
-              </div>
-              <div className="flex items-center space-x-4 text-[10px] font-bold uppercase tracking-widest opacity-50 hover:opacity-100 transition-opacity">
-                <Phone className="w-3.5 h-3.5 shrink-0" />
-                <span>{DATA.phone}</span>
-              </div>
-            </motion.div>
           </motion.div>
         </aside>
 
@@ -828,8 +810,8 @@ php artisan serve`
                         <button
                           onClick={() => setResumeViewMode('interactive')}
                           className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 ${resumeViewMode === 'interactive'
-                              ? 'bg-black text-white shadow-sm'
-                              : 'text-black/60 hover:text-black'
+                            ? 'bg-black text-white shadow-sm'
+                            : 'text-black/60 hover:text-black'
                             }`}
                         >
                           Interactive
@@ -837,8 +819,8 @@ php artisan serve`
                         <button
                           onClick={() => setResumeViewMode('pdf')}
                           className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 ${resumeViewMode === 'pdf'
-                              ? 'bg-black text-white shadow-sm'
-                              : 'text-black/60 hover:text-black'
+                            ? 'bg-black text-white shadow-sm'
+                            : 'text-black/60 hover:text-black'
                             }`}
                         >
                           PDF View
@@ -1414,8 +1396,8 @@ php artisan serve`}
                               key={filter}
                               onClick={() => setGalleryFilter(filter)}
                               className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${galleryFilter === filter
-                                  ? 'bg-black text-white shadow-sm'
-                                  : 'text-black/60 hover:text-black'
+                                ? 'bg-black text-white shadow-sm'
+                                : 'text-black/60 hover:text-black'
                                 }`}
                             >
                               {filterLabelMap[filter]}
@@ -1429,8 +1411,8 @@ php artisan serve`}
                         <button
                           onClick={() => setGalleryViewMode('masonry')}
                           className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-1.5 ${galleryViewMode === 'masonry'
-                              ? 'bg-black text-white shadow-sm'
-                              : 'text-black/60 hover:text-black'
+                            ? 'bg-black text-white shadow-sm'
+                            : 'text-black/60 hover:text-black'
                             }`}
                           title="Masonry Stream"
                         >
@@ -1440,8 +1422,8 @@ php artisan serve`}
                         <button
                           onClick={() => setGalleryViewMode('inspector')}
                           className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-1.5 ${galleryViewMode === 'inspector'
-                              ? 'bg-black text-white shadow-sm'
-                              : 'text-black/60 hover:text-black'
+                            ? 'bg-black text-white shadow-sm'
+                            : 'text-black/60 hover:text-black'
                             }`}
                           title="Inspector Grid"
                         >
