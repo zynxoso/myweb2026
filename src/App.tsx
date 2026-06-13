@@ -119,215 +119,215 @@ const DATA = {
     { name: "Latest Vid", desc: "My newest video tutorial or walkthrough.", url: "#", icon: <Youtube className="w-4 h-4" /> }
   ],
   digitalProducts: [
-    { 
-      name: "Laravel Developer Playbook", 
-      desc: "A personal collection of database designs, coding patterns, and tips I use for Laravel projects.", 
+    {
+      name: "Laravel Developer Playbook",
+      desc: "A personal collection of database designs, coding patterns, and tips I use for Laravel projects.",
       tag: "PLAYBOOK",
-      url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link", 
-      icon: <FileText className="w-4 h-4" /> 
+      url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link",
+      icon: <FileText className="w-4 h-4" />
     },
-    { 
-      name: "SMS Laravel Tutorial", 
-      desc: "A guide on setting up SMS alerts and message queues in Laravel.", 
+    {
+      name: "SMS Laravel Tutorial",
+      desc: "A guide on setting up SMS alerts and message queues in Laravel.",
       tag: "TUTORIAL",
-      url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link", 
-      icon: <FileText className="w-4 h-4" /> 
+      url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link",
+      icon: <FileText className="w-4 h-4" />
     }
   ],
   resume: "/RESUME_LATEST2026.pdf",
   gallery: [
-    { 
-      title: "Internship Certificate of Completion", 
-      category: "Achievement", 
+    {
+      title: "Internship Certificate of Completion",
+      category: "Achievement",
       img: "/gallery/cert_of_completion_intern.jpg",
       desc: "My certificate for finishing a 480-hour internship at CLSU's Municipal Information Systems Office.",
       date: "Jan 2026",
       tech: ["Internship", "CLSU MISO", "System Dev"],
       verified: true
     },
-    { 
-      title: "AI Dev Collaboration at TESO-CLSU", 
-      category: "Experience", 
+    {
+      title: "AI Dev Collaboration at TESO-CLSU",
+      category: "Experience",
       img: "/gallery/co_aidev_at_TESO-CLSU.jpg",
       desc: "Working with the CLSU TESO team to plan out how they can use AI to automate daily tasks.",
       date: "Dec 2025",
       tech: ["Gemini AI", "API Integrations", "Collaboration"],
       verified: true
     },
-    { 
-      title: "OJT Graduation", 
-      category: "Achievement", 
+    {
+      title: "OJT Graduation",
+      category: "Achievement",
       img: "/gallery/ojt_grad.jpg",
       desc: "Internship graduation ceremony at the municipal center.",
       date: "Jan 2026",
       tech: ["Achievement", "OJT", "MISO"],
       verified: true
     },
-    { 
-      title: "OJT Final Presentation", 
-      category: "Experience", 
+    {
+      title: "OJT Final Presentation",
+      category: "Experience",
       img: "/gallery/ojt_grad_presentation.jpg",
       desc: "Presenting the AIRA-LOGIX app to the ICT directors at the end of our internship.",
       date: "Jan 2026",
       tech: ["Presentation", "Laravel", "React", "Inertia"],
       verified: true
     },
-    { 
-      title: "OJT Graduation Ceremony", 
-      category: "Memory", 
+    {
+      title: "OJT Graduation Ceremony",
+      category: "Memory",
       img: "/gallery/ojt_graduation_image.jpg",
       desc: "Photo with the municipal team and admins during graduation.",
       date: "Jan 2026",
       tech: ["Memory", "Graduation", "Team"],
       verified: false
     },
-    { 
-      title: "Graduation Portrait (Toga)", 
-      category: "Achievement", 
+    {
+      title: "Graduation Portrait (Toga)",
+      category: "Achievement",
       img: "/gallery/graduation_pic_toga.png",
       desc: "My graduation photo celebrating my BS in IT degree from CLSU.",
       date: "May 2026",
       tech: ["Academic", "CLSU", "BS IT"],
       verified: true
     },
-    { 
-      title: "Graduation Portrait", 
-      category: "Achievement", 
+    {
+      title: "Graduation Portrait",
+      category: "Achievement",
       img: "/gallery/Graduation_pic.png",
       desc: "Yearbook portrait photo.",
       date: "May 2026",
       tech: ["Academic", "CLSU", "BS IT"],
       verified: true
     },
-    { 
-      title: "Graduation Portrait (Barong)", 
-      category: "Achievement", 
+    {
+      title: "Graduation Portrait (Barong)",
+      category: "Achievement",
       img: "/gallery/graduationpic_barong.png",
       desc: "Graduation portrait in traditional Barong Tagalog.",
       date: "May 2026",
       tech: ["Academic", "CLSU", "BS IT"],
       verified: true
     },
-    { 
-      title: "Career Seminar: Gender Equality", 
-      category: "Achievement", 
+    {
+      title: "Career Seminar: Gender Equality",
+      category: "Achievement",
       img: "/gallery/career_seminar.png",
       desc: "Certificate for attending a seminar on workplace diversity and ethics in tech.",
       date: "Nov 2025",
       tech: ["Seminar", "Ethics", "Professional"],
       verified: true
     },
-    { 
-      title: "TOPCIT Competency Certificate", 
-      category: "Achievement", 
+    {
+      title: "TOPCIT Competency Certificate",
+      category: "Achievement",
       img: "/gallery/TOPCIT.png",
       desc: "My TOPCIT exam certificate, showing software engineering competency.",
       date: "Nov 2025",
       tech: ["TOPCIT", "IITP", "Software Eng"],
       verified: true
     },
-    { 
-      title: "PRISM Scholarship Portal", 
-      category: "Web Development", 
+    {
+      title: "PRISM Scholarship Portal",
+      category: "Web Development",
       img: "/gallery/prism.png",
       desc: "Interface designs for the CLSU PRISM scholarship project.",
       date: "Oct 2025",
       tech: ["Web Dev", "PHP", "MySQL", "UI/UX"],
       verified: true
     },
-    { 
-      title: "CLSU ICT Login", 
-      category: "System Development", 
+    {
+      title: "CLSU ICT Login",
+      category: "System Development",
       img: "/gallery/ict_login.png",
       desc: "Redesigning the login page for CLSU's main ICT portal.",
       date: "Sep 2025",
       tech: ["System Dev", "Authentication", "Tailwind"],
       verified: true
     },
-    { 
-      title: "TOPCIT Competency Certified", 
-      category: "Achievement", 
+    {
+      title: "TOPCIT Competency Certified",
+      category: "Achievement",
       img: "/gallery/certificate_topcit.png",
       desc: "Score report from the TOPCIT exam.",
       date: "Nov 2025",
       tech: ["TOPCIT", "IITP", "Exam"],
       verified: true
     },
-    { 
-      title: "Harvard CS50 Certification", 
-      category: "Achievement", 
+    {
+      title: "Harvard CS50 Certification",
+      category: "Achievement",
       img: "/gallery/certificate_harvardCs50.jpg",
       desc: "Certificate for completing Harvard's CS50 AI with Python course.",
       date: "Aug 2025",
       tech: ["HarvardX", "Python", "AI/ML"],
       verified: true
     },
-    { 
-      title: "Data Visualization Specialist", 
-      category: "Achievement", 
+    {
+      title: "Data Visualization Specialist",
+      category: "Achievement",
       img: "/gallery/JAN HARRY MADRONA - Data Visualization.png",
       desc: "Kaggle certificate for data visualization in Python.",
       date: "Jul 2025",
       tech: ["Kaggle", "Data Science", "Python"],
       verified: true
     },
-    { 
-      title: "Pandas for Data Science", 
-      category: "Achievement", 
+    {
+      title: "Pandas for Data Science",
+      category: "Achievement",
       img: "/gallery/JAN HARRY MADRONA - Pandas.png",
       desc: "Kaggle certificate for data analysis using Pandas.",
       date: "Jul 2025",
       tech: ["Kaggle", "Pandas", "Python"],
       verified: true
     },
-    { 
-      title: "Career Seminar Participation", 
-      category: "Achievement", 
+    {
+      title: "Career Seminar Participation",
+      category: "Achievement",
       img: "/gallery/certificate_participation.jpg",
       desc: "Certificate for a seminar on career prep and job hunting.",
       date: "Oct 2025",
       tech: ["Seminar", "Career Readiness"],
       verified: true
     },
-    { 
-      title: "First Day at MISO", 
-      category: "Experience", 
+    {
+      title: "First Day at MISO",
+      category: "Experience",
       img: "/gallery/firstday_internt_at_MISO.jpg",
       desc: "First day at the Municipal Information Systems Office with other interns.",
       date: "Nov 2025",
       tech: ["Memory", "OJT", "First Day"],
       verified: false
     },
-    { 
-      title: "Project Presentation", 
-      category: "Experience", 
+    {
+      title: "Project Presentation",
+      category: "Experience",
       img: "/gallery/intern_project_presentation.jpg",
       desc: "Presenting our first project goals and diagrams to our university advisors.",
       date: "Dec 2025",
       tech: ["Presentation", "Sprint Review", "MISO"],
       verified: true
     },
-    { 
-      title: "OJT Work Session", 
-      category: "Experience", 
+    {
+      title: "OJT Work Session",
+      category: "Experience",
       img: "/gallery/OJT_CODING.jpg",
       desc: "Working late to debug database issues and update states.",
       date: "Dec 2025",
       tech: ["OJT", "Development", "Teamwork"],
       verified: false
     },
-    { 
-      title: "OJT Deployment", 
-      category: "Experience", 
+    {
+      title: "OJT Deployment",
+      category: "Experience",
       img: "/gallery/OJT_1.jpg",
       desc: "Setting up local servers and deploying our first test build.",
       date: "Jan 2026",
       tech: ["System Dev", "Deployment", "XAMPP"],
       verified: true
     },
-    { 
-      title: "Personal Moments", 
-      category: "Memory", 
+    {
+      title: "Personal Moments",
+      category: "Memory",
       img: "/gallery/with_my_gf.jpg",
       desc: "A photo with my girlfriend celebrating graduation.",
       date: "Feb 2026",
@@ -673,7 +673,7 @@ php artisan serve`
                   className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden"
                 >
                   <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
-                    <Code2 className="w-4 h-4 mr-4 shrink-0" /> Digital Arsenal
+                    <Code2 className="w-4 h-4 mr-4 shrink-0" /> Skills
                   </h3>
                   <div className="flex-1 lg:overflow-y-auto space-y-10 lg:space-y-12 custom-scrollbar lg:pr-6">
                     {DATA.skills.technical.map((skill, idx) => (
@@ -722,7 +722,7 @@ php artisan serve`
                   className="w-full lg:w-2/4 flex flex-col lg:overflow-hidden"
                 >
                   <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
-                    <Terminal className="w-4 h-4 mr-4 shrink-0" /> Major Deployments
+                    <Terminal className="w-4 h-4 mr-4 shrink-0" /> Projects
                   </h3>
                   <div className="flex-1 space-y-8 lg:overflow-y-auto custom-scrollbar lg:pr-6">
                     {DATA.projects.map((proj, idx) => (
@@ -782,7 +782,7 @@ php artisan serve`
                   className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden"
                 >
                   <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
-                    <Award className="w-4 h-4 mr-4 shrink-0" /> Highlights
+                    <Award className="w-4 h-4 mr-4 shrink-0" /> Achievements
                   </h3>
                   <div className="flex-1 space-y-10 lg:space-y-12 lg:overflow-y-auto custom-scrollbar lg:pr-6">
                     {DATA.achievements.map((ach, idx) => (
@@ -820,34 +820,32 @@ php artisan serve`
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 space-y-6 lg:space-y-0 shrink-0">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full lg:w-auto">
                       <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
-                        <FileText className="w-4 h-4 mr-4 shrink-0" /> Professional Resume
+                        <FileText className="w-4 h-4 mr-4 shrink-0" /> Resume
                       </h3>
-                      
+
                       {/* View Mode Toggle Pill */}
                       <div className="flex bg-black/5 rounded-full p-1 border border-black/5 self-start sm:self-auto select-none">
                         <button
                           onClick={() => setResumeViewMode('interactive')}
-                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 ${
-                            resumeViewMode === 'interactive'
+                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 ${resumeViewMode === 'interactive'
                               ? 'bg-black text-white shadow-sm'
                               : 'text-black/60 hover:text-black'
-                          }`}
+                            }`}
                         >
                           Interactive
                         </button>
                         <button
                           onClick={() => setResumeViewMode('pdf')}
-                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 ${
-                            resumeViewMode === 'pdf'
+                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 ${resumeViewMode === 'pdf'
                               ? 'bg-black text-white shadow-sm'
                               : 'text-black/60 hover:text-black'
-                          }`}
+                            }`}
                         >
                           PDF View
                         </button>
                       </div>
                     </div>
-                    
+
                     <a
                       href={DATA.resume}
                       download="RESUME_LATEST2026.pdf"
@@ -878,7 +876,7 @@ php artisan serve`
                   {/* Interactive CV Render */}
                   {resumeViewMode === 'interactive' && (
                     <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
-                      <motion.div 
+                      <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
@@ -905,13 +903,13 @@ php artisan serve`
                               </div>
                             </div>
                           </div>
-                          
+
                           {/* Image Box */}
                           <div className="relative group shrink-0 self-start">
                             <div className="w-24 h-24 md:w-28 md:h-28 overflow-hidden bg-black/5 border border-black/5 rounded-sm">
-                              <img 
-                                src="/gallery/Graduation_pic.png" 
-                                alt="Jan Harry I. Madrona" 
+                              <img
+                                src="/gallery/Graduation_pic.png"
+                                alt="Jan Harry I. Madrona"
                                 className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500 scale-105 hover:scale-100"
                               />
                             </div>
@@ -929,10 +927,10 @@ php artisan serve`
 
                         {/* 2-Column Split */}
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                          
+
                           {/* Left Column (Span 7) - Experience & Projects */}
                           <div className="lg:col-span-7 space-y-12">
-                            
+
                             {/* Experience Section */}
                             <div className="space-y-6">
                               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Experience</h4>
@@ -972,7 +970,7 @@ php artisan serve`
                                     I built CLSU's scholarship site to handle online applications and student record reviews.
                                   </p>
                                 </div>
-                                
+
                                 <div className="space-y-2 group">
                                   <div className="flex justify-between items-center gap-4">
                                     <h5 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
@@ -1042,7 +1040,7 @@ php artisan serve`
 
                           {/* Right Column (Span 5) - Skills, Education, Certs */}
                           <div className="lg:col-span-5 space-y-12">
-                            
+
                             {/* Skills Section */}
                             <div className="space-y-6">
                               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Skills</h4>
@@ -1057,7 +1055,7 @@ php artisan serve`
                                     ))}
                                   </div>
                                 </div>
-                                
+
                                 <div className="space-y-2">
                                   <p className="text-[10px] font-black uppercase tracking-wider text-black/60">Frameworks & Libraries</p>
                                   <div className="flex flex-wrap gap-1.5">
@@ -1132,7 +1130,7 @@ php artisan serve`
                                 ))}
                               </div>
                             </div>
-                            
+
                           </div>
                         </div>
 
@@ -1241,10 +1239,10 @@ php artisan serve`
                             {isCopied ? 'Copied!' : 'Copy Code'}
                           </button>
                         </div>
-                        
+
                         {/* Console output */}
                         <pre className="p-6 overflow-x-auto custom-scrollbar leading-relaxed text-[#d0d6e0] select-all">
-{`# 1. Install a new Laravel project via Composer
+                          {`# 1. Install a new Laravel project via Composer
 composer create-project laravel/laravel my-laravel-app
 
 # 2. Navigate to your project directory
@@ -1398,7 +1396,7 @@ php artisan serve`}
                   {/* Gallery Control Header */}
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-8 shrink-0">
                     <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
-                      <LayoutGrid className="w-4 h-4 mr-4 shrink-0" /> Visual Showcase
+                      <LayoutGrid className="w-4 h-4 mr-4 shrink-0" /> Gallery
                     </h3>
 
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full xl:w-auto">
@@ -1415,11 +1413,10 @@ php artisan serve`}
                             <button
                               key={filter}
                               onClick={() => setGalleryFilter(filter)}
-                              className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${
-                                galleryFilter === filter
+                              className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 shrink-0 ${galleryFilter === filter
                                   ? 'bg-black text-white shadow-sm'
                                   : 'text-black/60 hover:text-black'
-                              }`}
+                                }`}
                             >
                               {filterLabelMap[filter]}
                             </button>
@@ -1431,11 +1428,10 @@ php artisan serve`}
                       <div className="flex bg-black/5 rounded-full p-1 border border-black/5 select-none shrink-0 self-start sm:self-auto">
                         <button
                           onClick={() => setGalleryViewMode('masonry')}
-                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-1.5 ${
-                            galleryViewMode === 'masonry'
+                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-1.5 ${galleryViewMode === 'masonry'
                               ? 'bg-black text-white shadow-sm'
                               : 'text-black/60 hover:text-black'
-                          }`}
+                            }`}
                           title="Masonry Stream"
                         >
                           <Columns className="w-3 h-3" />
@@ -1443,11 +1439,10 @@ php artisan serve`}
                         </button>
                         <button
                           onClick={() => setGalleryViewMode('inspector')}
-                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-1.5 ${
-                            galleryViewMode === 'inspector'
+                          className={`px-4 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-300 flex items-center gap-1.5 ${galleryViewMode === 'inspector'
                               ? 'bg-black text-white shadow-sm'
                               : 'text-black/60 hover:text-black'
-                          }`}
+                            }`}
                           title="Inspector Grid"
                         >
                           <List className="w-3 h-3" />
@@ -1461,8 +1456,8 @@ php artisan serve`}
                   <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
                     {galleryViewMode === 'masonry' ? (
                       /* Masonry Stream Mode */
-                      <motion.div 
-                        layout 
+                      <motion.div
+                        layout
                         className="columns-1 md:columns-2 gap-8 space-y-8 pb-10"
                       >
                         {DATA.gallery
@@ -1510,8 +1505,8 @@ php artisan serve`}
                       </motion.div>
                     ) : (
                       /* Inspector Grid Mode (Dense technical details) */
-                      <motion.div 
-                        layout 
+                      <motion.div
+                        layout
                         className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 pb-10"
                       >
                         {DATA.gallery
