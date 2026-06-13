@@ -1,6 +1,8 @@
 import {
   Github,
   Linkedin,
+  Mail,
+  Phone,
   ExternalLink,
   Award,
   Briefcase,
@@ -1570,13 +1572,6 @@ php artisan serve`}
               )}
             </AnimatePresence>
           </div>
-
-          <footer className="px-8 lg:px-16 py-8 lg:py-12 flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0 text-black/40 border-t border-black/5 mt-auto">
-            <div className="flex flex-col lg:flex-row items-center space-y-2 lg:space-y-0 lg:space-x-6 text-center">
-              <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[1em]">JAN_HARRY_MADRONA</span>
-            </div>
-            <span className="text-[8px] lg:text-[9px] font-black uppercase tracking-[1em]">CREDENTIAL_VERIFIED</span>
-          </footer>
         </main>
       </div>
 
