@@ -36,7 +36,7 @@ const DATA = {
   location: "Philippines",
   phone: "0977 625 5563",
   email: "Janharrymadrona1000@gmail.com",
-  objective: "A creative and technical professional specializing in developing digital systems and high-impact content. Expert in Laravel, AI automation, and full-stack development, focused on building efficient, scalable solutions that bridge technology and creativity.",
+  objective: "I build web systems and make digital videos. I work a lot with Laravel and full-stack development, and I like using code to automate repetitive tasks. My goal is just to make simple, clean tools that solve actual problems.",
   skills: {
     technical: [
       { name: "Laravel", level: 40, icon: <Zap className="w-3 h-3" /> },
@@ -54,7 +54,7 @@ const DATA = {
     {
       name: "AIRA (AI Reports Automation)",
       role: "Lead AI Developer | Intern Project",
-      desc: "AIRA-LOGIX is a high-performance Laravel 12 application utilizing a React 19 frontend via Inertia.js 2.0. It is designed for ICT departments to digitize service request workflows, extract structured data from diverse inputs (photos, docs, sheets) using Google Gemini AI, and generate comprehensive analytical reports.",
+      desc: "A web app I built during my internship to move CLSU's paper service requests online. It runs on Laravel 12, React 19, and Inertia.js. I added Gemini AI to read info directly from photos and documents so staff don't have to type it in manually.",
       icon: <Cpu className="w-5 h-5" />,
       url: "https://github.com/zynxoso/CLSU_AIRA-LOGIX",
       tags: ["Laravel 12", "React 19", "Gemini AI", "Inertia 2"]
@@ -62,7 +62,7 @@ const DATA = {
     {
       name: "Viral Content",
       role: "Content Automation Project",
-      desc: "End-to-end content automation toolkit covering research, scripting, batch asset generation, and publishing workflows. Focuses on rapid iteration, consistent branding, and measurable engagement across platforms.",
+      desc: "A Python script that helps me automate content creation. It handles things like researching topics, generating video drafts, and publishing to social media, which saves me hours of manual editing.",
       icon: <Youtube className="w-5 h-5" />,
       url: "https://github.com/zynxoso/viralcontent",
       tags: ["Python", "Automation", "Youtube API", "Asset Gen"]
@@ -70,7 +70,7 @@ const DATA = {
     {
       name: "Budget Planner",
       role: "Personal Finance Tool",
-      desc: "Personal finance tracker that organizes income, expenses, and savings goals into clear monthly views. Emphasizes simple categories, quick summaries, and actionable insights for better spending control.",
+      desc: "A simple dashboard for tracking monthly income and spending. I kept it free of extra clutter, using just basic categories and charts so you can see where your money goes. Built with React and Tailwind.",
       icon: <Briefcase className="w-5 h-5" />,
       url: "https://github.com/zynxoso/BudgetPlanner",
       tags: ["React", "Tailwind CSS", "Finance", "Local Storage"]
@@ -78,7 +78,7 @@ const DATA = {
     {
       name: "Scholarship Portal",
       role: "Lead Developer",
-      desc: "Architected a comprehensive scholarship management platform for CLSU, streamlining digital application workflows and data integrity.",
+      desc: "I built CLSU's scholarship site. It replaced their old paper system with a simple online form, which makes it much faster for students to apply and easier for the administration to review applicants.",
       icon: <Terminal className="w-5 h-5" />,
       url: "https://clsu-erdt.com/",
       tags: ["PHP", "MySQL", "CLSU", "Workflow"]
@@ -86,7 +86,7 @@ const DATA = {
     {
       name: "Barangay System",
       role: "Lead Developer",
-      desc: "Engineered a centralized information management system for local governance, digitizing legacy records into a high-performance database.",
+      desc: "A local database system for barangay records. I helped digitize their paper files so staff can search, edit, and update community details instantly instead of looking through filing cabinets.",
       icon: <Layers className="w-5 h-5" />,
       url: "https://github.com/zynxoso/BARANGAY-MANAGEMENT-SYSTEM-ACCESS",
       tags: ["Access DB", "Local Gov", "System Dev"]
@@ -107,28 +107,28 @@ const DATA = {
     { title: "TOPCIT IT Competency", category: "IITP International", icon: <FileText className="w-4 h-4" /> }
   ],
   laravelStack: [
-    { name: "Composer", desc: "The PHP package manager required for Laravel dependency management. (v1.8 MB)", url: "/laravel installers/Composer-Setup.exe", icon: <Package className="w-5 h-5" />, label: "Download" },
-    { name: "Web Server: Apache (XAMPP)", desc: "Local development server environment containing PHP and Apache.", url: "https://www.apachefriends.org/download.html", icon: <Server className="w-5 h-5" />, label: "Links" },
-    { name: "Node.js", desc: "A JavaScript runtime built on Chrome's V8 JavaScript engine. (v24.13.0)", url: "/laravel installers/node-v24.13.0-x64.msi", icon: <Hexagon className="w-5 h-5" />, label: "Download" }
+    { name: "Composer", desc: "A tool that manages the extra PHP libraries Laravel needs to work. (v1.8 MB)", url: "/laravel installers/Composer-Setup.exe", icon: <Package className="w-5 h-5" />, label: "Download" },
+    { name: "Web Server: Apache (XAMPP)", desc: "A local server stack that lets you test PHP apps and databases on your own computer.", url: "https://www.apachefriends.org/download.html", icon: <Server className="w-5 h-5" />, label: "Links" },
+    { name: "Node.js", desc: "A JavaScript tool used to compile frontend stylesheets and scripts in Laravel. (v24.13.0)", url: "/laravel installers/node-v24.13.0-x64.msi", icon: <Hexagon className="w-5 h-5" />, label: "Download" }
   ],
   links: [
-    { name: "GitHub", desc: "Open-source repositories, AI automation, and system code.", url: "https://github.com/zynxoso", icon: <Github className="w-4 h-4" /> },
-    { name: "LinkedIn", desc: "Professional updates, career network, and collaborations.", url: "https://www.linkedin.com/in/jan-harry-madrona-212108402", icon: <Linkedin className="w-4 h-4" /> },
-    { name: "TikTok", desc: "Tech content creation, Laravel automation, and short developer clips.", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> },
-    { name: "Instagram", desc: "Behind-the-scenes projects and visual updates.", url: "#", icon: <Globe className="w-4 h-4" /> },
-    { name: "Latest Vid", desc: "Featured technical outline and video guide.", url: "#", icon: <Youtube className="w-4 h-4" /> }
+    { name: "GitHub", desc: "Where I host my repositories and automation scripts.", url: "https://github.com/zynxoso", icon: <Github className="w-4 h-4" /> },
+    { name: "LinkedIn", desc: "My professional network page.", url: "https://www.linkedin.com/in/jan-harry-madrona-212108402", icon: <Linkedin className="w-4 h-4" /> },
+    { name: "TikTok", desc: "Where I post short videos about coding and developer tips.", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> },
+    { name: "Instagram", desc: "My personal page with casual updates and desk setups.", url: "#", icon: <Globe className="w-4 h-4" /> },
+    { name: "Latest Vid", desc: "My newest video tutorial or walkthrough.", url: "#", icon: <Youtube className="w-4 h-4" /> }
   ],
   digitalProducts: [
     { 
       name: "Laravel Developer Playbook", 
-      desc: "Comprehensive developer handbook covering design patterns, database architecture, testing workflows, and deployment setups.", 
+      desc: "A personal collection of database designs, coding patterns, and tips I use for Laravel projects.", 
       tag: "PLAYBOOK",
       url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link", 
       icon: <FileText className="w-4 h-4" /> 
     },
     { 
       name: "SMS Laravel Tutorial", 
-      desc: "Step-by-step implementation guide for building SMS notification queues and gateway integrations in Laravel.", 
+      desc: "A guide on setting up SMS alerts and message queues in Laravel.", 
       tag: "TUTORIAL",
       url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link", 
       icon: <FileText className="w-4 h-4" /> 
@@ -140,7 +140,7 @@ const DATA = {
       title: "Internship Certificate of Completion", 
       category: "Achievement", 
       img: "/gallery/cert_of_completion_intern.jpg",
-      desc: "Official certificate issued by Central Luzon State University's Municipal Information Systems Office for successfully completing the 480-hour IT internship requirement.",
+      desc: "My certificate for finishing a 480-hour internship at CLSU's Municipal Information Systems Office.",
       date: "Jan 2026",
       tech: ["Internship", "CLSU MISO", "System Dev"],
       verified: true
@@ -149,7 +149,7 @@ const DATA = {
       title: "AI Dev Collaboration at TESO-CLSU", 
       category: "Experience", 
       img: "/gallery/co_aidev_at_TESO-CLSU.jpg",
-      desc: "Interactive collaboration workshop session focusing on integrating AI intelligence models with the TESO organization workflows at CLSU.",
+      desc: "Working with the CLSU TESO team to plan out how they can use AI to automate daily tasks.",
       date: "Dec 2025",
       tech: ["Gemini AI", "API Integrations", "Collaboration"],
       verified: true
@@ -158,7 +158,7 @@ const DATA = {
       title: "OJT Graduation", 
       category: "Achievement", 
       img: "/gallery/ojt_grad.jpg",
-      desc: "Graduation ceremony representing the successful completion of the municipal systems internship program.",
+      desc: "Internship graduation ceremony at the municipal center.",
       date: "Jan 2026",
       tech: ["Achievement", "OJT", "MISO"],
       verified: true
@@ -167,7 +167,7 @@ const DATA = {
       title: "OJT Final Presentation", 
       category: "Experience", 
       img: "/gallery/ojt_grad_presentation.jpg",
-      desc: "Presentation of the final Laravel-based service request automation project (AIRA-LOGIX) to key municipal ICT directors.",
+      desc: "Presenting the AIRA-LOGIX app to the ICT directors at the end of our internship.",
       date: "Jan 2026",
       tech: ["Presentation", "Laravel", "React", "Inertia"],
       verified: true
@@ -176,7 +176,7 @@ const DATA = {
       title: "OJT Graduation Ceremony", 
       category: "Memory", 
       img: "/gallery/ojt_graduation_image.jpg",
-      desc: "Memorable snapshot with municipal administrators and tech leads during the internship graduation rites.",
+      desc: "Photo with the municipal team and admins during graduation.",
       date: "Jan 2026",
       tech: ["Memory", "Graduation", "Team"],
       verified: false
@@ -185,7 +185,7 @@ const DATA = {
       title: "Graduation Portrait (Toga)", 
       category: "Achievement", 
       img: "/gallery/graduation_pic_toga.png",
-      desc: "Formal graduation toga portrait celebrating completion of BS in Information Technology at Central Luzon State University.",
+      desc: "My graduation photo celebrating my BS in IT degree from CLSU.",
       date: "May 2026",
       tech: ["Academic", "CLSU", "BS IT"],
       verified: true
@@ -194,7 +194,7 @@ const DATA = {
       title: "Graduation Portrait", 
       category: "Achievement", 
       img: "/gallery/Graduation_pic.png",
-      desc: "Formal graduation studio portrait for the university yearbook and alumni database.",
+      desc: "Yearbook portrait photo.",
       date: "May 2026",
       tech: ["Academic", "CLSU", "BS IT"],
       verified: true
@@ -203,7 +203,7 @@ const DATA = {
       title: "Graduation Portrait (Barong)", 
       category: "Achievement", 
       img: "/gallery/graduationpic_barong.png",
-      desc: "Formal Filipiniana graduation portrait wearing the traditional Barong Tagalog.",
+      desc: "Graduation portrait in traditional Barong Tagalog.",
       date: "May 2026",
       tech: ["Academic", "CLSU", "BS IT"],
       verified: true
@@ -212,7 +212,7 @@ const DATA = {
       title: "Career Seminar: Gender Equality", 
       category: "Achievement", 
       img: "/gallery/career_seminar.png",
-      desc: "Seminar certificate focusing on gender equality, workplace diversity, and ethical development practices in tech.",
+      desc: "Certificate for attending a seminar on workplace diversity and ethics in tech.",
       date: "Nov 2025",
       tech: ["Seminar", "Ethics", "Professional"],
       verified: true
@@ -221,7 +221,7 @@ const DATA = {
       title: "TOPCIT Competency Certificate", 
       category: "Achievement", 
       img: "/gallery/TOPCIT.png",
-      desc: "Test of Practical Competency in IT (TOPCIT) certificate validating core capabilities in software engineering and system architecture.",
+      desc: "My TOPCIT exam certificate, showing software engineering competency.",
       date: "Nov 2025",
       tech: ["TOPCIT", "IITP", "Software Eng"],
       verified: true
@@ -230,7 +230,7 @@ const DATA = {
       title: "PRISM Scholarship Portal", 
       category: "Web Development", 
       img: "/gallery/prism.png",
-      desc: "Visual mockup screens of the CLSU PRISM Scholarship Portal designed to manage university scholarship schemes.",
+      desc: "Interface designs for the CLSU PRISM scholarship project.",
       date: "Oct 2025",
       tech: ["Web Dev", "PHP", "MySQL", "UI/UX"],
       verified: true
@@ -239,7 +239,7 @@ const DATA = {
       title: "CLSU ICT Login", 
       category: "System Development", 
       img: "/gallery/ict_login.png",
-      desc: "Portal login screen redesign and workflow optimization for the Central Luzon State University's main ICT hub.",
+      desc: "Redesigning the login page for CLSU's main ICT portal.",
       date: "Sep 2025",
       tech: ["System Dev", "Authentication", "Tailwind"],
       verified: true
@@ -248,7 +248,7 @@ const DATA = {
       title: "TOPCIT Competency Certified", 
       category: "Achievement", 
       img: "/gallery/certificate_topcit.png",
-      desc: "Detailed score breakdown report and credential confirmation from the Institute for Information & Communications Technology Planning (IITP).",
+      desc: "Score report from the TOPCIT exam.",
       date: "Nov 2025",
       tech: ["TOPCIT", "IITP", "Exam"],
       verified: true
@@ -257,7 +257,7 @@ const DATA = {
       title: "Harvard CS50 Certification", 
       category: "Achievement", 
       img: "/gallery/certificate_harvardCs50.jpg",
-      desc: "HarvardX professional certificate for CS50's Introduction to Artificial Intelligence with Python, covering search, learning, and neural networks.",
+      desc: "Certificate for completing Harvard's CS50 AI with Python course.",
       date: "Aug 2025",
       tech: ["HarvardX", "Python", "AI/ML"],
       verified: true
@@ -266,7 +266,7 @@ const DATA = {
       title: "Data Visualization Specialist", 
       category: "Achievement", 
       img: "/gallery/JAN HARRY MADRONA - Data Visualization.png",
-      desc: "Kaggle certification validating data visualization strategies using Matplotlib, Seaborn, and advanced graphing principles.",
+      desc: "Kaggle certificate for data visualization in Python.",
       date: "Jul 2025",
       tech: ["Kaggle", "Data Science", "Python"],
       verified: true
@@ -275,7 +275,7 @@ const DATA = {
       title: "Pandas for Data Science", 
       category: "Achievement", 
       img: "/gallery/JAN HARRY MADRONA - Pandas.png",
-      desc: "Kaggle certification on data manipulation, analysis, aggregation, and styling using the Pandas framework in Python.",
+      desc: "Kaggle certificate for data analysis using Pandas.",
       date: "Jul 2025",
       tech: ["Kaggle", "Pandas", "Python"],
       verified: true
@@ -284,7 +284,7 @@ const DATA = {
       title: "Career Seminar Participation", 
       category: "Achievement", 
       img: "/gallery/certificate_participation.jpg",
-      desc: "Participation certificate for university-wide career preparation, job hunting readiness, and modern tech stack orientations.",
+      desc: "Certificate for a seminar on career prep and job hunting.",
       date: "Oct 2025",
       tech: ["Seminar", "Career Readiness"],
       verified: true
@@ -293,7 +293,7 @@ const DATA = {
       title: "First Day at MISO", 
       category: "Experience", 
       img: "/gallery/firstday_internt_at_MISO.jpg",
-      desc: "First day snapshot with fellow interns at the Municipal Information Systems Office starting system operations.",
+      desc: "First day at the Municipal Information Systems Office with other interns.",
       date: "Nov 2025",
       tech: ["Memory", "OJT", "First Day"],
       verified: false
@@ -302,7 +302,7 @@ const DATA = {
       title: "Project Presentation", 
       category: "Experience", 
       img: "/gallery/intern_project_presentation.jpg",
-      desc: "Presenting our first sprint deliverables and system flow diagrams to CLSU faculty advisors and MISO managers.",
+      desc: "Presenting our first project goals and diagrams to our university advisors.",
       date: "Dec 2025",
       tech: ["Presentation", "Sprint Review", "MISO"],
       verified: true
@@ -311,7 +311,7 @@ const DATA = {
       title: "OJT Work Session", 
       category: "Experience", 
       img: "/gallery/OJT_CODING.jpg",
-      desc: "Late night coding and debugging session at the municipal center refining database triggers and state managers.",
+      desc: "Working late to debug database issues and update states.",
       date: "Dec 2025",
       tech: ["OJT", "Development", "Teamwork"],
       verified: false
@@ -320,7 +320,7 @@ const DATA = {
       title: "OJT Deployment", 
       category: "Experience", 
       img: "/gallery/OJT_1.jpg",
-      desc: "Setting up localized server stacks, configuring network interfaces, and deploying the initial alpha build.",
+      desc: "Setting up local servers and deploying our first test build.",
       date: "Jan 2026",
       tech: ["System Dev", "Deployment", "XAMPP"],
       verified: true
@@ -329,7 +329,7 @@ const DATA = {
       title: "Personal Moments", 
       category: "Memory", 
       img: "/gallery/with_my_gf.jpg",
-      desc: "A cherished personal memory celebrating milestones and success together outside the development lab.",
+      desc: "A photo with my girlfriend celebrating graduation.",
       date: "Feb 2026",
       tech: ["Memory", "Personal", "Milestone"],
       verified: false
@@ -923,7 +923,7 @@ php artisan serve`
                         <div className="space-y-4">
                           <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Summary</h4>
                           <p className="text-[12px] md:text-[13px] leading-relaxed opacity-85 font-medium">
-                            Creative and technical developer specializing in web systems, Laravel application development, and AI-assisted automation. Builds scalable digital platforms, modern full-stack solutions, and high-impact content with strong focus on usability, performance, and practical business outcomes.
+                            I build web systems, Laravel apps, and automation scripts. I like building straightforward tools that make daily tasks easier, combining backend code with content and design.
                           </p>
                         </div>
 
@@ -969,7 +969,7 @@ php artisan serve`
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Lead Developer</p>
                                   <p className="text-[11px] leading-relaxed opacity-80 font-medium">
-                                    Architected a scholarship management platform to streamline online applications, review flow, and data tracking.
+                                    I built CLSU's scholarship site to handle online applications and student record reviews.
                                   </p>
                                 </div>
                                 
@@ -984,7 +984,7 @@ php artisan serve`
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Lead Developer</p>
                                   <p className="text-[11px] leading-relaxed opacity-80 font-medium">
-                                    Built a centralized governance information system, digitizing records and improving operational efficiency.
+                                    A local database app that digitized community record-keeping for staff.
                                   </p>
                                 </div>
 
@@ -999,7 +999,7 @@ php artisan serve`
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Lead AI Developer</p>
                                   <p className="text-[11px] leading-relaxed opacity-80 font-medium">
-                                    Developed a Laravel + Livewire application that reads ICT request forms (DOCX/images), stores structured data, and exports DOCX/XLSX/CSV reports.
+                                    A Laravel and Livewire app that reads text from uploaded forms and pictures, saves it, and exports reports.
                                   </p>
                                 </div>
 
@@ -1014,7 +1014,7 @@ php artisan serve`
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Internship Project Contributor</p>
                                   <p className="text-[11px] leading-relaxed opacity-80 font-medium">
-                                    Implemented delivery and daily task tracking features for team operations.
+                                    I added task assignment and progress tracking features to keep the team organized.
                                   </p>
                                 </div>
                               </div>
