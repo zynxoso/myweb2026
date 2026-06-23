@@ -28,3 +28,6 @@ resume.tex
 resume.cls
 .cursor
 .agent
+
+# Local installer binaries
+public/laravel installers/

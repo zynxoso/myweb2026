@@ -24,3 +24,6 @@ jobs:
 
       - name: Run lint
         run: npm run lint
+
+      - name: Run build validation
+        run: npm run build

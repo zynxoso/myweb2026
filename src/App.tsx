@@ -107,9 +107,9 @@ const DATA = {
     { title: "TOPCIT IT Competency", category: "IITP International", icon: <FileText className="w-4 h-4" /> }
   ],
   laravelStack: [
-    { name: "Composer", desc: "A tool that manages the extra PHP libraries Laravel needs to work. (v1.8 MB)", url: "/laravel installers/Composer-Setup.exe", icon: <Package className="w-5 h-5" />, label: "Download" },
+    { name: "Composer", desc: "A tool that manages the extra PHP libraries Laravel needs to work.", url: "https://getcomposer.org/download/", icon: <Package className="w-5 h-5" />, label: "Download" },
     { name: "Web Server: Apache (XAMPP)", desc: "A local server stack that lets you test PHP apps and databases on your own computer.", url: "https://www.apachefriends.org/download.html", icon: <Server className="w-5 h-5" />, label: "Links" },
-    { name: "Node.js", desc: "A JavaScript tool used to compile frontend stylesheets and scripts in Laravel. (v24.13.0)", url: "/laravel installers/node-v24.13.0-x64.msi", icon: <Hexagon className="w-5 h-5" />, label: "Download" }
+    { name: "Node.js", desc: "A JavaScript tool used to compile frontend stylesheets and scripts in Laravel.", url: "https://nodejs.org/", icon: <Hexagon className="w-5 h-5" />, label: "Download" }
   ],
   links: [
     { name: "GitHub", desc: "Where I host my repositories and automation scripts.", url: "https://github.com/zynxoso", icon: <Github className="w-4 h-4" /> },
