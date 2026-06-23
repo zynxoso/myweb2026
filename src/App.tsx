@@ -1,23 +1,13 @@
 import {
-  Github,
-  Linkedin,
   Mail,
   Phone,
   ExternalLink,
   Award,
-  Briefcase,
   Code2,
   FileText,
-  Globe,
-  Youtube,
-  Cpu,
   Terminal,
   Layers,
-  Zap,
-  Star,
   Package,
-  Server,
-  Hexagon,
   Menu,
   X,
   Moon,
@@ -25,319 +15,12 @@ import {
   LayoutGrid,
   MapPin,
   Columns,
-  List
+  List,
+  Zap
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const DATA = {
-  name: "Jan Harry I. Madrona",
-  title: "Content Creator | System Developer | AI Developer",
-  location: "Philippines",
-  phone: "0977 625 5563",
-  email: "Janharrymadrona1000@gmail.com",
-  objective: "I build web systems and make digital videos. I work a lot with Laravel and full-stack development, and I like using code to automate repetitive tasks. My goal is just to make simple, clean tools that solve actual problems.",
-  skills: {
-    technical: [
-      { name: "Laravel", level: 40, icon: <Zap className="w-3 h-3" /> },
-      { name: "Django", level: 10, icon: <Layers className="w-3 h-3" /> },
-      { name: "Python", level: 30, icon: <Terminal className="w-3 h-3" /> },
-      { name: "React", level: 20, icon: <Code2 className="w-3 h-3" /> },
-      { name: "Databases", level: 20, icon: <Briefcase className="w-3 h-3" /> },
-      { name: "Web Dev", level: 60, icon: <Globe className="w-3 h-3" /> },
-      { name: "Tailwind", level: 80, icon: <Code2 className="w-3 h-3" /> },
-      { name: "Automation", level: 80, icon: <Cpu className="w-3 h-3" /> }
-    ],
-    soft: ["Public Speaking", "Creative Direction", "Technical Writing", "Brand Strategy"]
-  },
-  projects: [
-    {
-      name: "AIRA (AI Reports Automation)",
-      role: "Lead AI Developer | Intern Project",
-      desc: "A web app I built during my internship to move CLSU's paper service requests online. It runs on Laravel 12, React 19, and Inertia.js. I added Gemini AI to read info directly from photos and documents so staff don't have to type it in manually.",
-      icon: <Cpu className="w-5 h-5" />,
-      url: "https://github.com/zynxoso/CLSU_AIRA-LOGIX",
-      tags: ["Laravel 12", "React 19", "Gemini AI", "Inertia 2"]
-    },
-    {
-      name: "Viral Content",
-      role: "Content Automation Project",
-      desc: "A Python script that helps me automate content creation. It handles things like researching topics, generating video drafts, and publishing to social media, which saves me hours of manual editing.",
-      icon: <Youtube className="w-5 h-5" />,
-      url: "https://github.com/zynxoso/viralcontent",
-      tags: ["Python", "Automation", "Youtube API", "Asset Gen"]
-    },
-    {
-      name: "Budget Planner",
-      role: "Personal Finance Tool",
-      desc: "A simple dashboard for tracking monthly income and spending. I kept it free of extra clutter, using just basic categories and charts so you can see where your money goes. Built with React and Tailwind.",
-      icon: <Briefcase className="w-5 h-5" />,
-      url: "https://github.com/zynxoso/BudgetPlanner",
-      tags: ["React", "Tailwind CSS", "Finance", "Local Storage"]
-    },
-    {
-      name: "Scholarship Portal",
-      role: "Lead Developer",
-      desc: "I built CLSU's scholarship site. It replaced their old paper system with a simple online form, which makes it much faster for students to apply and easier for the administration to review applicants.",
-      icon: <Terminal className="w-5 h-5" />,
-      url: "https://clsu-erdt.com/",
-      tags: ["PHP", "MySQL", "CLSU", "Workflow"]
-    },
-    {
-      name: "Barangay System",
-      role: "Lead Developer",
-      desc: "A local database system for barangay records. I helped digitize their paper files so staff can search, edit, and update community details instantly instead of looking through filing cabinets.",
-      icon: <Layers className="w-5 h-5" />,
-      url: "https://github.com/zynxoso/BARANGAY-MANAGEMENT-SYSTEM-ACCESS",
-      tags: ["Access DB", "Local Gov", "System Dev"]
-    },
-  ],
-  education: [
-    { school: "CLSU", period: "In View", level: "BS IT" },
-    { school: "Galvan HS", period: "Class of 2021", level: "Senior High Graduate" },
-  ],
-  achievements: [
-    { title: "IT Startup Winner", category: "1st Place (IoT Hardware)", icon: <Star className="w-4 h-4" /> },
-    { title: "IRCITE Champion", category: "Video Editing", icon: <Youtube className="w-4 h-4" /> },
-    { title: "TOPCIT Certified", category: "High Merit Participant", icon: <FileText className="w-4 h-4" /> },
-    { title: "CS50 AI with Python", category: "HarvardX Certified", icon: <Cpu className="w-4 h-4" /> },
-    { title: "Data Visualization", category: "Kaggle Professional", icon: <Globe className="w-4 h-4" /> },
-    { title: "Pandas for Data Science", category: "Kaggle Advanced", icon: <Terminal className="w-4 h-4" /> },
-    { title: "IT Specialist (Web)", category: "Pearson VUE Certified", icon: <Code2 className="w-4 h-4" /> },
-    { title: "TOPCIT IT Competency", category: "IITP International", icon: <FileText className="w-4 h-4" /> }
-  ],
-  laravelStack: [
-    { name: "Composer", desc: "A tool that manages the extra PHP libraries Laravel needs to work.", url: "https://getcomposer.org/download/", icon: <Package className="w-5 h-5" />, label: "Download" },
-    { name: "Web Server: Apache (XAMPP)", desc: "A local server stack that lets you test PHP apps and databases on your own computer.", url: "https://www.apachefriends.org/download.html", icon: <Server className="w-5 h-5" />, label: "Links" },
-    { name: "Node.js", desc: "A JavaScript tool used to compile frontend stylesheets and scripts in Laravel.", url: "https://nodejs.org/", icon: <Hexagon className="w-5 h-5" />, label: "Download" }
-  ],
-  links: [
-    { name: "GitHub", desc: "Where I host my repositories and automation scripts.", url: "https://github.com/zynxoso", icon: <Github className="w-4 h-4" /> },
-    { name: "LinkedIn", desc: "My professional network page.", url: "https://www.linkedin.com/in/jan-harry-madrona-212108402", icon: <Linkedin className="w-4 h-4" /> },
-    { name: "TikTok", desc: "Where I post short videos about coding and developer tips.", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> }
-  ],
-  creatorStats: [
-    { platform: "TikTok", value: "24.5K", label: "Followers", desc: "Tech content & coding tips" },
-    { platform: "YouTube", value: "8.2K", label: "Subscribers", desc: "Video tutorials & tech guides" }
-  ],
-  digitalProducts: [
-    {
-      name: "Laravel Developer Playbook",
-      desc: "A personal collection of database designs, coding patterns, and tips I use for Laravel projects.",
-      tag: "PLAYBOOK",
-      url: "https://www.notion.so/313b98734365800ab923f2f3ff22062d?v=313b98734365804bb69c000cf0323e78&source=copy_link",
-      icon: <FileText className="w-4 h-4" />
-    },
-    {
-      name: "SMS Laravel Tutorial",
-      desc: "A guide on setting up SMS alerts and message queues in Laravel.",
-      tag: "TUTORIAL",
-      url: "https://www.notion.so/313b98734365803f8906db614451dacc?v=313b98734365804bb69c000cf0323e78&source=copy_link",
-      icon: <FileText className="w-4 h-4" />
-    }
-  ],
-  resume: "/RESUME_LATEST2026.pdf",
-  gallery: [
-    {
-      title: "Internship Certificate of Completion",
-      category: "Achievement",
-      img: "/gallery/cert_of_completion_intern.jpg",
-      desc: "My certificate for finishing a 480-hour internship at CLSU's Management Information Systems Office.",
-      date: "Jan 2026",
-      tech: ["Internship", "CLSU MISO", "System Dev"],
-      verified: true
-    },
-    {
-      title: "AI Dev Collaboration at TESO-CLSU",
-      category: "Experience",
-      img: "/gallery/co_aidev_at_TESO-CLSU.jpg",
-      desc: "Working with the CLSU TESO team to plan out how they can use AI to automate daily tasks.",
-      date: "Dec 2025",
-      tech: ["Gemini AI", "API Integrations", "Collaboration"],
-      verified: true
-    },
-    {
-      title: "OJT Graduation",
-      category: "Achievement",
-      img: "/gallery/ojt_grad.jpg",
-      desc: "Internship graduation ceremony at the Management center.",
-      date: "Jan 2026",
-      tech: ["Achievement", "OJT", "MISO"],
-      verified: true
-    },
-    {
-      title: "OJT Final Presentation",
-      category: "Experience",
-      img: "/gallery/ojt_grad_presentation.jpg",
-      desc: "Presenting the AIRA-LOGIX app to the ICT directors at the end of our internship.",
-      date: "Jan 2026",
-      tech: ["Presentation", "Laravel", "React", "Inertia"],
-      verified: true
-    },
-    {
-      title: "OJT Graduation Ceremony",
-      category: "Memory",
-      img: "/gallery/ojt_graduation_image.jpg",
-      desc: "Photo with the Management team and admins during graduation.",
-      date: "Jan 2026",
-      tech: ["Memory", "Graduation", "Team"],
-      verified: false
-    },
-    {
-      title: "Graduation Portrait (Toga)",
-      category: "Achievement",
-      img: "/gallery/graduation_pic_toga.png",
-      desc: "My graduation photo celebrating my BS in IT degree from CLSU.",
-      date: "May 2026",
-      tech: ["Academic", "CLSU", "BS IT"],
-      verified: true
-    },
-    {
-      title: "Graduation Portrait",
-      category: "Achievement",
-      img: "/gallery/Graduation_pic.png",
-      desc: "Yearbook portrait photo.",
-      date: "May 2026",
-      tech: ["Academic", "CLSU", "BS IT"],
-      verified: true
-    },
-    {
-      title: "Graduation Portrait (Barong)",
-      category: "Achievement",
-      img: "/gallery/graduationpic_barong.png",
-      desc: "Graduation portrait in traditional Barong Tagalog.",
-      date: "May 2026",
-      tech: ["Academic", "CLSU", "BS IT"],
-      verified: true
-    },
-    {
-      title: "Career Seminar: Gender Equality",
-      category: "Achievement",
-      img: "/gallery/career_seminar.png",
-      desc: "Certificate for attending a seminar on workplace diversity and ethics in tech.",
-      date: "Nov 2025",
-      tech: ["Seminar", "Ethics", "Professional"],
-      verified: true
-    },
-    {
-      title: "TOPCIT Competency Certificate",
-      category: "Achievement",
-      img: "/gallery/TOPCIT.png",
-      desc: "My TOPCIT exam certificate, showing software engineering competency.",
-      date: "Nov 2025",
-      tech: ["TOPCIT", "IITP", "Software Eng"],
-      verified: true
-    },
-    {
-      title: "PRISM Scholarship Portal",
-      category: "Web Development",
-      img: "/gallery/prism.png",
-      desc: "Interface designs for the CLSU PRISM scholarship project.",
-      date: "Oct 2025",
-      tech: ["Web Dev", "PHP", "MySQL", "UI/UX"],
-      verified: true
-    },
-    {
-      title: "CLSU ICT Login",
-      category: "System Development",
-      img: "/gallery/ict_login.png",
-      desc: "Redesigning the login page for CLSU's main ICT portal.",
-      date: "Sep 2025",
-      tech: ["System Dev", "Authentication", "Tailwind"],
-      verified: true
-    },
-    {
-      title: "TOPCIT Competency Certified",
-      category: "Achievement",
-      img: "/gallery/certificate_topcit.png",
-      desc: "Score report from the TOPCIT exam.",
-      date: "Nov 2025",
-      tech: ["TOPCIT", "IITP", "Exam"],
-      verified: true
-    },
-    {
-      title: "Harvard CS50 Certification",
-      category: "Achievement",
-      img: "/gallery/certificate_harvardCs50.jpg",
-      desc: "Certificate for completing Harvard's CS50 AI with Python course.",
-      date: "Aug 2025",
-      tech: ["HarvardX", "Python", "AI/ML"],
-      verified: true
-    },
-    {
-      title: "Data Visualization Specialist",
-      category: "Achievement",
-      img: "/gallery/JAN HARRY MADRONA - Data Visualization.png",
-      desc: "Kaggle certificate for data visualization in Python.",
-      date: "Jul 2025",
-      tech: ["Kaggle", "Data Science", "Python"],
-      verified: true
-    },
-    {
-      title: "Pandas for Data Science",
-      category: "Achievement",
-      img: "/gallery/JAN HARRY MADRONA - Pandas.png",
-      desc: "Kaggle certificate for data analysis using Pandas.",
-      date: "Jul 2025",
-      tech: ["Kaggle", "Pandas", "Python"],
-      verified: true
-    },
-    {
-      title: "Career Seminar Participation",
-      category: "Achievement",
-      img: "/gallery/certificate_participation.jpg",
-      desc: "Certificate for a seminar on career prep and job hunting.",
-      date: "Oct 2025",
-      tech: ["Seminar", "Career Readiness"],
-      verified: true
-    },
-    {
-      title: "First Day at MISO",
-      category: "Experience",
-      img: "/gallery/firstday_internt_at_MISO.jpg",
-      desc: "First day at the Management Information Systems Office with other interns.",
-      date: "Nov 2025",
-      tech: ["Memory", "OJT", "First Day"],
-      verified: false
-    },
-    {
-      title: "Project Presentation",
-      category: "Experience",
-      img: "/gallery/intern_project_presentation.jpg",
-      desc: "Presenting our first project goals and diagrams to our university advisors.",
-      date: "Dec 2025",
-      tech: ["Presentation", "Sprint Review", "MISO"],
-      verified: true
-    },
-    {
-      title: "OJT Work Session",
-      category: "Experience",
-      img: "/gallery/OJT_CODING.jpg",
-      desc: "Working late to debug database issues and update states.",
-      date: "Dec 2025",
-      tech: ["OJT", "Development", "Teamwork"],
-      verified: false
-    },
-    {
-      title: "OJT Deployment",
-      category: "Experience",
-      img: "/gallery/OJT_1.jpg",
-      desc: "Setting up local servers and deploying our first test build.",
-      date: "Jan 2026",
-      tech: ["System Dev", "Deployment", "XAMPP"],
-      verified: true
-    },
-    {
-      title: "Personal Moments",
-      category: "Memory",
-      img: "/gallery/with_my_gf.jpg",
-      desc: "A photo with my girlfriend celebrating graduation.",
-      date: "Feb 2026",
-      tech: ["Memory", "Personal", "Milestone"],
-      verified: false
-    }
-  ]
-}
+import { DATA } from './data'
 
 function App() {
   const [activeTab, setActiveTab] = useState('main')
@@ -346,8 +29,12 @@ function App() {
   const [isIntroComplete, setIsIntroComplete] = useState(false)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Check initial state from local storage or system preference
-    const saved = localStorage.getItem('theme')
-    if (saved) return saved === 'dark'
+    try {
+      const saved = localStorage.getItem('theme')
+      if (saved) return saved === 'dark'
+    } catch {
+      // LocalStorage blocked
+    }
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
   const [resumeViewMode, setResumeViewMode] = useState<'interactive' | 'pdf'>('interactive')
@@ -387,12 +74,21 @@ php artisan serve`
   }, [])
 
   useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
+    try {
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('theme', 'dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+        localStorage.setItem('theme', 'light')
+      }
+    } catch {
+      // LocalStorage blocked - fallback to updating classes without writing
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark')
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
     }
   }, [isDarkMode])
 
@@ -572,7 +268,7 @@ php artisan serve`
               className="px-12 py-10 space-y-12"
             >
               <div className="hidden lg:block">
-                <h3 className="text-[9px] font-black uppercase tracking-[0.3em] mb-8 text-black/50">Academic Background</h3>
+                <h2 className="text-[9px] font-black uppercase tracking-[0.3em] mb-8 text-black/50">Academic Background</h2>
                 <div className="space-y-8">
                   {DATA.education.map((edu, idx) => (
                     <motion.div
@@ -662,9 +358,9 @@ php artisan serve`
                   }}
                   className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden"
                 >
-                  <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
+                  <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
                     <Code2 className="w-4 h-4 mr-4 shrink-0" /> Skills
-                  </h3>
+                  </h2>
                   <div className="flex-1 lg:overflow-y-auto lg:max-h-[60%] space-y-10 lg:space-y-12 custom-scrollbar lg:pr-6">
                     {DATA.skills.technical.map((skill, idx) => (
                       <motion.div
@@ -694,9 +390,9 @@ php artisan serve`
                   </div>
 
                   <div className="mt-8 lg:mt-10 border-t border-black/5 pt-6 shrink-0 text-left">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 flex items-center text-black/50">
+                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 flex items-center text-black/50">
                       <Zap className="w-4 h-4 mr-4 shrink-0" /> Creator Stats
-                    </h3>
+                    </h2>
                     <div className="grid grid-cols-2 gap-4">
                       {DATA.creatorStats.map((stat, idx) => (
                         <div key={idx} className="p-4 border border-black/5 rounded-sm bg-black/[0.01]">
@@ -726,9 +422,9 @@ php artisan serve`
                   }}
                   className="w-full lg:w-2/4 flex flex-col lg:overflow-hidden"
                 >
-                  <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
+                  <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
                     <Terminal className="w-4 h-4 mr-4 shrink-0" /> Projects
-                  </h3>
+                  </h2>
                   <div className="flex-1 space-y-8 lg:overflow-y-auto custom-scrollbar lg:pr-6">
                     {DATA.projects.map((proj, idx) => (
                       <motion.div
@@ -746,14 +442,14 @@ php artisan serve`
                               {proj.icon}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="text-lg lg:text-xl font-black uppercase leading-tight tracking-tighter transition-colors">{proj.name}</h4>
+                              <h3 className="text-lg lg:text-xl font-black uppercase leading-tight tracking-tighter transition-colors">{proj.name}</h3>
                               <p className="text-[9px] font-black uppercase tracking-[0.2em] mt-1 text-black/50">{proj.role}</p>
                             </div>
-                            <a href={proj.url} target="_blank" rel="noopener noreferrer" className="p-1.5 text-black/40 hover:text-black transition-colors shrink-0">
+                            <a href={proj.url} target="_blank" rel="noopener noreferrer" className="p-1.5 text-black/40 hover:text-black transition-colors shrink-0" aria-label={`Visit project ${proj.name}`}>
                               <ExternalLink className="w-4 h-4" />
                             </a>
                           </div>
-                          <p className="text-[12px] font-medium leading-relaxed opacity-85">{proj.desc}</p>
+                          <p className="text-[12px] font-medium leading-relaxed opacity-85 max-w-prose">{proj.desc}</p>
                         </div>
                         {proj.tags && (
                           <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-black/5">
@@ -786,9 +482,9 @@ php artisan serve`
                   }}
                   className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden"
                 >
-                  <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
+                  <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
                     <Award className="w-4 h-4 mr-4 shrink-0" /> Achievements
-                  </h3>
+                  </h2>
                   <div className="flex-1 space-y-10 lg:space-y-12 lg:overflow-y-auto custom-scrollbar lg:pr-6">
                     {DATA.achievements.map((ach, idx) => (
                       <motion.div
@@ -824,9 +520,9 @@ php artisan serve`
                 >
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 space-y-6 lg:space-y-0 shrink-0">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full lg:w-auto">
-                      <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                      <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                         <FileText className="w-4 h-4 mr-4 shrink-0" /> Resume
-                      </h3>
+                      </h2>
 
                       {/* View Mode Toggle Pill */}
                       <div className="flex bg-black/5 rounded-full p-1 border border-black/5 self-start sm:self-auto select-none">
@@ -924,8 +620,8 @@ php artisan serve`
 
                         {/* Summary Block */}
                         <div className="space-y-4">
-                          <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Summary</h4>
-                          <p className="text-[12px] md:text-[13px] leading-relaxed opacity-85 font-medium">
+                          <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Summary</h3>
+                          <p className="text-[12px] md:text-[13px] leading-relaxed opacity-85 font-medium max-w-prose">
                             I build web systems, Laravel apps, and automation scripts. I like building straightforward tools that make daily tasks easier, combining backend code with content and design.
                           </p>
                         </div>
@@ -938,18 +634,18 @@ php artisan serve`
 
                             {/* Experience Section */}
                             <div className="space-y-6">
-                              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Experience</h4>
+                              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Experience</h3>
                               <div className="space-y-6">
                                 <div className="space-y-2">
                                   <div className="flex justify-between items-start gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight">Management Information Systems Office (MISO)</h5>
+                                    <h4 className="text-[13px] font-black uppercase tracking-tight">Management Information Systems Office (MISO)</h4>
                                     <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">Internship</span>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Intern / System Developer</p>
                                 </div>
                                 <div className="space-y-2">
                                   <div className="flex justify-between items-start gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight">Freelance / Independent Projects</h5>
+                                    <h4 className="text-[13px] font-black uppercase tracking-tight">Freelance / Independent Projects</h4>
                                     <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">Ongoing</span>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Full-Stack and Laravel System Development</p>
@@ -959,64 +655,64 @@ php artisan serve`
 
                             {/* Projects Section */}
                             <div className="space-y-6">
-                              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Projects</h4>
+                              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Projects</h3>
                               <div className="space-y-8">
                                 <div className="space-y-2 group">
                                   <div className="flex justify-between items-center gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
+                                    <h4 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
                                       Scholarship Portal (CLSU ERDT)
-                                    </h5>
-                                    <a href="https://clsu-erdt.com/" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0">
+                                    </h4>
+                                    <a href="https://clsu-erdt.com/" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0" aria-label="Visit Scholarship Portal website">
                                       Website <ExternalLink className="w-2.5 h-2.5 ml-1" />
                                     </a>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Lead Developer</p>
-                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium">
+                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium max-w-prose">
                                     I built CLSU's scholarship site to handle online applications and student record reviews.
                                   </p>
                                 </div>
 
                                 <div className="space-y-2 group">
                                   <div className="flex justify-between items-center gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
+                                    <h4 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
                                       Barangay Management System
-                                    </h5>
-                                    <a href="https://github.com/zynxoso/BARANGAY-MANAGEMENT-SYSTEM-ACCESS" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0">
+                                    </h4>
+                                    <a href="https://github.com/zynxoso/BARANGAY-MANAGEMENT-SYSTEM-ACCESS" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0" aria-label="Visit Barangay Management System GitHub repository">
                                       GitHub <ExternalLink className="w-2.5 h-2.5 ml-1" />
                                     </a>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Lead Developer</p>
-                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium">
+                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium max-w-prose">
                                     A local database app that digitized community record-keeping for staff.
                                   </p>
                                 </div>
 
                                 <div className="space-y-2 group">
                                   <div className="flex justify-between items-center gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
+                                    <h4 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
                                       AIRA-GEN (Reports AI)
-                                    </h5>
-                                    <a href="https://github.com/zynxoso/AIRA-GEN" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0">
+                                    </h4>
+                                    <a href="https://github.com/zynxoso/AIRA-GEN" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0" aria-label="Visit AIRA-GEN GitHub repository">
                                       GitHub <ExternalLink className="w-2.5 h-2.5 ml-1" />
                                     </a>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Lead AI Developer</p>
-                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium">
+                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium max-w-prose">
                                     A Laravel and Livewire app that reads text from uploaded forms and pictures, saves it, and exports reports.
                                   </p>
                                 </div>
 
                                 <div className="space-y-2 group">
                                   <div className="flex justify-between items-center gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
+                                    <h4 className="text-[13px] font-black uppercase tracking-tight group-hover:text-black transition-colors flex items-center">
                                       AIRA-LOGIX
-                                    </h5>
-                                    <a href="https://github.com/zynxoso/AIRA-LOGIX" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0">
+                                    </h4>
+                                    <a href="https://github.com/zynxoso/AIRA-LOGIX" target="_blank" rel="noopener noreferrer" className="text-[9px] font-black uppercase tracking-widest text-black/50 hover:text-black transition-colors flex items-center shrink-0" aria-label="Visit AIRA-LOGIX GitHub repository">
                                       GitHub <ExternalLink className="w-2.5 h-2.5 ml-1" />
                                     </a>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Internship Project Contributor</p>
-                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium">
+                                  <p className="text-[11px] leading-relaxed opacity-80 font-medium max-w-prose">
                                     I added task assignment and progress tracking features to keep the team organized.
                                   </p>
                                 </div>
@@ -1025,7 +721,7 @@ php artisan serve`
 
                             {/* Significant Roles */}
                             <div className="space-y-6">
-                              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Significant Roles</h4>
+                              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Significant Roles</h3>
                               <div className="space-y-4">
                                 <div className="flex justify-between items-baseline gap-4">
                                   <span className="text-[12px] font-black uppercase tracking-tight">Lead Developer</span>
@@ -1048,7 +744,7 @@ php artisan serve`
 
                             {/* Skills Section */}
                             <div className="space-y-6">
-                              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Skills</h4>
+                              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Skills</h3>
                               <div className="space-y-6">
                                 <div className="space-y-2">
                                   <p className="text-[10px] font-black uppercase tracking-wider text-black/60">Languages & Core Tech</p>
@@ -1098,7 +794,7 @@ php artisan serve`
 
                             {/* Education Section */}
                             <div className="space-y-6">
-                              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Education</h4>
+                              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Education</h3>
                               <div className="space-y-4">
                                 <div className="space-y-1">
                                   <div className="flex justify-between items-baseline gap-4">
@@ -1119,7 +815,7 @@ php artisan serve`
 
                             {/* Certifications Section */}
                             <div className="space-y-6">
-                              <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Certifications</h4>
+                              <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Certifications</h3>
                               <div className="space-y-3">
                                 {[
                                   "CS50 AI with Python (HarvardX)",
@@ -1142,12 +838,12 @@ php artisan serve`
                         {/* References Block */}
                         <div className="border-t border-black/5 pt-8 grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px]">
                           <div className="space-y-2">
-                            <h5 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">References</h5>
-                            <p className="opacity-80 font-medium">Available upon request.</p>
+                            <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">References</h3>
+                            <p className="opacity-80 font-medium max-w-prose">Available upon request.</p>
                           </div>
                           <div className="space-y-2">
-                            <h5 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Declaration</h5>
-                            <p className="opacity-80 font-medium">I hereby declare that the above-mentioned information is true and correct to the best of my knowledge and belief.</p>
+                            <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Declaration</h3>
+                            <p className="opacity-80 font-medium max-w-prose">I hereby declare that the above-mentioned information is true and correct to the best of my knowledge and belief.</p>
                           </div>
                         </div>
                       </motion.div>
@@ -1167,9 +863,9 @@ php artisan serve`
                   className="h-full flex flex-col lg:overflow-hidden"
                 >
                   <div className="mb-8 shrink-0">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                       <Layers className="w-4 h-4 mr-4 shrink-0" /> Laravel Development Setup
-                    </h3>
+                    </h2>
                   </div>
 
                   <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8 space-y-12">
@@ -1203,10 +899,10 @@ php artisan serve`
                                 </span>
                               </div>
                               <div className="space-y-2">
-                                <h4 className="text-sm font-black uppercase tracking-tight leading-tight">
+                                <h3 className="text-sm font-black uppercase tracking-tight leading-tight">
                                   {item.name.replace(/\s*\(.*?\)/g, '')}
-                                </h4>
-                                <p className="text-[11px] leading-relaxed opacity-75 font-medium">
+                                </h3>
+                                <p className="text-[11px] leading-relaxed opacity-75 font-medium max-w-prose">
                                   {cleanDesc(item.desc)}
                                 </p>
                               </div>
@@ -1227,7 +923,7 @@ php artisan serve`
 
                     {/* Terminal Console */}
                     <div className="space-y-4">
-                      <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Bootstrap Console</h4>
+                      <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Bootstrap Console</h3>
                       <div className="bg-[#0b0b0c] border border-black/10 rounded-sm overflow-hidden flex flex-col font-mono text-[11px] text-[#f7f8f8]">
                         {/* Window header */}
                         <div className="flex justify-between items-center px-4 py-3 bg-[#131315] border-b border-[#23252a] select-none">
@@ -1276,9 +972,9 @@ php artisan serve`}
                   className="h-full flex flex-col lg:overflow-hidden"
                 >
                   <div className="mb-8 shrink-0">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                       <Package className="w-4 h-4 mr-4 shrink-0" /> Digital Products
-                    </h3>
+                    </h2>
                   </div>
                   <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1300,10 +996,10 @@ php artisan serve`}
                               </span>
                             </div>
                             <div className="space-y-2">
-                              <h4 className="text-sm font-black uppercase tracking-tight leading-tight">
+                              <h3 className="text-sm font-black uppercase tracking-tight leading-tight">
                                 {product.name}
-                              </h4>
-                              <p className="text-[11px] leading-relaxed opacity-75 font-medium">
+                              </h3>
+                              <p className="text-[11px] leading-relaxed opacity-75 font-medium max-w-prose">
                                 {product.desc}
                               </p>
                             </div>
@@ -1334,9 +1030,9 @@ php artisan serve`}
                   className="h-full flex flex-col lg:overflow-hidden"
                 >
                   <div className="mb-8 shrink-0">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                       <ExternalLink className="w-4 h-4 mr-4 shrink-0" /> Featured Links
-                    </h3>
+                    </h2>
                   </div>
                   <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -1358,6 +1054,7 @@ php artisan serve`}
                             initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: idx * 0.08, duration: 0.4 }}
+                            aria-label={`Visit my ${link.name} profile`}
                           >
                             <div className="space-y-4">
                               <div className="flex justify-between items-start">
@@ -1369,10 +1066,10 @@ php artisan serve`}
                                 </span>
                               </div>
                               <div className="space-y-2">
-                                <h4 className="text-sm font-black uppercase tracking-tight leading-tight">
+                                <h3 className="text-sm font-black uppercase tracking-tight leading-tight">
                                   {link.name}
-                                </h4>
-                                <p className="text-[11px] leading-relaxed opacity-75 font-medium">
+                                </h3>
+                                <p className="text-[11px] leading-relaxed opacity-75 font-medium max-w-prose">
                                   {link.desc}
                                 </p>
                               </div>
@@ -1400,9 +1097,9 @@ php artisan serve`}
                 >
                   {/* Gallery Control Header */}
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-8 shrink-0">
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                       <LayoutGrid className="w-4 h-4 mr-4 shrink-0" /> Gallery
-                    </h3>
+                    </h2>
 
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full xl:w-auto">
                       {/* Filter Tabs Pill */}
@@ -1501,9 +1198,9 @@ php artisan serve`}
                                     </span>
                                   )}
                                 </div>
-                                <h4 className="text-base font-black uppercase tracking-tighter text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                                <h3 className="text-base font-black uppercase tracking-tighter text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
                                   {item.title}
-                                </h4>
+                                </h3>
                               </div>
                             </motion.div>
                           ))}
@@ -1561,10 +1258,10 @@ php artisan serve`}
 
                                 {/* Text Details */}
                                 <div className="space-y-2">
-                                  <h4 className="text-xs font-black uppercase tracking-tight leading-tight group-hover:text-black transition-colors">
+                                  <h3 className="text-xs font-black uppercase tracking-tight leading-tight group-hover:text-black transition-colors">
                                     {item.title}
-                                  </h4>
-                                  <p className="text-[11px] leading-relaxed opacity-70 line-clamp-2 font-medium">
+                                  </h3>
+                                  <p className="text-[11px] leading-relaxed opacity-70 line-clamp-2 font-medium max-w-prose">
                                     {item.desc}
                                   </p>
                                 </div>
@@ -1655,9 +1352,9 @@ php artisan serve`}
 
                   {/* Asset Title */}
                   <div className="space-y-2 text-left">
-                    <h4 className="text-sm md:text-base font-black uppercase tracking-tight leading-tight text-black dark:text-white">
+                    <h2 className="text-sm md:text-base font-black uppercase tracking-tight leading-tight text-black dark:text-white">
                       {activeImage.title}
-                    </h4>
+                    </h2>
                   </div>
 
                   {/* Technical Specs Table */}
@@ -1678,15 +1375,15 @@ php artisan serve`}
 
                   {/* Context Description */}
                   <div className="space-y-2.5 text-left">
-                    <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 dark:text-white/40">Context / Description</h5>
-                    <p className="text-[12px] leading-relaxed text-black/75 dark:text-white/75 font-medium">
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 dark:text-white/40">Context / Description</h3>
+                    <p className="text-[12px] leading-relaxed text-black/75 dark:text-white/75 font-medium max-w-prose">
                       {activeImage.desc}
                     </p>
                   </div>
 
                   {/* Tech Stack involved */}
                   <div className="space-y-3 text-left">
-                    <h5 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 dark:text-white/40">Metadata Tags</h5>
+                    <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-black/40 dark:text-white/40">Metadata Tags</h3>
                     <div className="flex flex-wrap gap-1.5">
                       {activeImage.tech.map((tag, tIdx) => (
                         <span key={tIdx} className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 bg-black/5 dark:bg-white/5 text-black/75 dark:text-white/75 rounded-sm font-semibold">
