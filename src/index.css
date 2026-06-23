@@ -10,8 +10,8 @@
   --color-border-subtle: var(--border-color);
 
   /* Typography */
-  --font-heading: "Inter", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Poppins", sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 }
 

@@ -114,9 +114,11 @@ const DATA = {
   links: [
     { name: "GitHub", desc: "Where I host my repositories and automation scripts.", url: "https://github.com/zynxoso", icon: <Github className="w-4 h-4" /> },
     { name: "LinkedIn", desc: "My professional network page.", url: "https://www.linkedin.com/in/jan-harry-madrona-212108402", icon: <Linkedin className="w-4 h-4" /> },
-    { name: "TikTok", desc: "Where I post short videos about coding and developer tips.", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> },
-    { name: "Instagram", desc: "My personal page with casual updates and desk setups.", url: "#", icon: <Globe className="w-4 h-4" /> },
-    { name: "Latest Vid", desc: "My newest video tutorial or walkthrough.", url: "#", icon: <Youtube className="w-4 h-4" /> }
+    { name: "TikTok", desc: "Where I post short videos about coding and developer tips.", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> }
+  ],
+  creatorStats: [
+    { platform: "TikTok", value: "24.5K", label: "Followers", desc: "Tech content & coding tips" },
+    { platform: "YouTube", value: "8.2K", label: "Subscribers", desc: "Video tutorials & tech guides" }
   ],
   digitalProducts: [
     {
@@ -440,7 +442,7 @@ php artisan serve`
         )}
       </AnimatePresence>
 
-      <div className="flex flex-col lg:flex-row min-h-screen bg-white text-black font-['Poppins'] text-[14px] selection:bg-black selection:text-white relative">
+      <div className="flex flex-col lg:flex-row min-h-screen bg-white text-black text-[14px] selection:bg-black selection:text-white relative">
 
         {/* Mobile Header - High visibility toggle */}
         <header className="lg:hidden flex justify-between items-center px-8 py-6 bg-white sticky top-0 z-40 border-b border-black/5">
@@ -453,7 +455,11 @@ php artisan serve`
             >
               {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 -mr-2">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 -mr-2"
+              aria-label="Toggle mobile menu"
+            >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
@@ -659,7 +665,7 @@ php artisan serve`
                   <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
                     <Code2 className="w-4 h-4 mr-4 shrink-0" /> Skills
                   </h3>
-                  <div className="flex-1 lg:overflow-y-auto space-y-10 lg:space-y-12 custom-scrollbar lg:pr-6">
+                  <div className="flex-1 lg:overflow-y-auto lg:max-h-[60%] space-y-10 lg:space-y-12 custom-scrollbar lg:pr-6">
                     {DATA.skills.technical.map((skill, idx) => (
                       <motion.div
                         key={idx}
@@ -685,6 +691,21 @@ php artisan serve`
                         </div>
                       </motion.div>
                     ))}
+                  </div>
+
+                  <div className="mt-8 lg:mt-10 border-t border-black/5 pt-6 shrink-0 text-left">
+                    <h3 className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 flex items-center text-black/50">
+                      <Zap className="w-4 h-4 mr-4 shrink-0" /> Creator Stats
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                      {DATA.creatorStats.map((stat, idx) => (
+                        <div key={idx} className="p-4 border border-black/5 rounded-sm bg-black/[0.01]">
+                          <div className="text-lg font-black tracking-tight leading-none mb-1">{stat.value}</div>
+                          <div className="text-[9px] font-black uppercase tracking-wider text-black/60 mb-1.5">{stat.platform} {stat.label}</div>
+                          <div className="text-[10px] opacity-75 font-medium leading-tight">{stat.desc}</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </motion.section>
 
