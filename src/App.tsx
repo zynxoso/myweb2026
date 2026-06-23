@@ -140,7 +140,7 @@ const DATA = {
       title: "Internship Certificate of Completion",
       category: "Achievement",
       img: "/gallery/cert_of_completion_intern.jpg",
-      desc: "My certificate for finishing a 480-hour internship at CLSU's Municipal Information Systems Office.",
+      desc: "My certificate for finishing a 480-hour internship at CLSU's Management Information Systems Office.",
       date: "Jan 2026",
       tech: ["Internship", "CLSU MISO", "System Dev"],
       verified: true
@@ -158,7 +158,7 @@ const DATA = {
       title: "OJT Graduation",
       category: "Achievement",
       img: "/gallery/ojt_grad.jpg",
-      desc: "Internship graduation ceremony at the municipal center.",
+      desc: "Internship graduation ceremony at the Management center.",
       date: "Jan 2026",
       tech: ["Achievement", "OJT", "MISO"],
       verified: true
@@ -176,7 +176,7 @@ const DATA = {
       title: "OJT Graduation Ceremony",
       category: "Memory",
       img: "/gallery/ojt_graduation_image.jpg",
-      desc: "Photo with the municipal team and admins during graduation.",
+      desc: "Photo with the Management team and admins during graduation.",
       date: "Jan 2026",
       tech: ["Memory", "Graduation", "Team"],
       verified: false
@@ -293,7 +293,7 @@ const DATA = {
       title: "First Day at MISO",
       category: "Experience",
       img: "/gallery/firstday_internt_at_MISO.jpg",
-      desc: "First day at the Municipal Information Systems Office with other interns.",
+      desc: "First day at the Management Information Systems Office with other interns.",
       date: "Nov 2025",
       tech: ["Memory", "OJT", "First Day"],
       verified: false
@@ -921,7 +921,7 @@ php artisan serve`
                               <div className="space-y-6">
                                 <div className="space-y-2">
                                   <div className="flex justify-between items-start gap-4">
-                                    <h5 className="text-[13px] font-black uppercase tracking-tight">Municipal Information Systems Office (MISO)</h5>
+                                    <h5 className="text-[13px] font-black uppercase tracking-tight">Management Information Systems Office (MISO)</h5>
                                     <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">Internship</span>
                                   </div>
                                   <p className="text-[11px] font-bold uppercase tracking-wider text-black/60">Intern / System Developer</p>
