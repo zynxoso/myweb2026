@@ -29,6 +29,11 @@ export class ErrorBoundary extends Component<Props, State> {
           </p>
           <button
             onClick={() => window.location.reload()}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                window.location.reload()
+              }
+            }}
             className="px-6 py-3 bg-black text-white hover:bg-black/80 font-black text-xs uppercase tracking-widest transition-colors rounded-sm"
           >
             Reload Page

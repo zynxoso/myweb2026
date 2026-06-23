@@ -139,6 +139,12 @@ php artisan serve`
       </AnimatePresence>
 
       <div className="flex flex-col lg:flex-row min-h-screen bg-white text-black text-[14px] selection:bg-black selection:text-white relative">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-black focus:text-white rounded-sm font-black text-xs uppercase tracking-widest transition-all"
+        >
+          Skip to content
+        </a>
 
         {/* Mobile Header - High visibility toggle */}
         <header className="lg:hidden flex justify-between items-center px-8 py-6 bg-white sticky top-0 z-40 border-b border-black/5">
@@ -146,6 +152,11 @@ php artisan serve`
           <div className="flex items-center space-x-4">
             <button
               onClick={toggleDarkMode}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  toggleDarkMode()
+                }
+              }}
               className="p-2 -mr-2 text-black/60 hover:text-black transition-colors"
               aria-label="Toggle theme"
             >
@@ -291,7 +302,7 @@ php artisan serve`
         </aside>
 
         {/* Main Content - Minimalist Professional Portfolio */}
-        <main className="flex-1 flex flex-col min-h-screen bg-white lg:h-screen lg:overflow-hidden relative">
+        <main id="main" className="flex-1 flex flex-col min-h-screen bg-white lg:h-screen lg:overflow-hidden relative">
           <motion.header
             initial={{ opacity: 0, y: -10 }}
             animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
@@ -304,6 +315,11 @@ php artisan serve`
             <div className="flex items-center space-x-6">
               <button
                 onClick={toggleDarkMode}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    toggleDarkMode()
+                  }
+                }}
                 className="group flex items-center space-x-3 text-black/40 hover:text-black transition-colors"
                 aria-label="Toggle theme"
               >
