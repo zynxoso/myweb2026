@@ -211,12 +211,11 @@ function App() {
               }}
               className="p-12 lg:p-6 space-y-2 flex-1 lg:flex-none"
             >
-              {(['main', 'resume', 'digital', 'links', 'gallery'] as const).map((tab) => {
+              {(['main', 'resume', 'digital', 'gallery'] as const).map((tab) => {
                 const labelMap: Record<string, string> = {
                   main: 'Portfolio',
                   resume: 'My Resume',
                   digital: 'Digital Product',
-                  links: 'Featured Links',
                   gallery: 'Gallery'
                 }
                 const isActive = activeTab === tab
@@ -262,7 +261,7 @@ function App() {
                   }
                 }
               }}
-              className="px-12 py-10 space-y-12"
+              className="px-12 py-10 space-y-10"
             >
               <div className="hidden lg:block">
                 <h2 className="text-[9px] font-black uppercase tracking-[0.3em] mb-8 text-black/50">Academic Background</h2>
@@ -279,6 +278,27 @@ function App() {
                       <p className="text-[11px] font-black uppercase tracking-tight leading-tight mb-2">{edu.school}</p>
                       <p className="text-[9px] text-black/60 font-bold uppercase tracking-widest">{edu.period} — {edu.level}</p>
                     </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Social Links Block */}
+              <div className="pt-8 lg:pt-4 border-t border-black/5">
+                <h2 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6 text-black/50">Featured Links</h2>
+                <div className="flex items-center space-x-6">
+                  {DATA.links.map((link, idx) => (
+                    <motion.a
+                      key={idx}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-black/60 hover:text-black transition-colors duration-300 p-1 -m-1"
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label={`Visit my ${link.name} profile`}
+                    >
+                      {link.icon}
+                    </motion.a>
                   ))}
                 </div>
               </div>
@@ -897,71 +917,7 @@ function App() {
                 </motion.div>
               )}
 
-              {activeTab === 'links' && (
-                <motion.div
-                  key="links"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="h-full flex flex-col lg:overflow-hidden"
-                >
-                  <div className="mb-8 shrink-0">
-                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
-                      <ExternalLink className="w-4 h-4 mr-4 shrink-0" /> Featured Links
-                    </h2>
-                  </div>
-                  <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {DATA.links.map((link, idx) => {
-                        const getHoverColor = (name: string) => {
-                          if (name.toLowerCase() === 'github') return 'hover:border-black/30'
-                          if (name.toLowerCase() === 'linkedin') return 'hover:border-[#0077b5]/30'
-                          if (name.toLowerCase() === 'tiktok') return 'hover:border-[#ff0050]/30'
-                          if (name.toLowerCase() === 'instagram') return 'hover:border-[#e1306c]/30'
-                          return 'hover:border-black/30'
-                        }
-                        return (
-                          <motion.a
-                            key={idx}
-                            href={link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={`group bg-white border border-black/5 p-6 rounded-sm flex flex-col justify-between space-y-6 transition-all duration-300 hover:shadow-sm ${getHoverColor(link.name)}`}
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.08, duration: 0.4 }}
-                            aria-label={`Visit my ${link.name} profile`}
-                          >
-                            <div className="space-y-4">
-                              <div className="flex justify-between items-start">
-                                <div className="p-2.5 bg-black/5 rounded-sm text-black/40 group-hover:text-black group-hover:bg-black/10 transition-colors shrink-0">
-                                  {link.icon}
-                                </div>
-                                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 bg-black/5 text-black/60 rounded-sm select-none">
-                                  Link
-                                </span>
-                              </div>
-                              <div className="space-y-2">
-                                <h3 className="text-sm font-black uppercase tracking-tight leading-tight">
-                                  {link.name}
-                                </h3>
-                                <p className="text-[11px] leading-relaxed opacity-75 font-medium max-w-prose">
-                                  {link.desc}
-                                </p>
-                              </div>
-                            </div>
 
-                            <span className="w-full text-center inline-block py-3 border border-black bg-black text-white group-hover:bg-transparent group-hover:text-black transition-colors duration-300 font-black text-[9px] tracking-widest uppercase select-none rounded-sm">
-                              Visit Platform
-                            </span>
-                          </motion.a>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </motion.div>
-              )}
 
               {activeTab === 'gallery' && (
                 <motion.div
