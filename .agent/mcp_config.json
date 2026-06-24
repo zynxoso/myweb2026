@@ -15,10 +15,14 @@
                 "shadcn@latest",
                 "mcp"
             ]
+        },
+        "headroom": {
+            "command": "headroom",
+            "args": [
+                "mcp",
+                "serve"
+            ]
         }
-        //other mcp servers
     }
 }
-
 // setup mcp server in  ~/.gemini\antigravity\mcp_config.json
-

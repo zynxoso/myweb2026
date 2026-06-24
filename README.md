@@ -14,7 +14,6 @@ A personal portfolio built with React, TypeScript, Vite, and Tailwind CSS. It in
 
 - Portfolio (skills, projects, achievements)
 - Resume (PDF preview and download)
-- Laravel setup (installers and links)
 - Digital products
 - Featured links
 - Gallery
@@ -49,7 +48,6 @@ Edit `src/App.tsx` and update the `DATA` object:
 
 - Resume PDF: place it in `public/RESUME_LATEST2026.pdf` or update `DATA.resume`
 - Gallery images: place files under `public/gallery` and update `DATA.gallery`
-- Local installer files: place them under `public/laravel installers` and update `DATA.laravelStack`
 
 ## Build and deploy
 

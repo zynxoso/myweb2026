@@ -8,9 +8,6 @@ import {
   Youtube,
   Cpu,
   Star,
-  Package,
-  Server,
-  Hexagon,
   FileText,
   Github,
   Linkedin
@@ -79,8 +76,7 @@ export const DATA = {
     },
   ],
   education: [
-    { school: "CLSU", period: "In View", level: "BS IT" },
-    { school: "Galvan HS", period: "Class of 2021", level: "Senior High Graduate" },
+    { school: "Central Luzon State University", period: "Class of 2026", level: "BSIT" },
   ],
   achievements: [
     { title: "IT Startup Winner", category: "1st Place (IoT Hardware)", icon: <Star className="w-4 h-4" /> },
@@ -92,19 +88,10 @@ export const DATA = {
     { title: "IT Specialist (Web)", category: "Pearson VUE Certified", icon: <Code2 className="w-4 h-4" /> },
     { title: "TOPCIT IT Competency", category: "IITP International", icon: <FileText className="w-4 h-4" /> }
   ],
-  laravelStack: [
-    { name: "Composer", desc: "A tool that manages the extra PHP libraries Laravel needs to work.", url: "https://getcomposer.org/download/", icon: <Package className="w-5 h-5" />, label: "Download" },
-    { name: "Web Server: Apache (XAMPP)", desc: "A local server stack that lets you test PHP apps and databases on your own computer.", url: "https://www.apachefriends.org/download.html", icon: <Server className="w-5 h-5" />, label: "Links" },
-    { name: "Node.js", desc: "A JavaScript tool used to compile frontend stylesheets and scripts in Laravel.", url: "https://nodejs.org/", icon: <Hexagon className="w-5 h-5" />, label: "Download" }
-  ],
   links: [
     { name: "GitHub", desc: "Where I host my repositories and automation scripts.", url: "https://github.com/zynxoso", icon: <Github className="w-4 h-4" /> },
     { name: "LinkedIn", desc: "My professional network page.", url: "https://www.linkedin.com/in/jan-harry-madrona-212108402", icon: <Linkedin className="w-4 h-4" /> },
     { name: "TikTok", desc: "Where I post short videos about coding and developer tips.", url: "https://www.tiktok.com/@zynxoso82?_r=1&_t=ZS-93m74k6DkZg", icon: <Youtube className="w-4 h-4" /> }
-  ],
-  creatorStats: [
-    { platform: "TikTok", value: "24.5K", label: "Followers", desc: "Tech content & coding tips" },
-    { platform: "YouTube", value: "8.2K", label: "Subscribers", desc: "Video tutorials & tech guides" }
   ],
   digitalProducts: [
     {

@@ -6,7 +6,6 @@ import {
   Code2,
   FileText,
   Terminal,
-  Layers,
   Package,
   Menu,
   X,
@@ -15,8 +14,7 @@ import {
   LayoutGrid,
   MapPin,
   Columns,
-  List,
-  Zap
+  List
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -38,7 +36,6 @@ function App() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
   const [resumeViewMode, setResumeViewMode] = useState<'interactive' | 'pdf'>('interactive')
-  const [isCopied, setIsCopied] = useState(false)
   const [galleryFilter, setGalleryFilter] = useState<'all' | 'certs' | 'projects' | 'memories'>('all')
   const [galleryViewMode, setGalleryViewMode] = useState<'masonry' | 'inspector'>('masonry')
   const [activeImage, setActiveImage] = useState<typeof DATA.gallery[number] | null>(null)
@@ -51,16 +48,6 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  const handleCopyCommands = () => {
-    const code = `composer create-project laravel/laravel my-laravel-app
-cd my-laravel-app
-npm install
-npm run dev
-php artisan serve`
-    navigator.clipboard.writeText(code)
-    setIsCopied(true)
-    setTimeout(() => setIsCopied(false), 2000)
-  }
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -224,11 +211,10 @@ php artisan serve`
               }}
               className="p-12 lg:p-6 space-y-2 flex-1 lg:flex-none"
             >
-              {(['main', 'resume', 'stack', 'digital', 'links', 'gallery'] as const).map((tab) => {
+              {(['main', 'resume', 'digital', 'links', 'gallery'] as const).map((tab) => {
                 const labelMap: Record<string, string> = {
                   main: 'Portfolio',
                   resume: 'My Resume',
-                  stack: 'Laravel Setup',
                   digital: 'Digital Product',
                   links: 'Featured Links',
                   gallery: 'Gallery'
@@ -403,21 +389,6 @@ php artisan serve`
                         </div>
                       </motion.div>
                     ))}
-                  </div>
-
-                  <div className="mt-8 lg:mt-10 border-t border-black/5 pt-6 shrink-0 text-left">
-                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-4 flex items-center text-black/50">
-                      <Zap className="w-4 h-4 mr-4 shrink-0" /> Creator Stats
-                    </h2>
-                    <div className="grid grid-cols-2 gap-4">
-                      {DATA.creatorStats.map((stat, idx) => (
-                        <div key={idx} className="p-4 border border-black/5 rounded-sm bg-black/[0.01]">
-                          <div className="text-lg font-black tracking-tight leading-none mb-1">{stat.value}</div>
-                          <div className="text-[9px] font-black uppercase tracking-wider text-black/60 mb-1.5">{stat.platform} {stat.label}</div>
-                          <div className="text-[10px] opacity-75 font-medium leading-tight">{stat.desc}</div>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 </motion.section>
 
@@ -865,116 +836,6 @@ php artisan serve`
                       </motion.div>
                     </div>
                   )}
-                </motion.div>
-              )}
-
-
-              {activeTab === 'stack' && (
-                <motion.div
-                  key="stack"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="h-full flex flex-col lg:overflow-hidden"
-                >
-                  <div className="mb-8 shrink-0">
-                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
-                      <Layers className="w-4 h-4 mr-4 shrink-0" /> Laravel Development Setup
-                    </h2>
-                  </div>
-
-                  <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8 space-y-12">
-                    {/* Installer Cards Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      {DATA.laravelStack.map((item, idx) => {
-                        const getBadge = (name: string) => {
-                          if (name.toLowerCase().includes("composer")) return "1.8 MB"
-                          if (name.toLowerCase().includes("node.js")) return "v24.13.0"
-                          return "Apache"
-                        }
-                        const cleanDesc = (desc: string) => {
-                          return desc.replace(/\s*\(v.*?\)/g, '')
-                        }
-
-                        return (
-                          <motion.div
-                            key={idx}
-                            className="group bg-white border border-black/5 p-6 rounded-sm flex flex-col justify-between space-y-6 transition-all duration-300 hover:border-black/10 hover:shadow-sm"
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: idx * 0.08, duration: 0.4 }}
-                          >
-                            <div className="space-y-4">
-                              <div className="flex justify-between items-start">
-                                <div className="p-2.5 bg-black/5 rounded-sm text-black/40 group-hover:text-black group-hover:bg-black/10 transition-colors shrink-0">
-                                  {item.icon}
-                                </div>
-                                <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 bg-black/5 text-black/60 rounded-sm select-none">
-                                  {getBadge(item.name)}
-                                </span>
-                              </div>
-                              <div className="space-y-2">
-                                <h3 className="text-sm font-black uppercase tracking-tight leading-tight">
-                                  {item.name.replace(/\s*\(.*?\)/g, '')}
-                                </h3>
-                                <p className="text-[11px] leading-relaxed opacity-75 font-medium max-w-prose">
-                                  {cleanDesc(item.desc)}
-                                </p>
-                              </div>
-                            </div>
-
-                            <a
-                              href={item.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="w-full text-center inline-block py-3 border border-black bg-black text-white hover:bg-transparent hover:text-black transition-colors duration-300 font-black text-[9px] tracking-widest uppercase select-none rounded-sm"
-                            >
-                              {item.label === "Download" ? "Download Installer" : "Official Website"}
-                            </a>
-                          </motion.div>
-                        )
-                      })}
-                    </div>
-
-                    {/* Terminal Console */}
-                    <div className="space-y-4">
-                      <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Bootstrap Console</h3>
-                      <div className="bg-[#0b0b0c] border border-black/10 rounded-sm overflow-hidden flex flex-col font-mono text-[11px] text-[#f7f8f8]">
-                        {/* Window header */}
-                        <div className="flex justify-between items-center px-4 py-3 bg-[#131315] border-b border-[#23252a] select-none">
-                          <div className="flex space-x-2">
-                            <div className="w-2 h-2 rounded-full bg-[#ff5f56]" />
-                            <div className="w-2 h-2 rounded-full bg-[#ffbd2e]" />
-                            <div className="w-2 h-2 rounded-full bg-[#27c93f]" />
-                          </div>
-                          <span className="text-[9px] font-black tracking-widest text-[#8a8f98] uppercase">Terminal</span>
-                          <button
-                            onClick={handleCopyCommands}
-                            className="text-[9px] font-black tracking-wider uppercase text-[#8a8f98] hover:text-[#f7f8f8] transition-colors"
-                          >
-                            {isCopied ? 'Copied!' : 'Copy Code'}
-                          </button>
-                        </div>
-
-                        {/* Console output */}
-                        <pre className="p-6 overflow-x-auto custom-scrollbar leading-relaxed text-[#d0d6e0] select-all">
-                          {`# 1. Install a new Laravel project via Composer
-composer create-project laravel/laravel my-laravel-app
-
-# 2. Navigate to your project directory
-cd my-laravel-app
-
-# 3. Install NPM dependencies and run Vite dev server
-npm install
-npm run dev
-
-# 4. In a new terminal, serve the local PHP server
-php artisan serve`}
-                        </pre>
-                      </div>
-                    </div>
-                  </div>
                 </motion.div>
               )}
 
