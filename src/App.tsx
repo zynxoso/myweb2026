@@ -284,16 +284,16 @@ function App() {
 
               {/* Social Links Block */}
               <div className="pt-8 lg:pt-4 border-t border-black/5">
-                <h2 className="text-[9px] font-black uppercase tracking-[0.3em] mb-6 text-black/50">Featured Links</h2>
-                <div className="flex items-center space-x-6">
+                <h2 className="text-[9px] font-black uppercase tracking-[0.3em] mb-4 text-black/50">Featured Links</h2>
+                <div className="flex items-center gap-3">
                   {DATA.links.map((link, idx) => (
                     <motion.a
                       key={idx}
                       href={link.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-black/60 hover:text-black transition-colors duration-300 p-1 -m-1"
-                      whileHover={{ scale: 1.15 }}
+                      className="w-9 h-9 bg-black/5 hover:bg-black/10 border border-black/5 hover:border-black/15 text-black/50 hover:text-black transition-all duration-300 rounded-sm flex items-center justify-center shrink-0"
+                      whileHover={{ y: -2, transition: { duration: 0.2 } }}
                       whileTap={{ scale: 0.95 }}
                       aria-label={`Visit my ${link.name} profile`}
                     >
