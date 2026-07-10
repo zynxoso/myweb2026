@@ -109,6 +109,80 @@ export const DATA = {
       icon: <FileText className="w-4 h-4" />
     }
   ],
+  designTemplates: [
+    {
+      name: "Sleek Flyer with Textured Off-White Background",
+      category: "Canva Template",
+      desc: "A bold marketing flyer with textured off-white paper, black display type, and red growth graphics.",
+      preview: "/canva_design_templates/sleek-flyer-textured-off-white-background.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/mnt0i9c7h0q1tkl",
+      tools: ["Canva", "Template", "Editable"]
+    },
+    {
+      name: "Flyer - TURN ATTENTION INTO REVENUE",
+      category: "Canva Template",
+      desc: "A tall grayscale growth flyer with editorial panels, chart visuals, and a bold revenue-focused headline.",
+      preview: "/canva_design_templates/flyer-turn-attention-into-revenue.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/3howurew25mpsum",
+      tools: ["Canva", "Template", "Editable"]
+    },
+    {
+      name: "Tactile Print Layout for Meridian Works",
+      category: "Canva Template",
+      desc: "A textured print-style growth layout with bold typography, red package blocks, and strategy diagram details.",
+      preview: "/canva_design_templates/tactile-print-layout-for-meridian-works.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/lb5prgvbyaeqry3",
+      tools: ["Canva", "Template", "Editable"]
+    },
+    {
+      name: "Structured Editorial Brochure Layout 2",
+      category: "Canva Template",
+      desc: "A structured editorial brochure with grid-based metrics, paper texture, and sparse technical linework.",
+      preview: "/canva_design_templates/structured-editorial-brochure-layout-2.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/sqgzz3z4g6f0spm",
+      tools: ["Canva", "Template", "Editable"]
+    },
+    {
+      name: "Premium Strategy Studio Brochure Design",
+      category: "Canva Template",
+      desc: "A premium studio brochure concept with editorial text blocks, soft paper tone, and orange strategy charts.",
+      preview: "/canva_design_templates/premium-strategy-studio-brochure-design.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/6d9vi2k2pmj0bvp",
+      tools: ["Canva", "Template", "Editable"]
+    },
+    {
+      name: "Premium Craft Beverage Mockup of Northline Cold Brew",
+      category: "Canva Template",
+      desc: "A premium cold brew product mockup with bottle packaging, warm studio light, and refined label styling.",
+      preview: "/canva_design_templates/premium-craft-beverage-mockup-of-northline-cold-brew.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/eiu8sxz7www2amz",
+      tools: ["Canva", "Mockup", "Beverage"]
+    },
+    {
+      name: "Northline Cold Brew Concentrate Editorial Mockup",
+      category: "Canva Template",
+      desc: "An editorial cold brew concentrate scene with layered bottles, packaging shadows, and promo card detail.",
+      preview: "/canva_design_templates/northline-cold-brew-concentrate-editorial-mockup.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/kq6w5cedcg1fyo3",
+      tools: ["Canva", "Mockup", "Editorial"]
+    },
+    {
+      name: "Instagram Post - Discover the Richness of Northline Cold Brew Concentrate",
+      category: "Canva Template",
+      desc: "A square social post for Northline Cold Brew with product photography and a large editorial headline.",
+      preview: "/canva_design_templates/instagram-post-discover-the-richness-of-northline-cold-brew-concentrate.jpg",
+      format: "Canva Link",
+      canvaUrl: "https://canva.link/p74dynvihojdywn",
+      tools: ["Canva", "Instagram", "Beverage"]
+    }
+  ],
   resume: "/RESUME_LATEST2026.pdf",
   gallery: [
     {

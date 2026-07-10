@@ -14,7 +14,9 @@ import {
   LayoutGrid,
   MapPin,
   Columns,
-  List
+  List,
+  Palette,
+  Eye
 } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -211,11 +213,12 @@ function App() {
               }}
               className="p-12 lg:p-6 space-y-2 flex-1 lg:flex-none"
             >
-              {(['main', 'resume', 'digital', 'gallery'] as const).map((tab) => {
+              {(['main', 'resume', 'digital', 'templates', 'gallery'] as const).map((tab) => {
                 const labelMap: Record<string, string> = {
                   main: 'Portfolio',
                   resume: 'My Resume',
                   digital: 'Digital Product',
+                  templates: 'Design Templates',
                   gallery: 'Gallery'
                 }
                 const isActive = activeTab === tab
@@ -913,6 +916,119 @@ function App() {
                         </motion.div>
                       ))}
                     </div>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeTab === 'templates' && (
+                <motion.div
+                  key="templates"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="h-full flex flex-col lg:overflow-hidden"
+                >
+                  <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 shrink-0">
+                    <div className="space-y-3">
+                      <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                        <Palette className="w-4 h-4 mr-4 shrink-0" /> Design Templates
+                      </h2>
+                      <p className="text-[12px] leading-relaxed opacity-70 font-medium max-w-xl">
+                        Canva-ready layouts and visual systems. Each preview opens the editable design in Canva.
+                      </p>
+                    </div>
+                    <div className="text-[9px] font-black uppercase tracking-[0.2em] text-black/40">
+                      {DATA.designTemplates.length} Templates
+                    </div>
+                  </div>
+
+                  <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
+                    {DATA.designTemplates.length === 0 ? (
+                      <div className="min-h-[360px] border border-black/5 bg-black/[0.015] rounded-sm flex flex-col items-center justify-center text-center px-8">
+                        <Palette className="w-8 h-8 text-black/20 mb-6" />
+                        <h3 className="text-sm font-black uppercase tracking-tight mb-2">No templates yet</h3>
+                        <p className="text-[12px] text-black/50 font-medium max-w-sm">
+                          Add your Canva template records in the data file to show previews here.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+                        {DATA.designTemplates.map((template, idx) => {
+                          const isFeatured = idx === 0
+                          return (
+                            <motion.article
+                              key={template.name}
+                              role="link"
+                              tabIndex={0}
+                              onClick={() => window.open(template.canvaUrl, '_blank', 'noopener,noreferrer')}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                  e.preventDefault()
+                                  window.open(template.canvaUrl, '_blank', 'noopener,noreferrer')
+                                }
+                              }}
+                              aria-label={`Open ${template.name} in Canva`}
+                              className={`group bg-white border border-black/5 rounded-sm overflow-hidden transition-all duration-300 hover:border-black/15 hover:bg-black/[0.01] cursor-pointer ${isFeatured ? 'xl:col-span-2' : ''
+                                }`}
+                              initial={{ opacity: 0, y: 16 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: idx * 0.08, duration: 0.4, ease: "easeOut" }}
+                              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                              whileTap={{ scale: 0.99 }}
+                            >
+                              <div className={`${isFeatured ? 'grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]' : 'flex flex-col'} h-full`}>
+                                <div className={`relative bg-black/5 overflow-hidden p-3 ${isFeatured ? 'aspect-[16/9]' : 'aspect-[16/10]'}`}>
+                                  <img
+                                    src={template.preview}
+                                    alt={`${template.name} preview`}
+                                    className="w-full h-full object-contain transition-all duration-700 group-hover:scale-[1.02]"
+                                    loading="lazy"
+                                  />
+                                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                                </div>
+
+                                <div className={`flex flex-col justify-between gap-8 p-6 ${isFeatured ? 'lg:p-8' : ''}`}>
+                                  <div className="space-y-5">
+                                    <div className="flex items-center justify-between gap-4">
+                                      <span className="text-[9px] font-black uppercase tracking-wider px-2 py-0.5 bg-black/5 text-black/60 rounded-sm">
+                                        {template.category}
+                                      </span>
+                                      <span className="text-[9px] font-black uppercase tracking-widest text-black/35">
+                                        {template.format}
+                                      </span>
+                                    </div>
+
+                                    <div className="space-y-3">
+                                      <h3 className={`${isFeatured ? 'text-xl md:text-2xl' : 'text-sm'} font-black uppercase tracking-tight leading-tight text-black`}>
+                                        {template.name}
+                                      </h3>
+                                      <p className="text-[12px] leading-relaxed opacity-75 font-medium max-w-prose">
+                                        {template.desc}
+                                      </p>
+                                    </div>
+                                  </div>
+
+                                  <div className="space-y-5">
+                                    <div className="flex flex-wrap gap-1.5">
+                                      {template.tools.map((tool, toolIdx) => (
+                                        <span key={toolIdx} className="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 bg-black/5 text-black/60 rounded-sm">
+                                          {tool}
+                                        </span>
+                                      ))}
+                                    </div>
+                                    <div className="inline-flex items-center justify-center gap-2 bg-black text-white px-5 py-3 rounded-sm text-[9px] font-black uppercase tracking-widest group-hover:bg-black/80 transition-colors">
+                                      <Eye className="w-3.5 h-3.5" />
+                                      <span>Open in Canva</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.article>
+                          )
+                        })}
+                      </div>
+                    )}
                   </div>
                 </motion.div>
               )}
