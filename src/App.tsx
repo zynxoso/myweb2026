@@ -38,7 +38,7 @@ function App() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
   const [resumeViewMode, setResumeViewMode] = useState<'interactive' | 'pdf'>('interactive')
-  const [galleryFilter, setGalleryFilter] = useState<'all' | 'certs' | 'projects' | 'memories'>('all')
+  const [galleryFilter, setGalleryFilter] = useState<'all' | 'certs' | 'projects'>('all')
   const [galleryViewMode, setGalleryViewMode] = useState<'masonry' | 'inspector'>('masonry')
   const [activeImage, setActiveImage] = useState<typeof DATA.gallery[number] | null>(null)
 
@@ -1053,12 +1053,11 @@ function App() {
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full xl:w-auto">
                       {/* Filter Tabs Pill */}
                       <div className="flex bg-black/5 rounded-full p-1 border border-black/5 select-none overflow-x-auto max-w-full no-scrollbar">
-                        {(['all', 'certs', 'projects', 'memories'] as const).map((filter) => {
+                        {(['all', 'certs', 'projects'] as const).map((filter) => {
                           const filterLabelMap: Record<string, string> = {
                             all: 'All',
                             certs: 'Certifications',
-                            projects: 'Projects',
-                            memories: 'Memories'
+                            projects: 'Projects'
                           }
                           return (
                             <button
@@ -1116,7 +1115,6 @@ function App() {
                             if (galleryFilter === 'all') return true
                             if (galleryFilter === 'certs') return item.category === 'Achievement'
                             if (galleryFilter === 'projects') return item.category === 'Web Development' || item.category === 'System Development'
-                            if (galleryFilter === 'memories') return item.category === 'Experience' || item.category === 'Memory'
                             return true
                           })
                           .map((item) => (
@@ -1165,7 +1163,6 @@ function App() {
                             if (galleryFilter === 'all') return true
                             if (galleryFilter === 'certs') return item.category === 'Achievement'
                             if (galleryFilter === 'projects') return item.category === 'Web Development' || item.category === 'System Development'
-                            if (galleryFilter === 'memories') return item.category === 'Experience' || item.category === 'Memory'
                             return true
                           })
                           .map((item) => (

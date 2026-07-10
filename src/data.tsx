@@ -35,6 +35,22 @@ export const DATA = {
   },
   projects: [
     {
+      name: "PulseOS",
+      role: "Lead Developer",
+      desc: "An operations console and admin dashboard for system monitoring, alerts, earnings tracking, and AI automation workflows.",
+      icon: <Cpu className="w-5 h-5" />,
+      url: "https://next-myapp-pi.vercel.app/dashboard",
+      tags: ["Next.js", "React", "Tailwind CSS", "Dashboard"]
+    },
+    {
+      name: "AITO (AI 3D Talking Objects)",
+      role: "Lead Developer",
+      desc: "A web platform that generates production-ready scripts for character videos, nursery rhymes, and thumbnail motion packs, featuring AI tools and integrations for automated video creation.",
+      icon: <Cpu className="w-5 h-5" />,
+      url: "https://ai-3-dto.vercel.app/",
+      tags: ["React", "AI Video", "Script Builder", "Veo"]
+    },
+    {
       name: "AIRA (AI Reports Automation)",
       role: "Lead AI Developer | Intern Project",
       desc: "A web app I built during my internship to move CLSU's paper service requests online. It runs on Laravel 12, React 19, and Inertia.js. I added Gemini AI to read info directly from photos and documents so staff don't have to type it in manually.",
@@ -186,6 +202,24 @@ export const DATA = {
   resume: "/RESUME_LATEST2026.pdf",
   gallery: [
     {
+      title: "PulseOS Dashboard",
+      category: "Web Development",
+      img: "/gallery/PulseOS.png",
+      desc: "An operations console and admin dashboard for system monitoring, alerts, earnings tracking, and AI automation workflows.",
+      date: "Feb 2026",
+      tech: ["Next.js", "React", "Tailwind CSS", "Dashboard"],
+      verified: true
+    },
+    {
+      title: "AITO (AI 3D Talking Objects)",
+      category: "Web Development",
+      img: "/gallery/AI3DTO.png",
+      desc: "A production-ready script building studio for character videos, nursery rhymes, and image-to-video thumbnail animations.",
+      date: "Feb 2026",
+      tech: ["React", "AI Video", "Script Builder", "Veo"],
+      verified: true
+    },
+    {
       title: "Internship Certificate of Completion",
       category: "Achievement",
       img: "/gallery/cert_of_completion_intern.jpg",
@@ -195,40 +229,13 @@ export const DATA = {
       verified: true
     },
     {
-      title: "AI Dev Collaboration at TESO-CLSU",
-      category: "Experience",
-      img: "/gallery/co_aidev_at_TESO-CLSU.jpg",
-      desc: "Working with the CLSU TESO team to plan out how they can use AI to automate daily tasks.",
-      date: "Dec 2025",
-      tech: ["Gemini AI", "API Integrations", "Collaboration"],
-      verified: true
-    },
-    {
-      title: "OJT Graduation",
-      category: "Achievement",
-      img: "/gallery/ojt_grad.jpg",
-      desc: "Internship graduation ceremony at the Management center.",
-      date: "Jan 2026",
-      tech: ["Achievement", "OJT", "MISO"],
-      verified: true
-    },
-    {
       title: "OJT Final Presentation",
-      category: "Experience",
+      category: "System Development",
       img: "/gallery/ojt_grad_presentation.jpg",
       desc: "Presenting the AIRA-LOGIX app to the ICT directors at the end of our internship.",
       date: "Jan 2026",
       tech: ["Presentation", "Laravel", "React", "Inertia"],
       verified: true
-    },
-    {
-      title: "OJT Graduation Ceremony",
-      category: "Memory",
-      img: "/gallery/ojt_graduation_image.jpg",
-      desc: "Photo with the Management team and admins during graduation.",
-      date: "Jan 2026",
-      tech: ["Memory", "Graduation", "Team"],
-      verified: false
     },
     {
       title: "Graduation Portrait (Toga)",
@@ -337,51 +344,6 @@ export const DATA = {
       date: "Oct 2025",
       tech: ["Seminar", "Career Readiness"],
       verified: true
-    },
-    {
-      title: "First Day at MISO",
-      category: "Experience",
-      img: "/gallery/firstday_internt_at_MISO.jpg",
-      desc: "First day at the Management Information Systems Office with other interns.",
-      date: "Nov 2025",
-      tech: ["Memory", "OJT", "First Day"],
-      verified: false
-    },
-    {
-      title: "Project Presentation",
-      category: "Experience",
-      img: "/gallery/intern_project_presentation.jpg",
-      desc: "Presenting our first project goals and diagrams to our university advisors.",
-      date: "Dec 2025",
-      tech: ["Presentation", "Sprint Review", "MISO"],
-      verified: true
-    },
-    {
-      title: "OJT Work Session",
-      category: "Experience",
-      img: "/gallery/OJT_CODING.jpg",
-      desc: "Working late to debug database issues and update states.",
-      date: "Dec 2025",
-      tech: ["OJT", "Development", "Teamwork"],
-      verified: false
-    },
-    {
-      title: "OJT Deployment",
-      category: "Experience",
-      img: "/gallery/OJT_1.jpg",
-      desc: "Setting up local servers and deploying our first test build.",
-      date: "Jan 2026",
-      tech: ["System Dev", "Deployment", "XAMPP"],
-      verified: true
-    },
-    {
-      title: "Personal Moments",
-      category: "Memory",
-      img: "/gallery/with_my_gf.jpg",
-      desc: "A photo with my girlfriend celebrating graduation.",
-      date: "Feb 2026",
-      tech: ["Memory", "Personal", "Milestone"],
-      verified: false
     }
   ]
 }
