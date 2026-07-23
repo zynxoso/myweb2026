@@ -279,7 +279,7 @@ function App() {
                       className="group"
                     >
                       <p className="text-[11px] font-black uppercase tracking-tight leading-tight mb-2">{edu.school}</p>
-                      <p className="text-[9px] text-black/60 font-bold uppercase tracking-widest">{edu.period} — {edu.level}</p>
+                      <p className="text-[9px] text-black/60 font-bold uppercase tracking-widest">{edu.period} | {edu.level}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -386,7 +386,7 @@ function App() {
                   <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
                     <Code2 className="w-4 h-4 mr-4 shrink-0" /> Skills
                   </h2>
-                  <div className="flex-1 lg:overflow-y-auto lg:max-h-[60%] space-y-10 lg:space-y-12 custom-scrollbar lg:pr-6">
+                  <div className="flex-1 lg:overflow-y-auto custom-scrollbar lg:pr-4 space-y-3">
                     {DATA.skills.technical.map((skill, idx) => (
                       <motion.div
                         key={idx}
@@ -394,22 +394,17 @@ function App() {
                           hidden: { opacity: 0, y: 8 },
                           visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } }
                         }}
-                        className="group"
+                        className="group p-3 border border-black/5 hover:border-black/20 hover:bg-black/[0.02] rounded-sm transition-all duration-300 flex items-center justify-between"
                       >
-                        <div className="flex items-center justify-between mb-4 text-black/50 group-hover:text-black transition-colors">
-                          <span className="text-[12px] font-black uppercase tracking-widest">{skill.name}</span>
-                          <span className="text-[9px] font-black opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity">
-                            {skill.level <= 30 ? 'BEGINNER' : skill.level <= 70 ? 'INTERMEDIATE' : 'ADVANCED'}
-                          </span>
+                        <div className="flex items-center space-x-3 text-black/70 group-hover:text-black transition-colors">
+                          <div className="p-1.5 bg-black/5 rounded-sm group-hover:bg-black group-hover:text-white transition-colors">
+                            {skill.icon}
+                          </div>
+                          <span className="text-[12px] font-black uppercase tracking-wider">{skill.name}</span>
                         </div>
-                        <div className="h-px bg-black/5 w-full relative group-hover:bg-black/10 transition-colors">
-                          <motion.div
-                            className="absolute top-0 left-0 h-full bg-black"
-                            initial={{ width: 0 }}
-                            animate={isIntroComplete ? { width: `${skill.level}%` } : { width: 0 }}
-                            transition={{ delay: idx * 0.04 + 0.3, duration: 0.6, ease: "easeOut" }}
-                          />
-                        </div>
+                        <span className="text-[8px] font-black uppercase tracking-widest px-2 py-0.5 bg-black/5 text-black/60 rounded-sm group-hover:bg-black/10 group-hover:text-black transition-colors shrink-0">
+                          {skill.tag}
+                        </span>
                       </motion.div>
                     ))}
                   </div>
@@ -557,30 +552,66 @@ function App() {
                       </div>
                     </div>
 
-                    <a
-                      href={DATA.resume}
-                      download="RESUME_LATEST2026.pdf"
-                      className="bg-black text-white px-8 py-4 lg:py-3 text-[10px] font-black uppercase tracking-widest hover:bg-black/80 transition-colors flex items-center space-x-3 w-full lg:w-auto justify-center select-none"
-                    >
-                      <Package className="w-4 h-4" />
-                      <span>Download PDF</span>
-                    </a>
+                    <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+                      <a
+                        href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-black/5 hover:bg-black/10 text-black px-5 py-3 text-[10px] font-black uppercase tracking-widest transition-colors flex items-center justify-center space-x-2 select-none rounded-sm border border-black/10"
+                      >
+                        <ExternalLink className="w-3.5 h-3.5" />
+                        <span>Open PDF</span>
+                      </a>
+                      <a
+                        href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                        download="JanHarryMadrona_RESUME-JULY2026.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-widest hover:bg-black/80 transition-colors flex items-center justify-center space-x-2 select-none rounded-sm"
+                      >
+                        <Package className="w-3.5 h-3.5" />
+                        <span>Download PDF</span>
+                      </a>
+                    </div>
                   </div>
 
                   {/* PDF View Container */}
                   <div className={`flex-1 flex flex-col ${resumeViewMode === 'pdf' ? '' : 'hidden'}`}>
-                    <div className="flex-1 bg-black/5 border border-black/5 overflow-hidden relative group rounded-sm">
+                    <div className="flex-1 bg-black/5 border border-black/5 overflow-hidden relative group rounded-sm min-h-[600px]">
                       {resumeViewMode === 'pdf' && (
-                        <iframe
-                          src={DATA.resume}
-                          className="w-full h-full border-none min-h-[500px]"
-                          title="Resume Preview"
-                        />
+                        <object
+                          data={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                          type="application/pdf"
+                          className="w-full h-full min-h-[600px]"
+                        >
+                          <embed
+                            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                            type="application/pdf"
+                            className="w-full h-full min-h-[600px]"
+                          />
+                          <iframe
+                            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                            className="w-full h-full border-none min-h-[600px]"
+                            title="Resume Preview"
+                          >
+                            <p className="p-6 text-center text-xs">
+                              Your browser does not support embedded PDF viewing.{' '}
+                              <a
+                                href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline font-bold"
+                              >
+                                Click here to open the PDF directly in a new tab
+                              </a>.
+                            </p>
+                          </iframe>
+                        </object>
                       )}
                       <div className="absolute inset-0 pointer-events-none border border-black/5 group-hover:border-black/10 transition-colors"></div>
                     </div>
                     <span className="text-[10px] text-black/40 mt-2 select-none">
-                      Note: If the PDF does not display, it may have been intercepted by a download manager (like IDM) or your browser is set to download PDFs instead of previewing them.
+                      Note: If preview is blank, your browser or download manager (like IDM) may intercept PDFs. Click "Open PDF" above to view directly in a new tab.
                     </span>
                   </div>
 
@@ -600,7 +631,7 @@ function App() {
                               Jan Harry I. Madrona
                             </h2>
                             <p className="text-xs font-black uppercase tracking-[0.2em] text-black/60">
-                              Software Engineer / AI Developer
+                              Web Developer & Designer / Software Engineer / AI Developer
                             </p>
                             <div className="text-[11px] text-black/60 leading-relaxed space-y-1 font-medium">
                               <p className="flex items-center"><MapPin className="w-3.5 h-3.5 mr-2 shrink-0" /> San Agustin, Guimba, Nueva Ecija, Philippines</p>
@@ -632,7 +663,7 @@ function App() {
                         <div className="space-y-4">
                           <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40">Summary</h3>
                           <p className="text-[12px] md:text-[13px] leading-relaxed opacity-85 font-medium max-w-prose">
-                            I build web systems, Laravel apps, and automation scripts. I like building straightforward tools that make daily tasks easier, combining backend code with content and design.
+                            Full-stack web developer and designer building web applications with Laravel, React, and Next.js. Experience building custom management systems, administrative dashboards, and AI-assisted data workflows for academic institutions, local government, and independent projects. Focuses on clean interfaces, reliable code, and fast user experiences.
                           </p>
                         </div>
 
@@ -734,16 +765,16 @@ function App() {
                               <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-black/40 border-b border-black/5 pb-2">Significant Roles</h3>
                               <div className="space-y-4">
                                 <div className="flex justify-between items-baseline gap-4">
-                                  <span className="text-[12px] font-black uppercase tracking-tight">Lead Developer</span>
+                                  <span className="text-[12px] font-black uppercase tracking-tight">Lead Web Developer</span>
                                   <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">Recent Projects</span>
+                                </div>
+                                <div className="flex justify-between items-baseline gap-4">
+                                  <span className="text-[12px] font-black uppercase tracking-tight">Web & UI Designer</span>
+                                  <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">Freelance / Custom Sites</span>
                                 </div>
                                 <div className="flex justify-between items-baseline gap-4">
                                   <span className="text-[12px] font-black uppercase tracking-tight">Lead AI Developer</span>
                                   <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">AIRA-GEN (Reports AI)</span>
-                                </div>
-                                <div className="flex justify-between items-baseline gap-4">
-                                  <span className="text-[12px] font-black uppercase tracking-tight">Content Creator</span>
-                                  <span className="text-[9px] font-black uppercase tracking-widest text-black/50 shrink-0">Ongoing</span>
                                 </div>
                               </div>
                             </div>

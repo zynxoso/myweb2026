@@ -15,23 +15,23 @@ import {
 
 export const DATA = {
   name: "Jan Harry I. Madrona",
-  title: "Content Creator | System Developer | AI Developer",
+  title: "Web Developer & Designer | System Developer | AI Developer",
   location: "Philippines",
   phone: "0977 625 5563",
   email: "Janharrymadrona1000@gmail.com",
-  objective: "I build web systems and make digital videos. I work a lot with Laravel and full-stack development, and I like using code to automate repetitive tasks. My goal is just to make simple, clean tools that solve actual problems.",
+  objective: "I build web applications, admin dashboards, and custom management systems using Laravel, React, and Python. I like turning manual, paper-based workflows into fast, straightforward web tools with clean UI designs.",
   skills: {
     technical: [
-      { name: "Laravel", level: 40, icon: <Zap className="w-3 h-3" /> },
-      { name: "Django", level: 10, icon: <Layers className="w-3 h-3" /> },
-      { name: "Python", level: 30, icon: <Terminal className="w-3 h-3" /> },
-      { name: "React", level: 20, icon: <Code2 className="w-3 h-3" /> },
-      { name: "Databases", level: 20, icon: <Briefcase className="w-3 h-3" /> },
-      { name: "Web Dev", level: 60, icon: <Globe className="w-3 h-3" /> },
-      { name: "Tailwind", level: 80, icon: <Code2 className="w-3 h-3" /> },
-      { name: "Automation", level: 80, icon: <Cpu className="w-3 h-3" /> }
+      { name: "Web Dev", tag: "Core Stack", icon: <Globe className="w-3.5 h-3.5" /> },
+      { name: "Web Design", tag: "UI / UX", icon: <Layers className="w-3.5 h-3.5" /> },
+      { name: "Laravel", tag: "Full-Stack", icon: <Zap className="w-3.5 h-3.5" /> },
+      { name: "React", tag: "Frontend", icon: <Code2 className="w-3.5 h-3.5" /> },
+      { name: "Tailwind", tag: "Styling", icon: <Code2 className="w-3.5 h-3.5" /> },
+      { name: "Python", tag: "Automation", icon: <Terminal className="w-3.5 h-3.5" /> },
+      { name: "Databases", tag: "MySQL / SQL", icon: <Briefcase className="w-3.5 h-3.5" /> },
+      { name: "Automation", tag: "AI Workflows", icon: <Cpu className="w-3.5 h-3.5" /> }
     ],
-    soft: ["Public Speaking", "Creative Direction", "Technical Writing", "Brand Strategy"]
+    soft: ["UI/UX Prototyping", "Creative Direction", "Technical Writing", "Brand Strategy"]
   },
   projects: [
     {
@@ -199,7 +199,7 @@ export const DATA = {
       tools: ["Canva", "Instagram", "Beverage"]
     }
   ],
-  resume: "/RESUME_LATEST2026.pdf",
+  resume: "/JanHarryMadrona_RESUME-JULY2026.pdf",
   gallery: [
     {
       title: "PulseOS Dashboard",
