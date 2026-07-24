@@ -95,6 +95,14 @@ When auto-applying an agent, inform the user:
 
 ## TIER 0: UNIVERSAL RULES (Always Active)
 
+### ✍️ Humanized Output Protocol (MANDATORY)
+
+**ALL conversational and explanatory text MUST adhere to `@[skills/humanizer]` principles. No exceptions.**
+
+- **No AI Tells**: Avoid AI vocabulary ("pivotal", "tapestry", "delve", "testament", "vibrant", "landscape", "underscore", "crucial").
+- **No Em-Dashes**: Strictly prohibit em-dashes (`—`), en-dashes (`–`), or double-hyphens (`--`). Use periods, commas, or parentheses instead.
+- **Natural Tone & Rhythm**: Avoid artificial staccato drama, sycophantic openers ("Certainly!", "Great question!"), or robotic outline lists. Keep explanations plain, clear, and human-sounding.
+
 ### 🌐 Language Handling
 
 When user's prompt is NOT in English:
@@ -119,6 +127,12 @@ When user's prompt is NOT in English:
 1. Check `CODEBASE.md` → File Dependencies
 2. Identify dependent files
 3. Update ALL affected files together
+
+### 🧠 Obsidian Knowledge Base
+
+- **Vault Junction**: `.obsidian-brain` (`D:\coding-workflow-obsidian-brain`)
+- **Sub-Agents Path**: `.obsidian-brain\coding-workflow\AGENTS\sub-agents`
+- Agents can read architecture guides, notes, and Quality Attribute sub-agents directly from `.obsidian-brain`.
 
 ### 🗺️ System Map Read
 
@@ -260,8 +274,8 @@ When user's prompt is NOT in English:
 
 ### Agents & Skills
 
-- **Masters**: `orchestrator`, `project-planner`, `security-auditor` (Cyber/Audit), `backend-specialist` (API/DB), `frontend-specialist` (UI/UX), `mobile-developer`, `debugger`, `game-developer`
-- **Key Skills**: `clean-code`, `brainstorming`, `app-builder`, `frontend-design`, `mobile-design`, `plan-writing`, `behavioral-modes`
+- **Masters**: `orchestrator`, `project-planner`, `security-auditor` (Cyber/Audit), `backend-specialist` (API/DB), `frontend-specialist` (UI/UX), `mobile-developer`, `debugger`, `game-developer`, `humanizer-specialist`, `ponytail-developer`, `ponytail-auditor`, `ponytail-reviewer`, `ponytail-debt-tracker`
+- **Key Skills**: `clean-code`, `brainstorming`, `app-builder`, `frontend-design`, `mobile-design`, `plan-writing`, `behavioral-modes`, `humanizer`, `ponytail`, `ponytail-audit`, `ponytail-review`, `ponytail-debt`
 
 ### Key Scripts
 

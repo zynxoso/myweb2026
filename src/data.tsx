@@ -13,6 +13,28 @@ import {
   Linkedin
 } from 'lucide-react'
 
+export type ProofLedgerMode = "outcome" | "architecture" | "implementation"
+
+export type ProofLedgerProject = {
+  id: string
+  number: string
+  name: string
+  role: string
+  statement: string
+  stack: string[]
+  modes: Record<ProofLedgerMode, {
+    eyebrow: string
+    headline: string
+    body: string
+    trace: string[]
+  }>
+  actions: Array<{
+    kind: "case-study" | "external"
+    label: string
+    target: string
+  }>
+}
+
 export const DATA = {
   name: "Jan Harry I. Madrona",
   title: "Web Developer & Designer | System Developer | AI Developer",
@@ -20,6 +42,120 @@ export const DATA = {
   phone: "0977 625 5563",
   email: "Janharrymadrona1000@gmail.com",
   objective: "I build web applications, admin dashboards, and custom management systems using Laravel, React, and Python. I like turning manual, paper-based workflows into fast, straightforward web tools with clean UI designs.",
+  homepage: {
+    eyebrow: "Web development / AI workflows / Philippines",
+    headline: "I build web tools that replace paperwork and repetitive admin work.",
+    lede: "I'm Jan, a developer and designer working with Laravel, React, Next.js, and Python. Most of my projects start with a task that takes too long or asks people to enter the same information more than once. I build a simpler way to handle it.",
+    ledger: [
+      {
+        id: "aira",
+        number: "01",
+        name: "AIRA",
+        role: "Service request system",
+        statement: "Paper requests become records staff can review and track.",
+        stack: ["Laravel 12", "React 19", "Inertia 2", "Gemini AI", "MySQL"],
+        modes: {
+          outcome: {
+            eyebrow: "Delivered workflow",
+            headline: "One request stays visible from intake to follow-up.",
+            body: "AIRA moves CLSU service requests online. Staff can upload a file, review the details Gemini extracts, and keep the request inside one trackable system.",
+            trace: ["Submit request", "Extract details", "Review record", "Track status"],
+          },
+          architecture: {
+            eyebrow: "System logic",
+            headline: "AI handles extraction. Staff keep control of the record.",
+            body: "Gemini sits at the input boundary instead of writing directly to the database. Laravel manages the application and data, while React and Inertia handle the staff workflow.",
+            trace: ["Uploaded file", "Gemini extraction", "Human review", "MySQL record"],
+          },
+          implementation: {
+            eyebrow: "Working stack",
+            headline: "A conventional full-stack base with one focused AI step.",
+            body: "The system uses Laravel 12, React 19, Inertia 2, and MySQL. The AI feature solves repeated transcription without turning the rest of the application into an opaque automation.",
+            trace: ["Laravel 12", "React 19", "Inertia 2", "Gemini + MySQL"],
+          },
+        },
+        actions: [
+          { kind: "case-study", label: "Read case study", target: "aira" },
+          { kind: "external", label: "View source", target: "https://github.com/zynxoso/CLSU_AIRA-LOGIX" },
+        ],
+      },
+      {
+        id: "scholarship",
+        number: "02",
+        name: "Scholarship Portal",
+        role: "Application and review system",
+        statement: "Graduate applications move from paper forms to one review path.",
+        stack: ["PHP", "MySQL", "Responsive UI", "Form validation"],
+        modes: {
+          outcome: {
+            eyebrow: "Delivered workflow",
+            headline: "Applicants submit online. ABE staff review organized records.",
+            body: "The portal gives master's and PhD applicants a digital submission path and gives administrators a structured place to inspect each application.",
+            trace: ["Apply online", "Validate fields", "Review application", "Manage record"],
+          },
+          architecture: {
+            eyebrow: "System logic",
+            headline: "The public form and the review record share one workflow.",
+            body: "Applicant information moves into a MySQL-backed record that administrators can review, search, and update without rebuilding the submission by hand.",
+            trace: ["Public form", "Validation", "MySQL record", "Admin review"],
+          },
+          implementation: {
+            eyebrow: "Working stack",
+            headline: "The interface follows the application sequence, not the database.",
+            body: "PHP and MySQL support the workflow. The responsive interface groups related requirements so applicants can work through the form in a predictable order.",
+            trace: ["PHP", "MySQL", "Responsive UI", "Structured review"],
+          },
+        },
+        actions: [
+          { kind: "case-study", label: "Read case study", target: "scholarship" },
+          { kind: "external", label: "Open live portal", target: "https://clsu-erdt.com/" },
+        ],
+      },
+      {
+        id: "aito",
+        number: "03",
+        name: "AITO",
+        role: "AI video production tool",
+        statement: "One idea becomes a structured pack for AI video production.",
+        stack: ["React", "AI video", "Script builder", "Veo", "Tailwind CSS"],
+        modes: {
+          outcome: {
+            eyebrow: "Delivered product",
+            headline: "Creators move from an idea to production-ready guidance.",
+            body: "AITO connects scripts, scene direction, character guidance, and thumbnail motion prompts so creators do not have to rebuild the production setup for every video.",
+            trace: ["Choose format", "Generate script", "Package assets", "Move to production"],
+          },
+          architecture: {
+            eyebrow: "Product logic",
+            headline: "The workflow follows production stages instead of an open chat box.",
+            body: "Each stage has a defined input and output. That structure keeps the creative direction connected as the idea moves from script to motion-ready assets.",
+            trace: ["Creative brief", "Structured script", "Scene guidance", "Motion pack"],
+          },
+          implementation: {
+            eyebrow: "Working stack",
+            headline: "React keeps each production step focused and reusable.",
+            body: "The interface separates content formats and generation stages while keeping their outputs connected for AI video and thumbnail motion tools.",
+            trace: ["React", "Reusable stages", "AI outputs", "Veo workflow"],
+          },
+        },
+        actions: [
+          { kind: "case-study", label: "Read case study", target: "aito" },
+          { kind: "external", label: "Open live product", target: "https://ai-3-dto.vercel.app/" },
+        ],
+      },
+    ] satisfies ProofLedgerProject[],
+    bio: [
+      "I'm a BS Information Technology graduate from Central Luzon State University in Nueva Ecija. I became interested in system development after seeing how much time people lose to paper forms and filing cabinets. The same problem shows up in digital work when staff have to copy the same details between tools.",
+      "I begin by following the work as it happens. I look at where the information comes from, who needs it next, and where the process slows down. Once I understand that, I can choose the right tool. It might be a Laravel application, a React dashboard, a database, or a Python script.",
+      "I'm still early in my career. During my 480-hour internship at CLSU's Management Information Systems Office, I helped build AIRA and presented it to ICT directors. My other work includes a live scholarship system, local government record tools, independent dashboards, and AI-assisted software for video production.",
+    ],
+    principles: [
+      "Learn how the work is done before choosing the tools.",
+      "Explain tradeoffs in plain language.",
+      "Design for the person who uses the system each day.",
+      "Write code the next developer can follow.",
+    ],
+  },
   skills: {
     technical: [
       { name: "Web Dev", tag: "Core Stack", icon: <Globe className="w-3.5 h-3.5" /> },
@@ -48,6 +184,8 @@ export const DATA = {
       desc: "A web platform that generates production-ready scripts for character videos, nursery rhymes, and thumbnail motion packs, featuring AI tools and integrations for automated video creation.",
       icon: <Cpu className="w-5 h-5" />,
       url: "https://ai-3-dto.vercel.app/",
+      caseStudy: "aito",
+      pinned: true,
       tags: ["React", "AI Video", "Script Builder", "Veo"]
     },
     {
@@ -56,6 +194,8 @@ export const DATA = {
       desc: "A web app I built during my internship to move CLSU's paper service requests online. It runs on Laravel 12, React 19, and Inertia.js. I added Gemini AI to read info directly from photos and documents so staff don't have to type it in manually.",
       icon: <Cpu className="w-5 h-5" />,
       url: "https://github.com/zynxoso/CLSU_AIRA-LOGIX",
+      caseStudy: "aira",
+      pinned: true,
       tags: ["Laravel 12", "React 19", "Gemini AI", "Inertia 2"]
     },
     {
@@ -77,9 +217,11 @@ export const DATA = {
     {
       name: "Scholarship Portal",
       role: "Lead Developer",
-      desc: "I built CLSU's scholarship site. It replaced their old paper system with a simple online form, which makes it much faster for students to apply and easier for the administration to review applicants.",
+      desc: "I built a scholarship portal for master’s and PhD applicants of CLSU ABE. It replaced the paper submission path with an online application and a structured review workflow for administrators.",
       icon: <Terminal className="w-5 h-5" />,
       url: "https://clsu-erdt.com/",
+      caseStudy: "scholarship",
+      pinned: true,
       tags: ["PHP", "MySQL", "CLSU", "Workflow"]
     },
     {

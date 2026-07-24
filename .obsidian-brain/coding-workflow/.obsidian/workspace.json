@@ -1,0 +1,207 @@
+{
+  "main": {
+    "id": "bd6764ba8daea16d",
+    "type": "split",
+    "children": [
+      {
+        "id": "7140e41c3099e6db",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "acc9db3e3ade5247",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "b78c89ec12541fec",
+    "type": "split",
+    "children": [
+      {
+        "id": "e169cb6c031094df",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "df465363269ca24f",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "6832e966e36b271c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "db466ee4324e6ee8",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5ef054b0cd27a441",
+    "type": "split",
+    "children": [
+      {
+        "id": "a73f3d489cd695c4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ae023c6edb5d8de0",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Untitled.base",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Untitled"
+            }
+          },
+          {
+            "id": "6f41d3f635370361",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Untitled.base",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Untitled"
+            }
+          },
+          {
+            "id": "299539bf7fa6ae49",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "a878c81c46188934",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "95a29a8bdd1e7630",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Untitled.base",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Untitled"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "acc9db3e3ade5247",
+  "lastOpenFiles": [
+    "AGENTS/sub-agents/00 - Quality Attribute Agents Index.md",
+    "AGENTS/sub-agents/Untitled.md",
+    "Untitled.base",
+    "AGENTS/sub-agents",
+    "AGENTS",
+    "QUALITY ATTRIBUTES",
+    "Untitled.canvas",
+    "PERSONAL INFORMATIONS/TECH STACK - CODEX.md",
+    "PERSONAL INFORMATIONS/TECH STACK - Antigravity.md",
+    "PERSONAL INFORMATIONS/MY RESUME.md",
+    "PERSONAL INFORMATIONS/MYWEBPORTFOLIO.md",
+    "DEVELOPER_UI_WORKFLOWS/my-uidesignpatterns in codex.md",
+    "DEVELOPER_UI_WORKFLOWS/my-uidesign in antigravity.md",
+    "DEVELOPER_UI_WORKFLOWS",
+    "PERSONAL INFORMATIONS/PROJECTS/AITO.md",
+    "PERSONAL INFORMATIONS/PROJECTS/VOJ_MANAGEMENT_SYSTEM.md",
+    "PERSONAL INFORMATIONS/PROJECTS/PULSEOS.md",
+    "PERSONAL INFORMATIONS/PROJECTS/AIRA.md",
+    "PERSONAL INFORMATIONS/PROJECTS",
+    "Untitled.md",
+    "PERSONAL INFORMATIONS",
+    "Welcome.md"
+  ]
+}

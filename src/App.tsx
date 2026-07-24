@@ -2,10 +2,7 @@ import {
   Mail,
   Phone,
   ExternalLink,
-  Award,
-  Code2,
   FileText,
-  Terminal,
   Package,
   Menu,
   X,
@@ -21,12 +18,42 @@ import {
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { DATA } from './data'
+import { ProjectCaseStudy } from './components/ProjectCaseStudy'
+import { ProjectProofLedger } from './components/ProjectProofLedger'
+import { trackPortfolioEvent } from './analytics'
+
+const PORTFOLIO_TABS = ['main', 'case-study', 'resume', 'digital', 'templates', 'gallery'] as const
+type PortfolioTab = typeof PORTFOLIO_TABS[number]
+
+function readNavigationState(): { tab: PortfolioTab; caseStudy: string } {
+  const params = new URLSearchParams(window.location.search)
+  const requestedTab = params.get('view')
+  const tab = PORTFOLIO_TABS.includes(requestedTab as PortfolioTab)
+    ? requestedTab as PortfolioTab
+    : 'main'
+
+  return {
+    tab,
+    caseStudy: params.get('project') || 'aira',
+  }
+}
+
+function getTabHref(tab: PortfolioTab, caseStudy = 'aira') {
+  const params = new URLSearchParams()
+
+  if (tab !== 'main') params.set('view', tab)
+  if (tab === 'case-study') params.set('project', caseStudy)
+
+  const query = params.toString()
+  return query ? `${import.meta.env.BASE_URL}?${query}` : import.meta.env.BASE_URL
+}
 
 function App() {
-  const [activeTab, setActiveTab] = useState('main')
+  const [activeTab, setActiveTab] = useState<PortfolioTab>(() => readNavigationState().tab)
+  const [activeCaseStudy, setActiveCaseStudy] = useState(() => readNavigationState().caseStudy)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isIntroComplete, setIsIntroComplete] = useState(false)
+  const [isLoading] = useState(false)
+  const [isIntroComplete] = useState(true)
   const [isDarkMode, setIsDarkMode] = useState(() => {
     // Check initial state from local storage or system preference
     try {
@@ -50,17 +77,19 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false)
-      const introTimer = setTimeout(() => {
-        setIsIntroComplete(true)
-      }, 500)
-      return () => clearTimeout(introTimer)
-    }, 2000)
-    return () => clearTimeout(timer)
+    const handlePopState = () => {
+      const navigation = readNavigationState()
+      setActiveTab(navigation.tab)
+      setActiveCaseStudy(navigation.caseStudy)
+      setIsMenuOpen(false)
+      window.scrollTo({ top: 0, behavior: 'auto' })
+    }
+
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
   }, [])
+
 
   useEffect(() => {
     try {
@@ -81,12 +110,20 @@ function App() {
     }
   }, [isDarkMode])
 
-  const toggleTab = (tab: string) => {
+  const toggleTab = (tab: PortfolioTab, caseStudyId = activeCaseStudy) => {
     setActiveTab(tab)
+    if (tab === 'case-study') setActiveCaseStudy(caseStudyId)
     setIsMenuOpen(false)
+    window.history.pushState({}, '', getTabHref(tab, caseStudyId))
+    window.scrollTo({ top: 0, behavior: 'auto' })
+    trackPortfolioEvent('portfolio_view_opened', {
+      view: tab,
+      project: tab === 'case-study' ? caseStudyId : null,
+    })
   }
 
   const toggleDarkMode = () => setIsDarkMode(!isDarkMode)
+  const resumeUrl = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`
 
   return (
     <>
@@ -106,14 +143,14 @@ function App() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-center"
             >
-              <motion.h1
+              <motion.p
                 className="text-3xl md:text-5xl font-black uppercase tracking-[0.4em] text-black pl-[0.4em] mb-4"
                 initial={{ letterSpacing: "0.1em", opacity: 0 }}
                 animate={{ letterSpacing: "0.4em", opacity: 1 }}
                 transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 ZYNXOSO
-              </motion.h1>
+              </motion.p>
               <div className="w-24 h-[1px] bg-black/10 mx-auto relative overflow-hidden">
                 <motion.div
                   className="absolute top-0 left-0 h-full bg-black"
@@ -137,8 +174,16 @@ function App() {
 
         {/* Mobile Header - High visibility toggle */}
         <header className="lg:hidden flex justify-between items-center px-8 py-6 bg-white sticky top-0 z-40 border-b border-black/5">
-          <h1 className="text-sm font-black uppercase tracking-tighter leading-none">{DATA.name}</h1>
+          <p className="text-[11px] sm:text-sm font-black uppercase tracking-tighter leading-none max-w-[180px]">{DATA.name}</p>
           <div className="flex items-center space-x-4">
+            <a
+              href={resumeUrl}
+              download="JanHarryMadrona_RESUME-JULY2026.pdf"
+              className="mobile-resume-link"
+              onClick={() => trackPortfolioEvent('resume_downloaded', { location: 'mobile_header' })}
+            >
+              CV
+            </a>
             <button
               onClick={toggleDarkMode}
               onKeyDown={(e) => {
@@ -171,7 +216,7 @@ function App() {
 
         {/* Sidebar - Professional Portfolio Aesthetic */}
         <aside className={`
-        fixed inset-0 lg:relative lg:translate-x-0 lg:w-[300px] bg-white flex flex-col z-50 h-full
+        fixed inset-0 lg:sticky lg:top-0 lg:translate-x-0 lg:w-[300px] bg-white flex flex-col z-50 h-full lg:h-screen
         transition-transform duration-500 ease-in-out
         ${isMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
       `}>
@@ -197,7 +242,7 @@ function App() {
               }}
               className="p-12 pb-8 text-left hidden lg:block"
             >
-              <h1 className="text-lg font-black uppercase tracking-tighter mb-2 leading-none">{DATA.name}</h1>
+              <p className="text-lg font-black uppercase tracking-tighter mb-2 leading-none">{DATA.name}</p>
               <p className="text-[10px] text-black/60 uppercase tracking-[0.2em] font-bold">Systems & Content</p>
             </motion.div>
 
@@ -213,9 +258,10 @@ function App() {
               }}
               className="p-12 lg:p-6 space-y-2 flex-1 lg:flex-none"
             >
-              {(['main', 'resume', 'digital', 'templates', 'gallery'] as const).map((tab) => {
+              {PORTFOLIO_TABS.map((tab) => {
                 const labelMap: Record<string, string> = {
                   main: 'Portfolio',
+                  'case-study': 'Case Study',
                   resume: 'My Resume',
                   digital: 'Digital Product',
                   templates: 'Design Templates',
@@ -223,13 +269,29 @@ function App() {
                 }
                 const isActive = activeTab === tab
                 return (
-                  <motion.button
+                  <motion.a
                     key={tab}
+                    href={getTabHref(tab, activeCaseStudy)}
+                    aria-current={isActive ? 'page' : undefined}
                     variants={{
                       hidden: { opacity: 0, x: -10 },
                       visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } }
                     }}
-                    onClick={() => toggleTab(tab)}
+                    onClick={(event) => {
+                      if (
+                        event.button !== 0
+                        || event.metaKey
+                        || event.ctrlKey
+                        || event.shiftKey
+                        || event.altKey
+                      ) return
+
+                      event.preventDefault()
+                      if (tab === 'resume') {
+                        trackPortfolioEvent('resume_viewed', { location: 'navigation' })
+                      }
+                      toggleTab(tab)
+                    }}
                     className={`relative w-full flex items-center justify-between px-6 py-4 lg:py-3 transition-colors duration-300 z-10 select-none rounded-sm ${isActive ? 'text-black font-black' : 'text-black/60 hover:text-black'}`}
                   >
                     {isActive && (
@@ -249,7 +311,7 @@ function App() {
                     ) : (
                       <div className="w-1.5 h-1.5 rounded-full bg-transparent" />
                     )}
-                  </motion.button>
+                  </motion.a>
                 )
               })}
             </motion.nav>
@@ -311,7 +373,7 @@ function App() {
         </aside>
 
         {/* Main Content - Minimalist Professional Portfolio */}
-        <main id="main" className="flex-1 flex flex-col min-h-screen bg-white lg:h-screen lg:overflow-hidden relative">
+        <main id="main" className="flex-1 flex flex-col min-h-screen bg-white relative">
           <motion.header
             initial={{ opacity: 0, y: -10 }}
             animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
@@ -335,184 +397,172 @@ function App() {
                 {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                 <span className="text-[10px] font-black uppercase tracking-[0.2em]">{isDarkMode ? 'Light' : 'Dark'}</span>
               </button>
-              <div className="flex items-center space-x-4 group cursor-pointer">
+              <div className="flex items-center space-x-4 group">
                 <div className="w-2 h-2 rounded-full bg-black"></div>
-                <span className="text-[10px] font-black uppercase tracking-[0.2em]">Available for Collaboration</span>
+                <span className="text-[10px] font-black uppercase tracking-[0.2em]">Open to Web & System Roles</span>
               </div>
             </div>
           </motion.header>
 
-          <div className="flex-1 px-8 lg:px-16 pb-16 lg:overflow-hidden relative">
-            <AnimatePresence mode="wait">            {activeTab === 'main' && (
-              <motion.div
-                key="main"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: {
-                    opacity: 1,
-                    transition: {
-                      staggerChildren: 0.1,
-                      delayChildren: 0.05
-                    }
-                  },
-                  exit: {
-                    opacity: 0,
-                    x: -20,
-                    transition: { duration: 0.3, ease: "easeInOut" }
-                  }
-                }}
-                initial="hidden"
-                animate={isIntroComplete ? "visible" : "hidden"}
-                exit="exit"
-                className="h-full flex flex-col lg:flex-row space-y-20 lg:space-y-0 lg:space-x-20 lg:overflow-hidden"
-              >
-                {/* Left Column: Technical Mastery */}
-                <motion.section
-                  variants={{
-                    hidden: { opacity: 0, y: 15 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.4,
-                        ease: "easeOut",
-                        staggerChildren: 0.04,
-                        delayChildren: 0.1
-                      }
-                    }
-                  }}
-                  className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden"
+          <div className="flex-1 px-8 lg:px-16 pb-16 relative">
+            <AnimatePresence mode="wait">
+              {activeTab === 'main' && (
+                <motion.article
+                  key="main"
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={isIntroComplete ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+                  exit={{ opacity: 0, y: -14 }}
+                  transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                  className="home-intro"
                 >
-                  <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
-                    <Code2 className="w-4 h-4 mr-4 shrink-0" /> Skills
-                  </h2>
-                  <div className="flex-1 lg:overflow-y-auto custom-scrollbar lg:pr-4 space-y-3">
-                    {DATA.skills.technical.map((skill, idx) => (
-                      <motion.div
-                        key={idx}
-                        variants={{
-                          hidden: { opacity: 0, y: 8 },
-                          visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } }
-                        }}
-                        className="group p-3 border border-black/5 hover:border-black/20 hover:bg-black/[0.02] rounded-sm transition-all duration-300 flex items-center justify-between"
-                      >
-                        <div className="flex items-center space-x-3 text-black/70 group-hover:text-black transition-colors">
-                          <div className="p-1.5 bg-black/5 rounded-sm group-hover:bg-black group-hover:text-white transition-colors">
-                            {skill.icon}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-wider">{skill.name}</span>
-                        </div>
-                        <span className="text-[8px] font-black uppercase tracking-widest px-2 py-0.5 bg-black/5 text-black/60 rounded-sm group-hover:bg-black/10 group-hover:text-black transition-colors shrink-0">
-                          {skill.tag}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.section>
+                  <section className="home-hero" aria-labelledby="home-heading">
+                    <div className="home-hero-copy">
+                      <p className="home-eyebrow">{DATA.homepage.eyebrow}</p>
+                      <h1 id="home-heading">{DATA.homepage.headline}</h1>
+                    </div>
 
-                {/* Middle Column: Featured Projects */}
-                <motion.section
-                  variants={{
-                    hidden: { opacity: 0, y: 15 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.4,
-                        ease: "easeOut",
-                        staggerChildren: 0.05,
-                        delayChildren: 0.15
-                      }
-                    }
-                  }}
-                  className="w-full lg:w-2/4 flex flex-col lg:overflow-hidden"
-                >
-                  <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
-                    <Terminal className="w-4 h-4 mr-4 shrink-0" /> Projects
-                  </h2>
-                  <div className="flex-1 space-y-8 lg:overflow-y-auto custom-scrollbar lg:pr-6">
-                    {DATA.projects.map((proj, idx) => (
-                      <motion.div
-                        key={idx}
-                        variants={{
-                          hidden: { opacity: 0, y: 15 },
-                          visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
-                        }}
-                        className="group p-6 border border-black/5 hover:border-black/15 hover:bg-black/[0.01] rounded-sm transition-colors duration-300 flex flex-col justify-between"
-                        whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                      >
-                        <div>
-                          <div className="flex items-start space-x-4 mb-4">
-                            <div className="p-2.5 bg-black/5 rounded-sm text-black/40 group-hover:text-black group-hover:bg-black/10 transition-colors shrink-0">
-                              {proj.icon}
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h3 className="text-lg lg:text-xl font-black uppercase leading-tight tracking-tighter transition-colors">{proj.name}</h3>
-                              <p className="text-[9px] font-black uppercase tracking-[0.2em] mt-1 text-black/50">{proj.role}</p>
-                            </div>
-                            <a href={proj.url} target="_blank" rel="noopener noreferrer" className="p-1.5 text-black/40 hover:text-black transition-colors shrink-0" aria-label={`Visit project ${proj.name}`}>
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-                          </div>
-                          <p className="text-[12px] font-medium leading-relaxed opacity-85 max-w-prose">{proj.desc}</p>
-                        </div>
-                        {proj.tags && (
-                          <div className="flex flex-wrap gap-1.5 mt-5 pt-4 border-t border-black/5">
-                            {proj.tags.map((tag, tIdx) => (
-                              <span key={tIdx} className="text-[8px] font-black uppercase tracking-wider px-2 py-0.5 bg-black/5 text-black/60 rounded-sm group-hover:bg-black/10 group-hover:text-black transition-colors">
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.section>
+                    <div className="home-hero-detail">
+                      <p>{DATA.homepage.lede}</p>
+                      <div className="home-actions">
+                        <a
+                          href={resumeUrl}
+                          download="JanHarryMadrona_RESUME-JULY2026.pdf"
+                          className="home-action-primary"
+                          onClick={() => trackPortfolioEvent('resume_downloaded', { location: 'hero' })}
+                        >
+                          Download resume
+                          <Package aria-hidden="true" />
+                        </a>
+                        <a
+                          className="home-action-text"
+                          href={getTabHref('case-study', 'aira')}
+                          onClick={(event) => {
+                            if (
+                              event.button !== 0
+                              || event.metaKey
+                              || event.ctrlKey
+                              || event.shiftKey
+                              || event.altKey
+                            ) return
 
-                {/* Right Column: Key Accolades */}
-                <motion.section
-                  variants={{
-                    hidden: { opacity: 0, y: 15 },
-                    visible: {
-                      opacity: 1,
-                      y: 0,
-                      transition: {
-                        duration: 0.4,
-                        ease: "easeOut",
-                        staggerChildren: 0.04,
-                        delayChildren: 0.2
-                      }
-                    }
-                  }}
-                  className="w-full lg:w-1/4 flex flex-col lg:overflow-hidden"
-                >
-                  <h2 className="text-[11px] font-black uppercase tracking-[0.4em] mb-8 lg:mb-12 flex items-center text-black/50">
-                    <Award className="w-4 h-4 mr-4 shrink-0" /> Achievements
-                  </h2>
-                  <div className="flex-1 space-y-10 lg:space-y-12 lg:overflow-y-auto custom-scrollbar lg:pr-6">
-                    {DATA.achievements.map((ach, idx) => (
-                      <motion.div
-                        key={idx}
-                        variants={{
-                          hidden: { opacity: 0, y: 10 },
-                          visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } }
-                        }}
-                        className="group"
+                            event.preventDefault()
+                            trackPortfolioEvent('case_study_opened', { project: 'aira', location: 'hero' })
+                            toggleTab('case-study', 'aira')
+                          }}
+                        >
+                          Read AIRA case study
+                          <ExternalLink aria-hidden="true" />
+                        </a>
+                        <a
+                          className="home-action-text"
+                          href={`mailto:${DATA.email}`}
+                          onClick={() => trackPortfolioEvent('email_clicked', { location: 'hero' })}
+                        >
+                          Email me
+                          <Mail aria-hidden="true" />
+                        </a>
+                      </div>
+                    </div>
+                  </section>
+
+                  <ul className="home-credential-strip" aria-label="Verified portfolio evidence">
+                    <li>
+                      <strong>480h</strong>
+                      <span>CLSU MISO internship</span>
+                    </li>
+                    <li>
+                      <strong>03</strong>
+                      <span>Detailed case studies</span>
+                    </li>
+                    <li>
+                      <strong>02</strong>
+                      <span>Live systems to inspect</span>
+                    </li>
+                  </ul>
+
+                  <section className="home-proof home-proof--ledger" aria-labelledby="proof-heading">
+                    <div className="home-section-label">
+                      <span>Technical proof</span>
+                      <h2 id="proof-heading">Inspect the decisions behind the work.</h2>
+                    </div>
+
+                    <ProjectProofLedger
+                      projects={DATA.homepage.ledger}
+                      onOpenCaseStudy={(caseStudyId) => {
+                        toggleTab('case-study', caseStudyId)
+                      }}
+                    />
+                  </section>
+
+                  <section className="home-bio" aria-labelledby="bio-heading">
+                    <div className="home-section-label">
+                      <span>About / 2026</span>
+                      <h2 id="bio-heading">How I approach the work.</h2>
+                    </div>
+
+                    <div className="home-bio-copy">
+                      {DATA.homepage.bio.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+
+                    <aside className="home-principles" aria-label="How I work">
+                      <p>How I work</p>
+                      <ol>
+                        {DATA.homepage.principles.map((principle, index) => (
+                          <li key={principle}>
+                            <span>{String(index + 1).padStart(2, '0')}</span>
+                            {principle}
+                          </li>
+                        ))}
+                      </ol>
+                    </aside>
+                  </section>
+
+                  <section className="home-close" aria-labelledby="contact-heading">
+                    <div>
+                      <p className="home-eyebrow">Open to web and system development roles</p>
+                      <h2 id="contact-heading">
+                        If your team is stuck with a slow manual process, I can help make it easier to manage.
+                      </h2>
+                    </div>
+                    <div className="home-close-actions">
+                      <a
+                        href={`mailto:${DATA.email}`}
+                        onClick={() => trackPortfolioEvent('email_clicked', { location: 'closing_cta' })}
                       >
-                        <div className="flex items-start space-x-4">
-                          <div className="mt-1 text-black/20 group-hover:text-black transition-colors shrink-0">{ach.icon}</div>
-                          <div>
-                            <p className="text-[13px] font-black uppercase tracking-tight mb-2 group-hover:text-black transition-colors leading-tight">{ach.title}</p>
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-black/60">{ach.category}</p>
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.section>
-              </motion.div>
-            )}
+                        {DATA.email}
+                      </a>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          trackPortfolioEvent('resume_viewed', { location: 'closing_cta' })
+                          toggleTab('resume')
+                        }}
+                      >
+                        Read my resume
+                        <FileText aria-hidden="true" />
+                      </button>
+                    </div>
+                  </section>
+                </motion.article>
+              )}
+
+              {activeTab === 'case-study' && (
+                <motion.div
+                  key="case-study"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -16 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="h-full"
+                >
+                  <ProjectCaseStudy
+                    caseStudyId={activeCaseStudy}
+                    onBack={() => toggleTab('main')}
+                  />
+                </motion.div>
+              )}
 
               {activeTab === 'resume' && (
                 <motion.div
@@ -525,9 +575,9 @@ function App() {
                 >
                   <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 space-y-6 lg:space-y-0 shrink-0">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full lg:w-auto">
-                      <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                      <h1 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                         <FileText className="w-4 h-4 mr-4 shrink-0" /> Resume
-                      </h2>
+                      </h1>
 
                       {/* View Mode Toggle Pill */}
                       <div className="flex bg-black/5 rounded-full p-1 border border-black/5 self-start sm:self-auto select-none">
@@ -554,19 +604,19 @@ function App() {
 
                     <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
                       <a
-                        href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                        href={resumeUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackPortfolioEvent('resume_opened', { location: 'resume_tab' })}
                         className="bg-black/5 hover:bg-black/10 text-black px-5 py-3 text-[10px] font-black uppercase tracking-widest transition-colors flex items-center justify-center space-x-2 select-none rounded-sm border border-black/10"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         <span>Open PDF</span>
                       </a>
                       <a
-                        href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                        href={resumeUrl}
                         download="JanHarryMadrona_RESUME-JULY2026.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        onClick={() => trackPortfolioEvent('resume_downloaded', { location: 'resume_tab' })}
                         className="bg-black text-white px-6 py-3 text-[10px] font-black uppercase tracking-widest hover:bg-black/80 transition-colors flex items-center justify-center space-x-2 select-none rounded-sm"
                       >
                         <Package className="w-3.5 h-3.5" />
@@ -580,24 +630,24 @@ function App() {
                     <div className="flex-1 bg-black/5 border border-black/5 overflow-hidden relative group rounded-sm min-h-[600px]">
                       {resumeViewMode === 'pdf' && (
                         <object
-                          data={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                          data={resumeUrl}
                           type="application/pdf"
                           className="w-full h-full min-h-[600px]"
                         >
                           <embed
-                            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                            src={resumeUrl}
                             type="application/pdf"
                             className="w-full h-full min-h-[600px]"
                           />
                           <iframe
-                            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                            src={resumeUrl}
                             className="w-full h-full border-none min-h-[600px]"
                             title="Resume Preview"
                           >
                             <p className="p-6 text-center text-xs">
                               Your browser does not support embedded PDF viewing.{' '}
                               <a
-                                href={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/${DATA.resume.replace(/^\//, '')}`}
+                                href={resumeUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="underline font-bold"
@@ -903,9 +953,9 @@ function App() {
                   className="h-full flex flex-col lg:overflow-hidden"
                 >
                   <div className="mb-8 shrink-0">
-                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                    <h1 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                       <Package className="w-4 h-4 mr-4 shrink-0" /> Digital Products
-                    </h2>
+                    </h1>
                   </div>
                   <div className="flex-1 overflow-y-auto custom-scrollbar pr-2 lg:pr-6 pb-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -962,9 +1012,9 @@ function App() {
                 >
                   <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 shrink-0">
                     <div className="space-y-3">
-                      <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                      <h1 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                         <Palette className="w-4 h-4 mr-4 shrink-0" /> Design Templates
-                      </h2>
+                      </h1>
                       <p className="text-[12px] leading-relaxed opacity-70 font-medium max-w-xl">
                         Canva-ready layouts and visual systems. Each preview opens the editable design in Canva.
                       </p>
@@ -1077,9 +1127,9 @@ function App() {
                 >
                   {/* Gallery Control Header */}
                   <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-6 mb-8 shrink-0">
-                    <h2 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
+                    <h1 className="text-[11px] font-black uppercase tracking-[0.4em] flex items-center text-black/50">
                       <LayoutGrid className="w-4 h-4 mr-4 shrink-0" /> Gallery
-                    </h2>
+                    </h1>
 
                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full xl:w-auto">
                       {/* Filter Tabs Pill */}
